@@ -1,5 +1,20 @@
 import React from "react";
 
-export default function SomeTesting({ title = "Testing" }) {
-    return <h2>{title}</h2>;
-}
+const SomeTesting = ({ title = "Testing" }) => {
+    const onClickHandler = () => {
+        alert("Clicked!");
+    };
+    const onChangeInput = () => {
+        console.log("ok");
+    };
+
+    return (
+        <>
+            <h2>{title}</h2>
+            <button onClick={onClickHandler}>{`Click Me`}</button>
+            <input onChange={onChangeInput}></input>
+        </>
+    );
+};
+
+export default SomeTesting;
