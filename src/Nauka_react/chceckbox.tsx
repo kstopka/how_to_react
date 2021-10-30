@@ -32,18 +32,18 @@ const OrderForm = (
 class App extends React.Component<AppProps, AppState> {
     state = { isConfirmed: false, isFormSubmitted: false };
 
-    handleFormSubmit = (e: { preventDefault: () => void }) => {
+    private handleFormSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         if (!this.state.isFormSubmitted) {
             this.setState({ isFormSubmitted: true });
         }
     };
 
-    handleCheckboxChange = () => {
+    private handleCheckboxChange = () => {
         this.setState({ isConfirmed: !this.state.isConfirmed, isFormSubmitted: false });
     };
 
-    displayMessage = () => {
+    private displayMessage = () => {
         return this.state.isConfirmed ? <ValidationMessage txt="Positive" /> : <ValidationMessage txt="Negative" />;
     };
 
