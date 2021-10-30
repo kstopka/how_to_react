@@ -12,38 +12,21 @@ const ValidationMessage = (props: { txt: any }) => {
     return <p>{txt}</p>;
 };
 
-const OrderForm = (
-    change: React.ChangeEventHandler<HTMLInputElement> | undefined,
-    submit: React.FormEventHandler<HTMLFormElement> | undefined,
-    checked: boolean | undefined
-) => {
-    return (
-        <form onSubmit={submit}>
-            <h1>Kup Bilet</h1>
-            <input type="checkbox" name="age" id="age" checked={checked} onChange={change} />
-            <label htmlFor="age">mam co najmniej 16 lat</label>
-            <div>
-                <button type="submit">SEND</button>
-            </div>
-        </form>
-    );
-};
-
 class App extends React.Component<AppProps, AppState> {
     state = { isConfirmed: false, isFormSubmitted: false };
 
-    private handleFormSubmit = (e: { preventDefault: () => void }) => {
+    handleFormSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         if (!this.state.isFormSubmitted) {
             this.setState({ isFormSubmitted: true });
         }
     };
 
-    private handleCheckboxChange = () => {
+    handleCheckboxChange = () => {
         this.setState({ isConfirmed: !this.state.isConfirmed, isFormSubmitted: false });
     };
 
-    private displayMessage = () => {
+    displayMessage = () => {
         return this.state.isConfirmed ? <ValidationMessage txt="Positive" /> : <ValidationMessage txt="Negative" />;
     };
 
@@ -51,7 +34,20 @@ class App extends React.Component<AppProps, AppState> {
         const { isConfirmed, isFormSubmitted } = this.state;
         return (
             <div className="wrapper">
-                <OrderForm change={this.handleCheckboxChange} submit={this.handleFormSubmit} checked={isConfirmed} />
+                <form onSubmit={this.handleFormSubmit}>
+                    <h1>Kup Bilet</h1>
+                    <input
+                        type="checkbox"
+                        name="age"
+                        id="age"
+                        checked={isConfirmed}
+                        onChange={this.handleCheckboxChange}
+                    />
+                    <label htmlFor="age">mam co najmniej 16 lat</label>
+                    <div>
+                        <button type="submit">SEND</button>
+                    </div>
+                </form>
                 {isFormSubmitted ? this.displayMessage() : null}
             </div>
         );
