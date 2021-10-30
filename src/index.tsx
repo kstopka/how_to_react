@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 // import App from './App';
-// import App from "./Nauka_react/chceckbox";
-import App from "./Nauka_react/shoping_cart";
+// import App from "./Nauka_react/1_chceckbox";
+// import App from "./Nauka_react/2_shoping_cart";
+// import App from "./Nauka_react/3_list_item";
+import App from "./Nauka_react/4_order_restaurant";
 
 ReactDOM.render(
     <React.StrictMode>
