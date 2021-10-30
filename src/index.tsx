@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./Nauka_react/1_chceckbox";
 // import App from "./Nauka_react/2_shoping_cart";
 // import App from "./Nauka_react/3_list_item";
-import App from "./Nauka_react/4_order_restaurant";
+// import App from "./Nauka_react/4_order_restaurant";
+import App from "./Nauka_react/5_form";
 
 ReactDOM.render(
     <React.StrictMode>
