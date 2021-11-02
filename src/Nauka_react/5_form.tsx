@@ -1,9 +1,13 @@
-import e from "cors";
 import * as React from "react";
 
 interface AppProps {}
 
-interface AppState {}
+interface AppState {
+    // city: string;
+    // text: string;
+    // isLoved: true;
+    // number: string;
+}
 
 class App extends React.Component<AppProps, AppState> {
     state = { city: "Warszawa", text: "some Text", isLoved: true, number: "0" };
