@@ -9,7 +9,10 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./Nauka_react/4_order_restaurant";
 // import App from "./Nauka_react/5_form";
 // import App from "./Nauka_react/6_exchange_counter";
-import App from "./react_TS/1_rating_stars/RatingStars";
+
+// import App from "./react_TS/1_rating_stars/RatingStars";
+
+import App from "./ReactHooksNauka/1_reactHooks";
 
 ReactDOM.render(
     <React.StrictMode>
