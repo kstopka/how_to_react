@@ -1,21 +1,19 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// w useEffect powinno znaleźć się:
+// zapytania do API (fetch)
+// subskrypcje (np. rxjs albo EventEmitter)
+// timery (setTimeout i setInterval)
+// aktualizacja document.title
+// nasłuchiwanie na zdarzenia — np. resize
 
 const allUsers = ["Michal", "Kasia", "Jacek", "Marta", "Tomek", "Ania"];
 const getFilteredUsersForText = (text: string) => {
     return allUsers.filter((user) => user.toLowerCase().includes(text.toLowerCase()));
 };
 
-// useState
-// useEffect
-// useContext
-
 const App = () => {
-    // useState zwraca tablice z dwoma elementami
-    // counter to stan
-    // setCounter to funkcja zmieniająca stan
-    // useState jako argument przyjmuje stan początkowy - 0
-    const [counter, setCounter] = useState(0);
     const [filteredUsers, setUsers] = useState(allUsers);
 
     const filterUsers = (e: any) => {
@@ -24,20 +22,19 @@ const App = () => {
         setUsers(filteredUsers);
     };
 
+    useEffect(() => {
+        document.title = `Showing ${filteredUsers.length} users!`;
+    }, [filteredUsers]); // 2
+
     return (
         <div>
-            <div className="counter">
-                {counter}
-                <button onClick={() => setCounter(counter + 1)}>DODAJ</button>
-            </div>
-            <div className="filterUser">
-                <input onInput={filterUsers} />
-                <UsersList users={filteredUsers} />
-            </div>
+            <input onInput={filterUsers} />
+            <UsersList users={filteredUsers} />
         </div>
     );
 };
-function UsersList(props: { users: any }) {
+
+const UsersList = (props: { users: any }) => {
     const { users } = props;
     if (users.length > 0) {
         return (
@@ -50,5 +47,6 @@ function UsersList(props: { users: any }) {
     }
 
     return <p>No results!</p>;
-}
+};
+
 export default App;

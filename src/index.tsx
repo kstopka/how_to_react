@@ -4,16 +4,19 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 // import App from './App';
 // import App from "./Nauka_react/1_chceckbox";
-import App from "./Nauka_react/1_chceckbox_hooks";
+// import App from "./Nauka_react/1_chceckbox_hooks";
 // import App from "./Nauka_react/2_shoping_cart";
 // import App from "./Nauka_react/3_list_item";
 // import App from "./Nauka_react/4_order_restaurant";
 // import App from "./Nauka_react/5_form";
 // import App from "./Nauka_react/6_exchange_counter";
 
-// import App from "./react_TS/1_rating_stars/RatingStars";
+// import App from "./ReactHooksNauka/1_useState";
+// import App from "./ReactHooksNauka/2_useEffect";
+// import App from "./ReactHooksNauka/3_useReducer";
+import App from "./ReactHooksNauka/4_useCallback";
 
-// import App from "./ReactHooksNauka/1_reactHooks";
+// import App from "./react_TS/1_rating_stars/RatingStars";
 
 ReactDOM.render(
     <React.StrictMode>
