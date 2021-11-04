@@ -42,7 +42,7 @@ function UsersList(props: { users: any }) {
     if (users.length > 0) {
         return (
             <ul>
-                {users.map((user) => (
+                {users.map((user: any) => (
                     <li key={user}>{user}</li>
                 ))}
             </ul>

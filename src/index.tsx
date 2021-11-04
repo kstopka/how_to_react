@@ -4,6 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 // import App from './App';
 // import App from "./Nauka_react/1_chceckbox";
+import App from "./Nauka_react/1_chceckbox_hooks";
 // import App from "./Nauka_react/2_shoping_cart";
 // import App from "./Nauka_react/3_list_item";
 // import App from "./Nauka_react/4_order_restaurant";
@@ -12,7 +13,7 @@ import reportWebVitals from "./reportWebVitals";
 
 // import App from "./react_TS/1_rating_stars/RatingStars";
 
-import App from "./ReactHooksNauka/1_reactHooks";
+// import App from "./ReactHooksNauka/1_reactHooks";
 
 ReactDOM.render(
     <React.StrictMode>
