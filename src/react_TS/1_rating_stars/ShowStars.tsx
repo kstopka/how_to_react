@@ -1,4 +1,5 @@
 import * as React from "react";
+
 const YellowStar = () => (
     <svg height="30px" viewBox="0 -10 511.98685 511" width="30px" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -15,6 +16,7 @@ const GrayStar = () => (
         />
     </svg>
 );
+
 const ShowStars = (props: any) => {
     return (
         <div>

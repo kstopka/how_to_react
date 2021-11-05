@@ -1,8 +1,7 @@
 import * as React from "react";
 import ShowStars from "./ShowStars";
 
-const Rating = (props: any) => {
-    const { content, name } = props;
+const Rating = ({ content, name }: any) => {
     //NOTE: content ma mieć 120 znakow
 
     return (

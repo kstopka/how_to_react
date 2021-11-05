@@ -14,6 +14,10 @@ export type RatingType = {
     content: string;
 };
 
+// App.d.ts
+
+// zamiana na hooki + CF
+// musisz na starcie komponentu pobrać dane z "API" do stanu
 class App extends React.Component<AppProps, AppState> {
     state = {
         ratings: [

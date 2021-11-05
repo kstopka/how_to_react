@@ -3,21 +3,23 @@ import { FunctionComponent } from "react";
 
 interface AppProps {}
 
-const App: FunctionComponent<AppProps> = () => {
-    const useMemoState = (initialValue: any) => {
-        let state: any = null;
-        let stateInitialized: boolean = false;
-        const setState = (newState: any) => {
-            state = newState;
-            return state;
-        };
-
-        if (!stateInitialized) {
-            stateInitialized = true;
-            state = initialValue;
-        }
-        return [state, setState];
+// react hooks
+const useMemoState = (initialValue: any) => {
+    let state: any = null;
+    let stateInitialized: boolean = false;
+    const setState = (newState: any) => {
+        state = newState;
+        return state;
     };
+
+    if (!stateInitialized) {
+        stateInitialized = true;
+        state = initialValue;
+    }
+    return [state, setState];
+};
+
+const App: FunctionComponent<AppProps> = () => {
     const [value, setter] = useMemoState({ val: 0 });
 
     return (

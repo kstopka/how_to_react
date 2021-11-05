@@ -3,14 +3,16 @@ import AverageScore from "./AverageScore";
 import Rating from "./Rating";
 // import RatingType from "./RatingStars";
 
-const RatingList = (props: { ratings: any[] }) => {
-    const mapRatingList = props.ratings.map((rating: any) => (
-        <Rating name={rating.name} key={rating.recordId} score={rating.score} content={rating.content} />
+// poprawic typowanie
+const RatingList = ({ ratings }: { ratings: any[] }) => {
+    // useMemo - poczytać
+    const mapRatingList = ratings.map(({ name, score, content, recordId }: any) => (
+        <Rating name={name} key={recordId} score={score} content={content} />
     ));
-    mapRatingList.length = 10;
+    mapRatingList.length = 10; // nie w ten sposób bo powoduje problemy z pamięcia
     return (
         <div>
-            <AverageScore ratings={props.ratings} />
+            <AverageScore ratings={ratings} />
             <ul>{mapRatingList}</ul>
         </div>
     );
