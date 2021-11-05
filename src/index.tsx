@@ -14,9 +14,10 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./ReactHooksNauka/1_useState";
 // import App from "./ReactHooksNauka/2_useEffect";
 // import App from "./ReactHooksNauka/3_useReducer";
-import App from "./ReactHooksNauka/4_useCallback";
+// import App from "./ReactHooksNauka/4_useCallback";
 
 // import App from "./react_TS/1_rating_stars/RatingStars";
+import App from "./react_TS/2_useMemoStateHook/useMemoStateHook";
 
 ReactDOM.render(
     <React.StrictMode>
