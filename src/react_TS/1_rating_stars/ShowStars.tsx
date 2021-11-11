@@ -17,16 +17,11 @@ const GrayStar = () => (
     </svg>
 );
 
-const ShowStars = (props: any) => {
-    return (
-        <div>
-            {props.number >= 1 ? <YellowStar /> : <GrayStar />}
-            {props.number >= 2 ? <YellowStar /> : <GrayStar />}
-            {props.number >= 3 ? <YellowStar /> : <GrayStar />}
-            {props.number >= 4 ? <YellowStar /> : <GrayStar />}
-            {props.number >= 5 ? <YellowStar /> : <GrayStar />}
-        </div>
-    );
+const ShowStars = ({ number }: { number: number }) => {
+    //NOTE: pewnie da się prościej ale nie mogę wymyślić nic lepszego
+    const privateArray: number[] = [1, 2, 3, 4, 5];
+    const stars = privateArray.map((item) => (number >= item ? <YellowStar /> : <GrayStar />));
+    return <div>{stars}</div>;
 };
 
 export default ShowStars;

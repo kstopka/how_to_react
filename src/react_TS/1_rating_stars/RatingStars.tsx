@@ -1,5 +1,6 @@
 import * as React from "react";
 import RatingList from "./RatingList";
+import { RatingType } from "./App";
 
 interface AppProps {}
 
@@ -7,18 +8,12 @@ interface AppState {
     ratings: RatingType[];
 }
 
-export type RatingType = {
-    recordId: string;
-    name: string;
-    score: number;
-    content: string;
-};
-
 // App.d.ts
-
+//TODO: zamienić klase na hook
 // zamiana na hooki + CF
 // musisz na starcie komponentu pobrać dane z "API" do stanu
 class App extends React.Component<AppProps, AppState> {
+    //TODO: pobrać JSON z innego pliku
     state = {
         ratings: [
             {

@@ -1,13 +1,24 @@
-import * as React from "react";
 import ShowStars from "./ShowStars";
 
-const Rating = ({ content, name }: any) => {
-    //NOTE: content ma mieć 120 znakow
+const Rating = ({
+    name,
+    score,
+    content,
+    recordId,
+}: {
+    name: string;
+    score: number;
+    content: string;
+    recordId: string;
+}) => {
+    // NOTE: content ma mieć 120 znakow, tak po prostu?
+
+    content = content.slice(0, 120);
 
     return (
         <li>
             <h1>{name}</h1>
-            {<ShowStars number={props.score} />}
+            {<ShowStars number={score} />}
             <p>{content}</p>
         </li>
     );
