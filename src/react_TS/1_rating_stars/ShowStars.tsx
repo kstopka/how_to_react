@@ -19,8 +19,8 @@ const GrayStar = () => (
 
 const ShowStars = ({ number }: { number: number }) => {
     //NOTE: pewnie da się prościej ale nie mogę wymyślić nic lepszego
-    const privateArray: number[] = [1, 2, 3, 4, 5];
-    const stars = privateArray.map((item) => (number >= item ? <YellowStar /> : <GrayStar />));
+    const starsQuality: number[] = [1, 2, 3, 4, 5];
+    const stars = starsQuality.map((item) => (number >= item ? <YellowStar /> : <GrayStar />));
     return <div>{stars}</div>;
 };
 
