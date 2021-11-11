@@ -12,8 +12,7 @@ const Rating = ({
     recordId: string;
 }) => {
     // NOTE: content ma mieć 120 znakow, tak po prostu?
-
-    content = content.slice(0, 120);
+    content = content.slice(0, 119);
 
     return (
         <li>

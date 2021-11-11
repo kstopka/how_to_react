@@ -1,5 +1,3 @@
-import * as React from "react";
-
 const YellowStar = () => (
     <svg height="30px" viewBox="0 -10 511.98685 511" width="30px" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -20,7 +18,10 @@ const GrayStar = () => (
 const ShowStars = ({ number }: { number: number }) => {
     //NOTE: pewnie da się prościej ale nie mogę wymyślić nic lepszego
     const starsQuality: number[] = [1, 2, 3, 4, 5];
-    const stars = starsQuality.map((item) => (number >= item ? <YellowStar /> : <GrayStar />));
+    const stars = starsQuality.map((item, index) =>
+        //NOTE: Czy taki KEY jest ok?
+        number >= item ? <YellowStar key={index} /> : <GrayStar key={index} />
+    );
     return <div>{stars}</div>;
 };
 
