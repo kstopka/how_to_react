@@ -1,3 +1,6 @@
+export type ObjRatingType = {
+    ratings: RatingType[];
+};
 export type RatingType = {
     recordId: string;
     name: string;

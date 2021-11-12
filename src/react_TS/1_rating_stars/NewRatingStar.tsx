@@ -1,38 +1,27 @@
 import * as React from "react";
 import { useState, useEffect, FunctionComponent } from "react";
-
+import RatingList from "./RatingList";
 import dataRatings from "./data.json";
-
-type HelpRatingType = {
-    ratings: RatingType[];
-};
-
-export type RatingType = {
-    recordId: string;
-    name: string;
-    score: number;
-    content: string;
-};
+import { RatingType, ObjRatingType } from "./App";
 
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
-    const [ratings, setRatings] = useState([]);
+    const [ratings, setRatings] = useState(dataRatings);
 
     useEffect(() => {
         //NOTE: ... no nie działa cos :(
-        // try {
-        const data: RatingType[] = JSON.parse(dataRatings);
+        // const data: RatingType[] = dataRatings.ratings;
+        const data: ObjRatingType = dataRatings;
         setRatings(data);
-        // } catch (error) {
-        // throw new Error(`Error: ${error}`);
-        // }
-    }, []);
+        // console.log(typeof data);
+        // console.log(Array.isArray(data));
+    });
     return (
         <div className="wrapper">
             <h1>Rating Stars</h1>
             <p></p>
-            {/* <RatingList ratings={ratings} /> */}
+            <RatingList ratings={ratings} />
         </div>
     );
 };
