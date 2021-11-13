@@ -6,9 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./Nauka_react/1_chceckbox";
 // import App from "./Nauka_react/1_chceckbox_hooks";
 // import App from "./Nauka_react/2_shoping_cart";
-import App from "./Nauka_react/2_shoping_cart_hooks";
+// import App from "./Nauka_react/2_shoping_cart_hooks";
 // import App from "./Nauka_react/3_list_item";
+// import App from "./Nauka_react/3_list_item_hooks";
 // import App from "./Nauka_react/4_order_restaurant";
+import App from "./Nauka_react/4_order_restaurant_hooks";
 // import App from "./Nauka_react/5_form";
 // import App from "./Nauka_react/6_exchange_counter";
 

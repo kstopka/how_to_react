@@ -8,6 +8,7 @@ interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
     //NOTE: jaką ustawić wartość początkową ??? \/
+    //NOTE: jak ustawić typ state? ratings
     const [ratings, setRatings] = useState(dataRatings.ratings);
 
     useEffect(() => {
