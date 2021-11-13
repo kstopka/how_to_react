@@ -10,8 +10,9 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./Nauka_react/3_list_item";
 // import App from "./Nauka_react/3_list_item_hooks";
 // import App from "./Nauka_react/4_order_restaurant";
-import App from "./Nauka_react/4_order_restaurant_hooks";
+// import App from "./Nauka_react/4_order_restaurant_hooks";
 // import App from "./Nauka_react/5_form";
+import App from "./Nauka_react/5_form_hooks";
 // import App from "./Nauka_react/6_exchange_counter";
 
 // import App from "./ReactHooksNauka/1_useState";

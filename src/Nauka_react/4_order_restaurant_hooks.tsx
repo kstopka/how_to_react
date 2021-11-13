@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect, FunctionComponent } from "react";
+import { useState, FunctionComponent } from "react";
 import Header from "./4_order_restaurant/Header_hooks";
 import ListItems from "./4_order_restaurant/ListItems_hooks";
 
