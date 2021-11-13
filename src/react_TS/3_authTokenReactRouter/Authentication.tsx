@@ -1,14 +1,21 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import Home from "./Home";
 import Login from "./Login";
 import SecureLink from "./SecureLink";
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Logout from "./Logout";
 
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
+    const [token, setToken] = useState(false);
+
+    if (!token) {
+        return <Login setToken={setToken} />;
+    }
+
     return (
         <Router>
             <div>
@@ -19,7 +26,7 @@ const App: FunctionComponent<AppProps> = () => {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/login">Login</Link>
+                            <Link to="/logout">Logout</Link>
                         </li>
                         <li>
                             <Link to="/securelink">SecureLink</Link>
@@ -27,11 +34,9 @@ const App: FunctionComponent<AppProps> = () => {
                     </ul>
                 </nav>
 
-                {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
                 <Switch>
-                    <Route path="/login">
-                        <Login />
+                    <Route path="/logout">
+                        <Logout setToken={setToken} />
                     </Route>
                     <Route path="/securelink">
                         <SecureLink />

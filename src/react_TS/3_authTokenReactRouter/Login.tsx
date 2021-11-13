@@ -1,20 +1,45 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { useState } from "react";
 
-interface LoginProps {}
+// interface LoginProps {}
+//NOTE: podczas loginu ma przejsc na home
+//NOTE: jaki powienin być typ setToken
+const Login = ({ setToken }: { setToken: any }) => {
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const { correctUserName, correctPassword } = {
+        correctUserName: "123",
+        correctPassword: "qwe",
+    };
+    const handleChangeLogin = (e: any) => {
+        const login = e.target.value;
+        setUserName(login);
+    };
+    const handleChangePassword = (e: any) => {
+        const password = e.target.value;
+        setPassword(password);
+    };
+    const handleFormSubmit = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        if (userName !== correctUserName || password !== correctPassword) {
+            alert("wrong login or passowrd");
+        }
+        setToken(true);
+    };
 
-const Login: FunctionComponent<LoginProps> = () => {
+    //NOTE: jeżeli jest zalogowany to wrzuca na home
+    //NOTE: zmienia token na ten poprawny
     return (
         <div>
             <h1>Login</h1>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <label>
                     <p>Username</p>
-                    <input type="text" />
+                    <input type="text" onChange={handleChangeLogin} />
                 </label>
                 <label>
                     <p>Password</p>
-                    <input type="password" />
+                    <input type="password" onChange={handleChangePassword} />
                 </label>
                 <div>
                     <button type="submit">Submit</button>

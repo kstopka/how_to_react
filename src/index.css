@@ -14,4 +14,8 @@ code {
 body {
     background-color: #333;
     color: white;
+    font-size: 2em;
+}
+body a {
+    color: white;
 }
