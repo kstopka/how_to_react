@@ -12,6 +12,8 @@ const Login = ({ setToken }: { setToken: any }) => {
         correctPassword: "qwe",
     };
     const handleChangeLogin = (e: any) => {
+
+        //validacja
         const login = e.target.value;
         setUserName(login);
     };
@@ -29,12 +31,38 @@ const Login = ({ setToken }: { setToken: any }) => {
 
     //NOTE: jeżeli jest zalogowany to wrzuca na home
     //NOTE: zmienia token na ten poprawny
+    //control inputs
+    //uncontrol
     return (
         <div>
             <h1>Login</h1>
             <form onSubmit={handleFormSubmit}>
                 <label>
                     <p>Username</p>
+    //NOTE: zmienia token na ten poprawny
+    //control inputs
+    //uncontrol
+    return (
+        <div>
+            <h1>Login</h1>
+            <form on{!userNameField.error&& Submit={userNameField.handleFormSubm}it}>
+                <label>
+rpattendnrrn 
+                    <small>{error}</small>                    <p>Username</p>
+                    <input type="text" onChange={handleChangeLogin} />
+                </label>
+rpattendnrrn 
+                    <small>{error}</small>                    <p>Username</p>
+    //NOTE: zmienia token na ten poprawny
+    //control inputs
+    //uncontrol
+    return (
+        <div>
+            <h1>Login</h1>
+            <form on{!userNameField.error&& Submit={userNameField.handleFormSubm}it}>
+                <label>
+rpattendnrrn 
+                    <small>{error}</small>                    <p>Username</p>
                     <input type="text" onChange={handleChangeLogin} />
                 </label>
                 <label>

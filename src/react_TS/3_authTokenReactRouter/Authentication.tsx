@@ -8,8 +8,10 @@ import SecureLink from "./SecureLink";
 import Logout from "./Logout";
 
 interface AppProps {}
-
+// React.Context
+// useContext
 const App: FunctionComponent<AppProps> = () => {
+    //context
     const [token, setToken] = useState(false);
 
     if (!token) {
