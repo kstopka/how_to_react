@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./Nauka_react/1_chceckbox";
 // import App from "./Nauka_react/1_chceckbox_hooks";
 // import App from "./Nauka_react/2_shoping_cart";
+import App from "./Nauka_react/2_shoping_cart_hooks";
 // import App from "./Nauka_react/3_list_item";
 // import App from "./Nauka_react/4_order_restaurant";
 // import App from "./Nauka_react/5_form";
@@ -18,7 +19,7 @@ import reportWebVitals from "./reportWebVitals";
 
 // import App from "./react_TS/1_rating_stars/RatingStars";
 // import App from "./react_TS/2_useMemoStateHook/useMemoStateHook";
-import App from "./react_TS/3_authTokenReactRouter/Authentication";
+// import App from "./react_TS/3_authTokenReactRouter/Authentication";
 
 ReactDOM.render(
     <React.StrictMode>
