@@ -1,6 +1,6 @@
 import AverageScore from "./AverageScore";
 import Rating from "./Rating";
-import { RatingType } from "./App";
+import { RatingType } from "../App";
 
 // poprawic typowanie
 //NOTE: Czy typowanie teraz ok?

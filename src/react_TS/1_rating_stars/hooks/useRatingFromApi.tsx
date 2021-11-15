@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
-import dataRatings from "./data.json";
-import { RatingType } from "./App.d";
-
-const mockedData = (success: boolean, timeout?: number): Promise<RatingType[]> =>
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (success) {
-                resolve(dataRatings.ratings);
-            }
-            reject({ error: true, message: "failed fetch" });
-        }, timeout || 2000);
-    });
+import { RatingType } from "../App";
+import mockedData from "../components/fakeApi";
 
 export const useRatingFromApi = () => {
-    const [ratings, setRatings] = useState<RatingType[]>(dataRatings.ratings);
+    const [ratings, setRatings] = useState<RatingType[]>([
+        {
+            recordId: "",
+            name: "",
+            score: 0,
+            content: "",
+        },
+    ]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [error, seterror] = useState<boolean>();
     const Loading = () => (

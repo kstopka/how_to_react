@@ -1,3 +1,2 @@
-import { useRatingFromApi } from "./fakeApi";
-
-// export useRatingFromApi
+import { useRatingFromApi } from "./hooks/useRatingFromApi";
+export { useRatingFromApi };
