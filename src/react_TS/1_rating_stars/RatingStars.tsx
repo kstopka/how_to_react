@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import RatingList from "./components/RatingList";
-// import { RatingType, ObjRatingType } from "./App.d";
 import { useRatingFromApi } from "./App.hooks";
 
 interface AppProps {}
