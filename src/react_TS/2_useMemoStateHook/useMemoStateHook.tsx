@@ -6,9 +6,9 @@ interface AppProps {}
 //rerender components
 //useMemo
 
-// //co sie musi zmienic
+//co sie musi zmienic
 
-// // {value:1}
+// {value:1}
 
 // // stnadardowe działanie
 // setValue({value:2}) -> rerender komponentu
@@ -22,6 +22,7 @@ const useMemoState = (initialValue: any) => {
     let state: any = null;
     let stateInitialized: boolean = false;
     const setState = (newState: any) => {
+        console.log("use set state");
         state = newState;
         return state;
     };
@@ -35,11 +36,16 @@ const useMemoState = (initialValue: any) => {
 
 const App: FunctionComponent<AppProps> = () => {
     const [value, setter] = useMemoState({ val: 0 });
+    console.log(value);
+    console.log(setter);
+
+    setter({ value: 5 });
+    console.log(value);
 
     return (
         <div className="wrapper">
             <h1>Use Memo State Hook</h1>
-            <div>{value}</div>
+            {/* <div>{value}</div> */}
         </div>
     );
 };
