@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent, useRef, useMemo } from "react";
 
 interface AppProps {}
 
@@ -25,15 +25,25 @@ const useMemoState = (initialValue: any) => {
     let value = { current: [initialValue] }; // zapis do pamięci
     const prevValue = { current: [null] };
 
-    const setter = (initialValue: any) => {
-        if (!checkArray([initialValue], prevValue.current)) {
-            value.current = initialValue;
-            prevValue.current = [...initialValue];
+    const setter = (newValue: any) => {
+        if (!checkArray([newValue], prevValue.current)) {
+            value.current = newValue;
+            prevValue.current = [...newValue];
         }
         return [value, setter];
     };
 
     return [value, setter];
+};
+
+const useMemoStateSec = (initialValue: any) => {
+    let value = initialValue;
+
+    const setState = (newValue: any) => {
+        let setStateValue = newValue;
+        return [setStateValue, setState];
+    };
+    return [value, setState];
 };
 
 const checkArray = (array: any[], value: any) => {
@@ -42,12 +52,15 @@ const checkArray = (array: any[], value: any) => {
 
 const App: FunctionComponent<AppProps> = () => {
     const [value, setter] = useMemoState({ val: 0 });
-    console.log(value);
+    const [valueSec, setterSec] = useMemoStateSec({ val: 0 });
 
     // setter({ value: 5 });
-    console.log(value);
+    // setterSec({ value: 5 });
+    // console.log(value);
+    // console.log(valueSec);
+
     // setter({ value: 6 });
-    console.log(value);
+    // console.log(value);
 
     return (
         <div className="wrapper">
