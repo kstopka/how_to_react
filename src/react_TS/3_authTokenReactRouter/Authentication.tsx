@@ -2,20 +2,20 @@ import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Home from "./Home";
-// import Login from "./Login";
-import SecureLink from "./SecureLink";
-import Logout from "./Logout";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import SecureLink from "./components/SecureLink";
+import Logout from "./components/Logout";
+import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
-// React.Context
-// useContext
+
 const App: FunctionComponent<AppProps> = () => {
     //context
     const [token, setToken] = useState(false);
 
     if (!token) {
-        // return <Login setToken={setToken} />;
+        return <Login setToken={setToken} />;
     }
 
     return (

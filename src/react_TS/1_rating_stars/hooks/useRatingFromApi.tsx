@@ -21,7 +21,7 @@ export const useRatingFromApi = () => {
 
     useEffect(() => {
         //NOTE: loader => gdzie powinno się go wywołać i jak przekazać, typy?
-        //NOTE: i potem jest nadpisanie stanu (70%success/30%error)
+        //NOTE: i potem jest nadpisanie stanu (70%success/30%error)- co to znaczy?
         mockedData(true)
             // .then((resolve) => response.json())
             .then((resolve) => setRatings(resolve))

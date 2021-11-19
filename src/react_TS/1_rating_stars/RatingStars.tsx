@@ -5,10 +5,6 @@ import { useRatingFromApi } from "./App.hooks";
 
 interface AppProps {}
 
-// api.ts
-//TODO: napisać app hook gdzie importowane są wszystkie hooki a tutaj jest odniesnie do nich
-// App.hooks.tsx
-
 const App: FunctionComponent<AppProps> = () => {
     //TODO: dodac loading w useRatingFromApi
 
