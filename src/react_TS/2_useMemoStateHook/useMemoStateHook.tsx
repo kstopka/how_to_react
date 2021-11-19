@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { FunctionComponent, useRef, useMemo } from "react";
 
 interface AppProps {}
@@ -54,7 +55,9 @@ const App: FunctionComponent<AppProps> = () => {
     const [value, setter] = useMemoState({ val: 0 });
     const [valueSec, setterSec] = useMemoStateSec({ val: 0 });
 
-    // setter({ value: 5 });
+    useEffect(() => {
+        setter({ value: 5 });
+    }, []);
     // setterSec({ value: 5 });
     // console.log(value);
     // console.log(valueSec);
