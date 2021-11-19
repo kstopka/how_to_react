@@ -7,5 +7,6 @@ export const useCredentialsContext = () => {
     const { users } = useCredentialsFromApi();
     const CredentialsContext = createContext(users);
     const credentails = useContext(CredentialsContext);
+    //akcja:
     return credentails;
 };

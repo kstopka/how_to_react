@@ -19,6 +19,34 @@ interface AppProps {}
 // setMemoValue({value:1}) -> nie ma rerenderu komponentu
 
 // react hooks
+
+// lodash
+
+const useMemoState = (initialValue: any) => {
+
+    const [state, setState] = useState(initialValue)
+
+
+    // let value = useRef(initialValue); // zapis do pamięci
+    // const prevValue = useRef()
+
+    // let value = { current: [initialValue] }; // zapis do pamięci
+    // const prevValue = { current: [null] };
+
+    const setter = useCallback((newValue: any) => {
+        const isEqual = ...
+
+        if(!isEqual){
+            setState(newValue)
+        }
+    
+    }, [newValue]);
+
+    return [state, setter];
+};
+
+
+
 const useMemoState = (initialValue: any) => {
     // let value = useRef(initialValue); // zapis do pamięci
     // const prevValue = useRef()

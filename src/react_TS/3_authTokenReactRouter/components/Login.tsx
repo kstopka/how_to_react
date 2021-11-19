@@ -37,11 +37,19 @@ const Login = ({ setToken }: { setToken: any }) => {
     //control inputs
     //uncontrol
 
+    // const onSubmit = useCallback(()=>{
+    //     if(...){
+    //         return false
+    //     }
+
+    //     ...
+    // },[])
+
     const error = "testowy error";
     return (
         <div>
             <h1>Login</h1>
-            {/* <form on={!userNameField.error && Submit={userNameField.handleFormSubmit} }></form> */}
+            <form onSubmit={handleSubmit}></form>
             <label htmlFor="">
                 <small style={{ color: "red" }}>{error}</small>
                 <p>User Login:</p>

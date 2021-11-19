@@ -12,7 +12,8 @@ interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
     //context
-    const [token, setToken] = useState(false);
+    // provaider
+    const [token, setToken] = useState(false); // context
 
     if (!token) {
         return <Login setToken={setToken} />;
