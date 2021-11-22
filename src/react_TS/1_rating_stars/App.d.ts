@@ -4,3 +4,10 @@ export type RatingType = {
     score: number;
     content: string;
 };
+
+export type ratingsReducerType = {
+    imBusy: boolean;
+    ratings: RatingType[];
+    errorMessage: string;
+    error: boolean;
+};

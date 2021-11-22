@@ -8,7 +8,7 @@ interface AppProps {}
 const App: FunctionComponent<AppProps> = () => {
     //TODO: dodac loading w useRatingFromApi
 
-    const { ratings, errorMessage, error } = useRatingFromApi();
+    const { imBusy, ratings, errorMessage, error } = useRatingFromApi();
 
     return (
         <div className="wrapper">
