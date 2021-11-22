@@ -49,7 +49,7 @@ const Login = ({ setToken }: { setToken: any }) => {
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}></form>
+            {/* <form onSubmit={handleSubmit}></form> */}
             <label htmlFor="">
                 <small style={{ color: "red" }}>{error}</small>
                 <p>User Login:</p>
