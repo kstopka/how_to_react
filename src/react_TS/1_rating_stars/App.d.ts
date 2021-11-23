@@ -11,3 +11,10 @@ export type ratingsReducerType = {
     errorMessage: string;
     error: boolean;
 };
+
+enum RatingsAction {}
+
+export type Action = {
+    type: string;
+    results: RatingType[];
+};

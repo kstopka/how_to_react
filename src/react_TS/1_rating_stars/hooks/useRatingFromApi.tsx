@@ -1,5 +1,6 @@
+import { result } from "lodash";
 import { useState, useEffect, Dispatch, SetStateAction, useReducer } from "react";
-import { RatingType, ratingsReducerType } from "../App";
+import { RatingType, ratingsReducerType, Action } from "../App";
 import mockedData from "../components/fakeApi";
 
 // setForBusy(boolean)
@@ -30,70 +31,75 @@ import mockedData from "../components/fakeApi";
 //     }
 // };
 
-const asyncWrapperForPromiseWithConnectedState = async (
-    promiseWrapper: { (): Promise<RatingType[]>; (): any },
-    {
-        setForBusy,
-        setForError,
-        setForResponse,
-    }: {
-        setForBusy: Dispatch<SetStateAction<boolean>>;
-        setForError: Dispatch<SetStateAction<boolean>>;
-        setForResponse: Dispatch<SetStateAction<RatingType[]>>;
-    }
-) => {
-    try {
-        setForBusy(true);
-        const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
-        setForResponse(placeholderData);
-    } catch ({ message, duringError }) {
-        setForError(false);
-    }
-};
+// const asyncWrapperForPromiseWithConnectedState = async (
+//     promiseWrapper: { (): Promise<RatingType[]>; (): any },
+//     {
+//         setForBusy,
+//         setForError,
+//         setForResponse,
+//     }: {
+//         setForBusy: Dispatch<SetStateAction<boolean>>;
+//         setForError: Dispatch<SetStateAction<boolean>>;
+//         setForResponse: Dispatch<SetStateAction<RatingType[]>>;
+//     }
+// ) => {
+//     try {
+//         setForBusy(true);
+//         const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
+//         setForResponse(placeholderData);
+//     } catch ({ message, duringError }) {
+//         setForError(false);
+//     }
+// };
 
 // React.Context
 // useReducer / useContext
 // reducer do array i obj
 
-export const useRatingFromApi = () => {
-    // const newReducer: ratingsReducerType = {
-    //     imBusy: false,
-    //     ratings: [
-    //         {
-    //             recordId: "",
-    //             name: "",
-    //             score: 0,
-    //             content: "",
-    //         },
-    //     ],
-    //     errorMessage: "",
-    //     error: false,
-    // };
-    // const [ratingsReducer, setRatings] = useReducer(() => {
-    //     const imBusy: boolean = false;
-    //     const ratings: RatingType[] = [
-    //         {
-    //             recordId: "ads",
-    //             name: "asvxcd",
-    //             score: 2,
-    //             content: "fdasf",
-    //         },
-    //     ];
-    //     const errorMessage: string = "sdfsd";
-    //     const error: boolean = false;
-    //     return { imBusy, rating: ratings, errorMessage, error };
-    // }, [newReducer]);
-    const [imBusy, setBusy] = useState<boolean>(false);
-    const [ratings, setRatings] = useState<RatingType[]>([
+const ratingsRecuder = (state: any, action: { type: any }) => {
+    // const { type, results } = action;
+    const { results } = state;
+    switch (action.type) {
+        case "setBusy": {
+            return {
+                ...state,
+                imBusy: true,
+            };
+        }
+        case "error": {
+            return {
+                ...state,
+                errorMessage: "failed fetch",
+                error: true,
+            };
+        }
+        case "success": {
+            return {
+                ...state,
+                ratings: results,
+                imBusy: false,
+            };
+        }
+    }
+};
+
+const initialState: ratingsReducerType = {
+    imBusy: false,
+    ratings: [
         {
             recordId: "",
             name: "",
             score: 0,
             content: "",
         },
-    ]);
-    const [errorMessage, setErrorMessage] = useState<string>("");
-    const [error, setError] = useState<boolean>(false);
+    ],
+    errorMessage: "",
+    error: false,
+};
+
+export const useRatingFromApi = () => {
+    const [state, dispatch] = useReducer(ratingsRecuder, initialState);
+    const { imBusy, ratings, errorMessage, error } = state;
     //widok \/
     const Loading = () => (
         <div>
@@ -104,6 +110,16 @@ export const useRatingFromApi = () => {
     useEffect(() => {
         // 1 poziom ogólnosci
         //implementacja:
+        const asyncWrapper = async () => {
+            try {
+                const placeholderData: RatingType[] = await mockedData(true); // powinien być czasownik w akcji
+                dispatch({ type: "setBusy" });
+                dispatch({ type: "setRatings", results: placeholderData });
+            } catch ({ message, duringError }) {
+                dispatch({ type: "error" });
+            }
+        };
+
         // const asyncWrapper = async () => {
         //     try {
         //         setBusy(true);
@@ -116,19 +132,17 @@ export const useRatingFromApi = () => {
         //         setBusy(false);
         //     }
         // };
-        if (!imBusy) {
-            asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
-                setForBusy: setBusy,
-                setForError: setError,
-                setForResponse: setRatings,
-            });
-        }
-        // wyższy poziom abstrakcji - prostsza
         // if (!imBusy) {
-        //     asyncWrapper();
+        //     asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
+        //         setForBusy: setBusy,
+        //         setForError: setError,
+        //         setForResponse: setRatings,
+        //     });
         // }
+        // wyższy poziom abstrakcji - prostsza
+        if (!imBusy) {
+            asyncWrapper();
+        }
     });
-    // const { imBusy, rating, errorMessage, error } = ratingsReducer;
-    // return { {imBusy, rating, errorMessage, error} };
     return { imBusy, ratings, errorMessage, error };
 };
