@@ -1,6 +1,6 @@
 import * as React from "react";
 import ShowStars from "./ShowStars";
-import { RatingType } from "../App";
+import { RatingType } from "../App.d";
 
 const AverageScore = ({ ratings }: { ratings: RatingType[] }) => {
     const arrayOfScore = ratings.map(({ score }: { score: number }) => score);
