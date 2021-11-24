@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SecureLink from "./components/SecureLink";
 import Logout from "./components/Logout";
-import { useCredentialsContext } from "./App.hooks";
+// import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
 
@@ -16,7 +16,7 @@ const App: FunctionComponent<AppProps> = () => {
     const [token, setToken] = useState(false); // context
 
     if (!token) {
-        return <Login setToken={setToken} />;
+        return <Login />;
     }
 
     return (

@@ -8,7 +8,7 @@ const mockedData = (success: boolean, timeout?: number): Promise<CredentialsType
                 resolve(data.users);
             }
             reject({ error: true, message: "failed fetch" });
-        }, timeout || 2000);
+        }, timeout);
     });
 
 export default mockedData;

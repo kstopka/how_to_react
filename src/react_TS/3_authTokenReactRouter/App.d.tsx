@@ -9,3 +9,8 @@ export type InitialStateType = {
     error: boolean;
     errorMessage: string;
 };
+
+export type MenuContextType = {
+    token: boolean;
+    setToken: (c: boolean) => void;
+};

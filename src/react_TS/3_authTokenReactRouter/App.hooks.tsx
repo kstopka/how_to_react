@@ -1,4 +1,4 @@
 import { useCredentialsFromApi } from "./hooks/useCredentialsFromApi";
-import { useCredentialsContext } from "./hooks/useCredentialsContext";
+// import { useCredentialsContext } from "./hooks/useCredentialsContext";
 export { useCredentialsFromApi };
-export { useCredentialsContext };
+// export { useCredentialsContext };
