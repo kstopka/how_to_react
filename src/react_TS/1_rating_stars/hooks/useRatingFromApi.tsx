@@ -1,4 +1,4 @@
-import { useEffect, useReducer, createContext, Dispatch } from "react";
+import { useEffect, useReducer, Dispatch } from "react";
 import { RatingType, InitialStateType } from "../App.d";
 import mockedData from "../components/fakeApi";
 
@@ -17,10 +17,9 @@ const asyncWrapperForPromiseWithConnectedState = async (
     try {
         setForBusy({ type: "setBusy" });
         const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
-        // setForResponse(placeholderData);
-        setForResponse({ type: "setRatings" });
+        setForResponse({ type: "setRatings", value: placeholderData });
     } catch ({ message, duringError }) {
-        setForError({ type: "setError" });
+        setForError({ type: "setError", value: message });
     }
 };
 const initialState: InitialStateType = {
@@ -37,7 +36,7 @@ const initialState: InitialStateType = {
     error: false,
 };
 
-const ratingsRecuder = (state: any, action: { type: any }) => {
+const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
     switch (action.type) {
         case "setBusy": {
             return {
@@ -48,29 +47,16 @@ const ratingsRecuder = (state: any, action: { type: any }) => {
         case "setError": {
             return {
                 ...state,
-                imBusy: false,
-                errorMessage: "failed fetch",
+                imBusy: true,
+                errorMessage: action.value,
                 error: true,
             };
         }
         case "setRatings": {
             return {
                 ...state,
-                // imBusy: false,
-                ratings: [
-                    {
-                        recordId: "s8j39fah9as",
-                        name: "Pierwszy",
-                        score: 3,
-                        content: "oakdoasodkokokoko",
-                    },
-                    {
-                        recordId: "jda839t9ajfa",
-                        name: "Drugi",
-                        score: 3,
-                        content: "oakdoasodkokokoko",
-                    },
-                ],
+                imBusy: true,
+                ratings: action.value,
             };
         }
     }
@@ -79,12 +65,6 @@ const ratingsRecuder = (state: any, action: { type: any }) => {
 export const useRatingFromApi = () => {
     const [state, dispatch] = useReducer(ratingsRecuder, initialState);
     const { imBusy, ratings, errorMessage, error } = state;
-    //widok \/
-    // const Loading = () => (
-    //     <div>
-    //         <h1>please wait 2 seconds</h1>
-    //     </div>
-    // );
 
     useEffect(() => {
         if (!imBusy) {

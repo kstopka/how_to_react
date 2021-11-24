@@ -7,7 +7,7 @@ const mockedData = (success: boolean, timeout?: number): Promise<RatingType[]> =
             if (success) {
                 resolve(dataRatings.ratings);
             }
-            reject({ message: "failed fetch", error: true });
+            reject({ message: "Problem with API", error: true });
         }, timeout || 2000);
     });
 
