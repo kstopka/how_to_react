@@ -17,7 +17,7 @@ const checkCredentials = (credentials: CredentialsType[], userName: string, pass
     return checking;
 };
 
-const reducer = (state: any, action: { type: string; value?: string }) => {
+const reducerTakedCredentials = (state: any, action: { type: string; value?: string }) => {
     switch (action.type) {
         case "setLogin": {
             return {
@@ -42,8 +42,8 @@ const initialCredentials: CredentialsType = {
 };
 
 const Login = () => {
-    const [state, dispatch] = useReducer(reducer, initialCredentials);
-    const { login, password } = state;
+    const [takedCredentials, dispatch] = useReducer(reducerTakedCredentials, initialCredentials);
+    const { login, password } = takedCredentials;
 
     const handleChangeLogin = (e: any) => {
         const login = e.target.value;
