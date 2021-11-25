@@ -15,7 +15,7 @@ const asyncWrapperForPromiseWithConnectedState = async (
     }
 ) => {
     try {
-        setForBusy({ type: "setBusy" });
+        setForBusy();
         const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
         setForResponse({ type: "setRatings", value: placeholderData });
     } catch ({ message, duringError }) {
@@ -62,6 +62,12 @@ const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
     }
 };
 
+const setBusy = (dispatch) => (payload) =>
+    dispatch({
+        type: "setBusy",
+        payload,
+    });
+
 export const useRatingFromApi = () => {
     const [state, dispatch] = useReducer(ratingsRecuder, initialState);
     const { imBusy, ratings, errorMessage, error } = state;
@@ -69,7 +75,7 @@ export const useRatingFromApi = () => {
     useEffect(() => {
         if (!imBusy) {
             asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
-                setForBusy: dispatch,
+                setForBusy: setBusy(dispatch),
                 setForError: dispatch,
                 setForResponse: dispatch,
             });
