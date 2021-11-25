@@ -17,68 +17,70 @@ const checkCredentials = (credentials: CredentialsType[], login: string, passwor
     return permission;
 };
 
-const reducerTakedCredentials = (state: any, action: { type: string; value?: string }) => {
+const reducerTakedCredentials = (state: any, action: { type: string; value?: string; target?: any }) => {
     switch (action.type) {
-        case "setLogin": {
+        case "setName": {
             return {
                 ...state,
-                login: action.value,
-                error: false,
-                errorMessage: "",
-            };
-        }
-        case "setPassword": {
-            return {
-                ...state,
-                password: action.value,
-                error: false,
-                errorMessage: "",
+                [action.target]: {
+                    name: action.value,
+                    error: false,
+                    errorMessage: "",
+                },
             };
         }
         case "setError": {
             return {
                 ...state,
-                error: true,
-                errorMessage: action.value,
+                [action.target]: {
+                    error: true,
+                    errorMessage: action.value,
+                },
             };
         }
     }
 };
 
 const initialCredentials = {
-    login: "",
-    password: "",
-    error: false,
-    errorMessage: "",
+    login: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    password: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
 };
 
 const Login: FunctionComponent = () => {
     const [takedCredentials, dispatch] = useReducer(reducerTakedCredentials, initialCredentials);
-    const { login, password, error, errorMessage } = takedCredentials;
+    const { login, password } = takedCredentials;
 
     const handleChangeLogin = (e: any) => {
         const login = e.target.value;
         const { isError, errorMessage } = Validator.throwErrorOnInvalidProperName(login, "error msg login");
         if (isError) {
-            return dispatch({ type: "setError", value: errorMessage });
+            return dispatch({ type: "setError", value: errorMessage, target: "login" });
         }
 
-        dispatch({ type: "setLogin", value: login });
+        dispatch({ type: "setName", value: login, target: "login" });
     };
     const handleChangePassword = (e: any) => {
         const password = e.target.value;
         const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(password, "error msg password");
         if (isError) {
-            return dispatch({ type: "setError", value: errorMessage });
+            return dispatch({ type: "setError", value: errorMessage, target: "password" });
         }
-        dispatch({ type: "setPassword", value: password });
+        dispatch({ type: "setName", value: password, target: "password" });
     };
 
     const { token, setToken } = useContext(MenuContext);
     const { credentials } = useCredentialsFromApi();
 
     useEffect(() => {
-        const check = checkCredentials(credentials, login, password);
+        const check = checkCredentials(credentials, login.name, password.name);
         setToken(check);
     });
 
@@ -106,14 +108,15 @@ const Login: FunctionComponent = () => {
         <div>
             <h1>Login</h1>
             <form onSubmit={onSubmit}></form>
-            <form onSubmit={onSubmitV2}></form>
+            <form onSubmit={onSubmitV2}></form>s
             <label htmlFor="">
-                <small style={{ color: "red" }}>{errorMessage}</small>
                 {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
                 <p>User Login:</p>
                 <input type="text" onChange={handleChangeLogin} />
+                <small style={{ color: "red" }}>{login.errorMessage}</small>
                 <p>User Password:</p>
                 <input type="password" onChange={handleChangePassword} />
+                <small style={{ color: "red" }}>{password.errorMessage}</small>
                 <div>
                     <button type="submit">Submit</button>
                 </div>
