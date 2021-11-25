@@ -1,11 +1,12 @@
 import * as React from "react";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SecureLink from "./components/SecureLink";
 import Logout from "./components/Logout";
+import { MenuContext } from "./hooks/useCredentialsContext";
 // import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
@@ -13,7 +14,8 @@ interface AppProps {}
 const App: FunctionComponent<AppProps> = () => {
     //context
     // provaider
-    const [token, setToken] = useState(false); // context
+    // const [token, setToken] = useState(false); // context
+    const { token, setToken } = useContext(MenuContext);
 
     if (!token) {
         return <Login />;

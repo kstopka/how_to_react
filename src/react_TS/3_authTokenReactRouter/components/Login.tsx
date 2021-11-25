@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useState, useEffect, useContext, useReducer } from "react";
-import Validator from "../Validator";
+import { useEffect, useContext, useReducer, useCallback } from "react";
+// import Validator from "../Validator";
 import { MenuContext } from "../hooks/useCredentialsContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
@@ -9,12 +9,12 @@ import { CredentialsType } from "../App.d";
 //NOTE: podczas loginu ma przejsc na home
 //NOTE: jaki powienin być typ setToken
 
-const checkCredentials = (credentials: CredentialsType[], userName: string, password: string): boolean => {
-    let checking = false;
+const checkCredentials = (credentials: CredentialsType[], login: string, password: string): boolean => {
+    let permission = false;
     if (credentials !== undefined) {
-        checking = credentials.every((element) => element.login === userName && element.password === password);
+        permission = credentials.some((element) => element.login === login && element.password === password);
     }
-    return checking;
+    return permission;
 };
 
 const reducerTakedCredentials = (state: any, action: { type: string; value?: string }) => {
@@ -60,29 +60,28 @@ const Login = () => {
     const { credentials } = useCredentialsFromApi();
 
     useEffect(() => {
-        console.log(credentials);
         const check = checkCredentials(credentials, login, password);
         setToken(check);
-        console.log(token);
     });
 
     //NOTE: jeżeli jest zalogowany to wrzuca na home
     //control inputs
     //uncontrol
 
-    // const onSubmit = useCallback(()=>{
-    //     if(...){
-    //         return false
-    //     }
+    const onSubmit = useCallback(() => {
+        //NOTE: logika
+        if (!token) {
+            return false;
+        }
 
-    //     ...
-    // },[])
+        // ...
+    }, []);
 
     // const error = "testowy error";
     return (
         <div>
             <h1>Login</h1>
-            {/* <form onSubmit={handleSubmit}></form> */}
+            <form onSubmit={onSubmit}></form>
             <label htmlFor="">
                 {/* <small style={{ color: "red" }}>{error}</small> */}
                 <p>User Login:</p>
@@ -90,9 +89,17 @@ const Login = () => {
                 <input type="text" onChange={handleChangeLogin} />
                 <p>User Password:</p>
                 <input type="text" onChange={handleChangePassword} />
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
             </label>
         </div>
     );
 };
 
 export default Login;
+
+//TODO: on submit form ma wysyłać setToken
+//TODO: dodać error do dispatcch'a
+//TODO: przerobic onChange
+//TODO: zrobić validacje
