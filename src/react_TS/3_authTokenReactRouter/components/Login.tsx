@@ -67,6 +67,7 @@ const Login: FunctionComponent = () => {
 
         dispatch({ type: "setName", value: login, target: "login" });
     };
+
     const handleChangePassword = (e: any) => {
         const password = e.target.value;
         const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(password, "error msg password");
@@ -75,6 +76,22 @@ const Login: FunctionComponent = () => {
         }
         dispatch({ type: "setName", value: password, target: "password" });
     };
+
+    // const handleChangeName = (e: any) => {
+    //     const name = e.target.value;
+    //     switch (name) {
+    //         case login:
+    //             break;
+
+    //         default:
+    //             break;
+    //     }
+    //     const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(name, "error msg password");
+    //     if (isError) {
+    //         return dispatch({ type: "setError", value: errorMessage, target: "password" });
+    //     }
+    //     dispatch({ type: "setName", value: name, target: "password" });
+    // };
 
     const { token, setToken } = useContext(MenuContext);
     const { credentials } = useCredentialsFromApi();
@@ -127,8 +144,7 @@ const Login: FunctionComponent = () => {
 
 export default Login;
 
+//TODO: dokonczyc => handleChangeName
+
 //TODO: on submit form ma wysyłać setToken -
-//TODO: dodać error do dispatch'a +
 //TODO: przerobic onChange: zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok -
-//TODO: zrobić validacje +/-
-//TODO: przerobić validacje aby zwracała msg
