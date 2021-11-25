@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useReducer } from "react";
 import Validator from "../Validator";
 import { MenuContext } from "../hooks/useCredentialsContext";
 import { useCredentialsFromApi } from "../App.hooks";
@@ -17,20 +17,43 @@ const checkCredentials = (credentials: CredentialsType[], userName: string, pass
     return checking;
 };
 
+const reducer = (state: any, action: { type: string; value?: string }) => {
+    switch (action.type) {
+        case "setLogin": {
+            return {
+                ...state,
+                login: action.value,
+            };
+        }
+        case "setPassword": {
+            return {
+                ...state,
+                password: action.value,
+            };
+        }
+        case "setError": {
+        }
+    }
+};
+
+const initialCredentials: CredentialsType = {
+    login: "",
+    password: "",
+};
+
 const Login = () => {
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    const [state, dispatch] = useReducer(reducer, initialCredentials);
+    const { login, password } = state;
 
     const handleChangeLogin = (e: any) => {
-        const userName = e.target.value;
+        const login = e.target.value;
         // const error = Validator.throwErrorOnInvalidProperName(login, "error msg");
-        // setuserNameField({ login, error });
-        setUserName(userName);
+        dispatch({ type: "setLogin", value: login });
     };
     const handleChangePassword = (e: any) => {
         //validacja
         const password = e.target.value;
-        setPassword(password);
+        dispatch({ type: "setPassword", value: password });
     };
 
     const { token, setToken } = useContext(MenuContext);
@@ -38,20 +61,12 @@ const Login = () => {
 
     useEffect(() => {
         console.log(credentials);
-        const check = checkCredentials(credentials, userName, password);
+        const check = checkCredentials(credentials, login, password);
         setToken(check);
         console.log(token);
     });
-    // const handleFormSubmit = (e: { preventDefault: () => void }) => {
-    //     e.preventDefault();
-    //     // if (userName !== correctUserName || password !== correctPassword) {
-    //     // alert("wrong login or passowrd");
-    //     // }
-    //     setToken(true);
-    // };
 
     //NOTE: jeżeli jest zalogowany to wrzuca na home
-    //NOTE: zmienia token na ten poprawny
     //control inputs
     //uncontrol
 
@@ -71,6 +86,7 @@ const Login = () => {
             <label htmlFor="">
                 {/* <small style={{ color: "red" }}>{error}</small> */}
                 <p>User Login:</p>
+                {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
                 <input type="text" onChange={handleChangeLogin} />
                 <p>User Password:</p>
                 <input type="text" onChange={handleChangePassword} />
