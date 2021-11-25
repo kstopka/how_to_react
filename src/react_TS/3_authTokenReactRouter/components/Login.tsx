@@ -58,6 +58,7 @@ const Login: FunctionComponent = () => {
     const [takedCredentials, dispatch] = useReducer(reducerTakedCredentials, initialCredentials);
     const { login, password } = takedCredentials;
 
+    //TODO: refactoring handleChangeLgoin -> handleChangeName
     const handleChangeLogin = (e: any) => {
         const login = e.target.value;
         const { isError, errorMessage } = Validator.throwErrorOnInvalidProperName(login, "error msg login");
@@ -68,6 +69,7 @@ const Login: FunctionComponent = () => {
         dispatch({ type: "setName", value: login, target: "login" });
     };
 
+    //TODO: refactoring handleChangePassword -> handleChangeName
     const handleChangePassword = (e: any) => {
         const password = e.target.value;
         const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(password, "error msg password");
