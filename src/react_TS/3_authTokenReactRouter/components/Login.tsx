@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useEffect, useContext, useReducer, useCallback } from "react";
-// import Validator from "../Validator";
+import { useEffect, useContext, useReducer, useCallback, FunctionComponent } from "react";
+import Validator from "../Validator";
 import { MenuContext } from "../hooks/useCredentialsContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
@@ -23,36 +23,54 @@ const reducerTakedCredentials = (state: any, action: { type: string; value?: str
             return {
                 ...state,
                 login: action.value,
+                error: false,
+                errorMessage: "",
             };
         }
         case "setPassword": {
             return {
                 ...state,
                 password: action.value,
+                error: false,
+                errorMessage: "",
             };
         }
         case "setError": {
+            return {
+                ...state,
+                error: true,
+                errorMessage: action.value,
+            };
         }
     }
 };
 
-const initialCredentials: CredentialsType = {
+const initialCredentials = {
     login: "",
     password: "",
+    error: false,
+    errorMessage: "",
 };
 
-const Login = () => {
+const Login: FunctionComponent = () => {
     const [takedCredentials, dispatch] = useReducer(reducerTakedCredentials, initialCredentials);
-    const { login, password } = takedCredentials;
+    const { login, password, error, errorMessage } = takedCredentials;
 
     const handleChangeLogin = (e: any) => {
         const login = e.target.value;
-        // const error = Validator.throwErrorOnInvalidProperName(login, "error msg");
+        const { isError, errorMessage } = Validator.throwErrorOnInvalidProperName(login, "error msg login");
+        if (isError) {
+            return dispatch({ type: "setError", value: errorMessage });
+        }
+
         dispatch({ type: "setLogin", value: login });
     };
     const handleChangePassword = (e: any) => {
-        //validacja
         const password = e.target.value;
+        const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(password, "error msg password");
+        if (isError) {
+            return dispatch({ type: "setError", value: errorMessage });
+        }
         dispatch({ type: "setPassword", value: password });
     };
 
@@ -68,27 +86,34 @@ const Login = () => {
     //control inputs
     //uncontrol
 
-    const onSubmit = useCallback(() => {
+    const onSubmitV2 = useCallback(() => {
         //NOTE: logika
-        if (!token) {
-            return false;
-        }
-
+        // setToken(true);
         // ...
     }, []);
 
-    // const error = "testowy error";
+    const onSubmit = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        if (!token) {
+            alert("wrong login or password");
+        }
+        setToken(true);
+
+        // ...
+    };
+
     return (
         <div>
             <h1>Login</h1>
             <form onSubmit={onSubmit}></form>
+            <form onSubmit={onSubmitV2}></form>
             <label htmlFor="">
-                {/* <small style={{ color: "red" }}>{error}</small> */}
-                <p>User Login:</p>
+                <small style={{ color: "red" }}>{errorMessage}</small>
                 {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
+                <p>User Login:</p>
                 <input type="text" onChange={handleChangeLogin} />
                 <p>User Password:</p>
-                <input type="text" onChange={handleChangePassword} />
+                <input type="password" onChange={handleChangePassword} />
                 <div>
                     <button type="submit">Submit</button>
                 </div>
@@ -99,7 +124,8 @@ const Login = () => {
 
 export default Login;
 
-//TODO: on submit form ma wysyłać setToken
-//TODO: dodać error do dispatcch'a
-//TODO: przerobic onChange
-//TODO: zrobić validacje
+//TODO: on submit form ma wysyłać setToken -
+//TODO: dodać error do dispatch'a +
+//TODO: przerobic onChange: zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok -
+//TODO: zrobić validacje +/-
+//TODO: przerobić validacje aby zwracała msg
