@@ -1,13 +1,9 @@
 import * as React from "react";
-import { useEffect, useContext, useReducer, useCallback, FunctionComponent, useState } from "react";
+import { useEffect, useContext, useReducer, FunctionComponent, useState } from "react";
 import Validator from "../Validator";
 import { TokenContext } from "../hooks/useCredentialsContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
-
-// interface LoginProps {}
-//NOTE: podczas loginu ma przejsc na home
-//NOTE: jaki powienin być typ setToken
 
 const checkCredentials = (credentials: CredentialsType[], login: string, password: string): boolean => {
     let permission = false;
@@ -89,19 +85,20 @@ const Login: FunctionComponent = () => {
     const { credentials } = useCredentialsFromApi();
 
     useEffect(() => {
-        setCheck(checkCredentials(credentials, login.name, password.name));
+        const isChecked = checkCredentials(credentials, login.name, password.name);
+        setCheck(isChecked);
         setToken(true);
-    });
+    }, [credentials, login.name, password.name, setToken]);
 
     //NOTE: jeżeli jest zalogowany to wrzuca na home
     //control inputs
     //uncontrol
 
-    const onSubmitV2 = useCallback(() => {
-        //NOTE: logika
-        setToken(true);
-        // ...
-    }, []);
+    // const onSubmitV2 = useCallback(() => {
+    //     //NOTE: logika
+    //     setToken(true);
+    //     // ...
+    // }, []);
 
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -137,3 +134,4 @@ export default Login;
 
 //TODO: on submit form ma wysyłać setToken -
 //TODO: przerobic onChange: zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok -
+//TODO: Submit zrovic na callback
