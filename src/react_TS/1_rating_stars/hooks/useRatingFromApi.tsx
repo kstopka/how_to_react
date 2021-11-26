@@ -1,4 +1,4 @@
-import { useEffect, useReducer, Dispatch } from "react";
+import { useEffect, useReducer } from "react";
 import { RatingType, InitialStateType } from "../App.d";
 import mockedData from "../components/fakeApi";
 
@@ -9,17 +9,17 @@ const asyncWrapperForPromiseWithConnectedState = async (
         setForError,
         setForResponse,
     }: {
-        setForBusy: Dispatch<any>;
-        setForError: Dispatch<any>;
-        setForResponse: Dispatch<any>;
+        setForBusy: any;
+        setForError: any;
+        setForResponse: any;
     }
 ) => {
     try {
         setForBusy();
         const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
-        setForResponse({ type: "setRatings", value: placeholderData });
+        setForResponse(placeholderData);
     } catch ({ message, duringError }) {
-        setForError({ type: "setError", value: message });
+        setForError(message);
     }
 };
 const initialState: InitialStateType = {
@@ -62,10 +62,20 @@ const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
     }
 };
 
-const setBusy = (dispatch) => (payload) =>
+const setBusy = (dispatch: { (value: { type: string; value?: any }): void; (arg0: { type: string }): any }) => () =>
     dispatch({
         type: "setBusy",
-        payload,
+    });
+
+const setError = (dispatch: (arg0: { type: string; value: any }) => any) => (payload: any) =>
+    dispatch({
+        type: "setError",
+        value: payload,
+    });
+const setRatings = (dispatch: (arg0: { type: string; value: any }) => any) => (payload: any) =>
+    dispatch({
+        type: "setRatings",
+        value: payload,
     });
 
 export const useRatingFromApi = () => {
@@ -76,8 +86,8 @@ export const useRatingFromApi = () => {
         if (!imBusy) {
             asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
                 setForBusy: setBusy(dispatch),
-                setForError: dispatch,
-                setForResponse: dispatch,
+                setForError: setError(dispatch),
+                setForResponse: setRatings(dispatch),
             });
         }
     });

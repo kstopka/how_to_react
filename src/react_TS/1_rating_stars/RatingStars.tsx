@@ -10,7 +10,7 @@ interface AppProps {}
 const RatingsContext = createContext<RatingType[]>([]);
 
 const App: FunctionComponent<AppProps> = () => {
-    //TODO: dodac loading w useRatingFromApi
+    //TODO: w wolnej chwili dodać context i poprawić loading
 
     const { imBusy, ratings, errorMessage, error } = useRatingFromApi();
     useEffect(() => {
