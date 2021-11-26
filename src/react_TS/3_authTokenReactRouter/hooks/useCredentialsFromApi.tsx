@@ -1,4 +1,4 @@
-import { useEffect, useReducer, Dispatch } from "react";
+import { useEffect, useReducer } from "react";
 import { CredentialsType, InitialStateType } from "../App.d";
 import mockedData from "../data/fakeAPI";
 const asyncWrapperForPromiseWithConnectedState = async (
@@ -8,17 +8,17 @@ const asyncWrapperForPromiseWithConnectedState = async (
         setForError,
         setForResponse,
     }: {
-        setForBusy: Dispatch<any>;
-        setForError: Dispatch<any>;
-        setForResponse: Dispatch<any>;
+        setForBusy: any;
+        setForError: any;
+        setForResponse: any;
     }
 ) => {
     try {
-        setForBusy({ type: "setBusy" });
+        setForBusy();
         const placeholderData = await promiseWrapper();
-        setForResponse({ type: "setData", value: placeholderData });
+        setForResponse(placeholderData);
     } catch ({ message, duringError }) {
-        setForError({ type: "setError", value: message });
+        setForError(message);
     }
 };
 const initialState: InitialStateType = {
@@ -54,6 +54,22 @@ const credentialsReducer = (state: any, action: { type: string; value?: any }) =
     }
 };
 
+const setBusy = (dispatch: { (value: { type: string; value?: any }): void; (arg0: { type: string }): any }) => () =>
+    dispatch({
+        type: "setBusy",
+    });
+
+const setError = (dispatch: (arg0: { type: string; value: any }) => any) => (payload: any) =>
+    dispatch({
+        type: "setError",
+        value: payload,
+    });
+const setData = (dispatch: (arg0: { type: string; value: any }) => any) => (payload: any) =>
+    dispatch({
+        type: "setData",
+        value: payload,
+    });
+
 export const useCredentialsFromApi = () => {
     const [state, dispatch] = useReducer(credentialsReducer, initialState);
     const { imBusy, credentials, errorMessage, error } = state;
@@ -61,9 +77,9 @@ export const useCredentialsFromApi = () => {
     useEffect(() => {
         if (!imBusy) {
             asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
-                setForBusy: dispatch,
-                setForError: dispatch,
-                setForResponse: dispatch,
+                setForBusy: setBusy(dispatch),
+                setForError: setError(dispatch),
+                setForResponse: setData(dispatch),
             });
         }
     });
