@@ -16,7 +16,7 @@ const asyncWrapperForPromiseWithConnectedState = async (
 ) => {
     try {
         setForBusy();
-        const placeholderData = await promiseWrapper(); // powinien być czasownik w akcji
+        const placeholderData = await promiseWrapper();
         setForResponse(placeholderData);
     } catch ({ message, duringError }) {
         setForError(message);
