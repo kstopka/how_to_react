@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SecureLink from "./components/SecureLink";
 import Logout from "./components/Logout";
-import { TokenContext } from "./hooks/useCredentialsContext";
+import { TokenContext } from "./context/TokenContext";
 // import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
@@ -41,7 +41,7 @@ const App: FunctionComponent<AppProps> = () => {
 
                 <Switch>
                     <Route path="/logout">
-                        <Logout setToken={setToken} />
+                        <Logout />
                     </Route>
                     <Route path="/securelink">
                         <SecureLink />

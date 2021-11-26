@@ -1,10 +1,10 @@
 import * as React from "react";
+import { useContext } from "react";
+import { TokenContext } from "../context/TokenContext";
 
-// interface LogoutProps {}
+const Logout = () => {
+    const { setToken } = useContext(TokenContext);
 
-//NOTE: podaczas logouta ma przejść na login
-
-const Logout = ({ setToken }: { setToken: any }) => {
     const handleClickLogout = () => {
         setToken(false);
     };

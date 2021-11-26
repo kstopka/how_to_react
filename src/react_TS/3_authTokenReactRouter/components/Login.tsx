@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useContext, useReducer, FunctionComponent, useState } from "react";
 import Validator from "../Validator";
-import { TokenContext } from "../hooks/useCredentialsContext";
+import { TokenContext } from "../context/TokenContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
 
