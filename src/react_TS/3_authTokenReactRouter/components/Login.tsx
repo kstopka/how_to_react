@@ -59,42 +59,31 @@ const Login: FunctionComponent = () => {
     const { login, password } = takedCredentials;
     const [check, setCheck] = useState<boolean>(false);
 
-    //TODO: refactoring handleChangeLgoin -> handleChangeName
-    const handleChangeLogin = (e: any) => {
-        const login = e.target.value;
-        const { isError, errorMessage } = Validator.whetherTheNamePropertyIsCorrect(login, "error msg login");
-        if (isError) {
-            return dispatch({ type: "setError", value: errorMessage, target: "login" });
-        }
+    const handleChangeName = (e: any | string) => {
+        const name = e.target.value;
+        const typeOfCredentials: string = e.target.name;
 
-        dispatch({ type: "setName", value: login, target: "login" });
+        if (typeOfCredentials === "login") {
+            const { isError, errorMessage } = Validator.whetherTheNamePropertyIsCorrect(
+                name,
+                `error msg ${typeOfCredentials}`
+            );
+            setDispatch(isError, errorMessage, typeOfCredentials, name);
+        } else if (typeOfCredentials === "password") {
+            const { isError, errorMessage } = Validator.whetherThePasswordPropertyIsCorrect(
+                name,
+                `error msg ${typeOfCredentials}`
+            );
+            setDispatch(isError, errorMessage, typeOfCredentials, name);
+        }
     };
 
-    //TODO: refactoring handleChangePassword -> handleChangeName
-    const handleChangePassword = (e: any) => {
-        const password = e.target.value;
-        const { isError, errorMessage } = Validator.whetherThePasswordPropertyIsCorrect(password, "error msg password");
+    const setDispatch = (isError: boolean, errorMessage: string, typeOfCredentials: string, name: string) => {
         if (isError) {
-            return dispatch({ type: "setError", value: errorMessage, target: "password" });
+            return dispatch({ type: "setError", value: errorMessage, target: typeOfCredentials });
         }
-        dispatch({ type: "setName", value: password, target: "password" });
+        dispatch({ type: "setName", value: name, target: typeOfCredentials });
     };
-
-    // const handleChangeName = (e: any) => {
-    //     const name = e.target.value;
-    //     switch (name) {
-    //         case login:
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-    //     const { isError, errorMessage } = Validator.throwErrorOnWeakPassword(name, "error msg password");
-    //     if (isError) {
-    //         return dispatch({ type: "setError", value: errorMessage, target: "password" });
-    //     }
-    //     dispatch({ type: "setName", value: name, target: "password" });
-    // };
 
     const { token, setToken } = useContext(TokenContext);
     const { credentials } = useCredentialsFromApi();
@@ -118,9 +107,9 @@ const Login: FunctionComponent = () => {
         e.preventDefault();
         console.log(token);
         setToken(true);
-        // if (check) {
-        //     setToken(check);
-        // }
+        if (check) {
+            setToken(check);
+        }
     };
 
     return (
@@ -130,10 +119,10 @@ const Login: FunctionComponent = () => {
                 <label htmlFor="">
                     {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
                     <p>User Login:</p>
-                    <input type="text" onChange={handleChangeLogin} />
+                    <input type="text" name="login" onChange={handleChangeName} />
                     <small style={{ color: "red" }}>{login.errorMessage}</small>
                     <p>User Password:</p>
-                    <input type="password" onChange={handleChangePassword} />
+                    <input type="password" name="password" onChange={handleChangeName} />
                     <small style={{ color: "red" }}>{password.errorMessage}</small>
                     <div>
                         <button type="submit">Submit</button>
@@ -146,6 +135,5 @@ const Login: FunctionComponent = () => {
 
 export default Login;
 
-//TODO: dokonczyc => handleChangeName
 //TODO: on submit form ma wysyłać setToken -
 //TODO: przerobic onChange: zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok -
