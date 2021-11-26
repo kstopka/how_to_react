@@ -1,3 +1,5 @@
+import React from "react";
+
 export type CredentialsType = {
     login: string;
     password: string;
@@ -10,7 +12,7 @@ export type InitialStateType = {
     errorMessage: string;
 };
 
-export type MenuContextType = {
+export type TokenContextType = {
     token: boolean;
-    setToken: (c: boolean) => void;
+    setToken: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -1,16 +1,16 @@
 import * as React from "react";
 import { createContext, useState } from "react";
-import { MenuContextType } from "../App.d";
+import { TokenContextType } from "../App.d";
 
-export const MenuContext = createContext<MenuContextType>({
+export const TokenContext = createContext<TokenContextType>({
     token: false,
     setToken: () => {},
 });
 
-export const MenuProvider = ({ children }: { children: any }) => {
+export const TokenProvider = ({ children }: { children: any }) => {
     const [token, setToken] = useState(false);
 
-    return <MenuContext.Provider value={{ token, setToken }}>{children}</MenuContext.Provider>;
+    return <TokenContext.Provider value={{ token, setToken }}>{children}</TokenContext.Provider>;
 };
 
 // export const useCredentialsContext = () => {

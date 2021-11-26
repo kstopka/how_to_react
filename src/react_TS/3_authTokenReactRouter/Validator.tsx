@@ -1,5 +1,5 @@
 class Validator {
-    static throwErrorOnInvalidProperName(value: string, errorMsg: string): any {
+    static whetherTheNamePropertyIsCorrect(value: string, errorMsg: string): any {
         let information = {
             isError: false,
             errorMessage: "",
@@ -21,7 +21,7 @@ class Validator {
         return information;
     }
 
-    static throwErrorOnInvalidEmail(value: string, errorMsg: string): any {
+    static whetherTheEmailPropertyIsCorrect(value: string, errorMsg: string): any {
         let information = {
             isError: false,
             errorMessage: "",
@@ -36,7 +36,7 @@ class Validator {
         return information;
     }
 
-    static throwErrorOnWeakPassword(value: string, errorMsg: string) {
+    static whetherThePasswordPropertyIsCorrect(value: string, errorMsg: string) {
         let information = {
             isError: false,
             errorMessage: "",

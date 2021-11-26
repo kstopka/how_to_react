@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SecureLink from "./components/SecureLink";
 import Logout from "./components/Logout";
-import { MenuContext } from "./hooks/useCredentialsContext";
+import { TokenContext } from "./hooks/useCredentialsContext";
 // import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
@@ -15,7 +15,7 @@ const App: FunctionComponent<AppProps> = () => {
     //context
     // provaider
     // const [token, setToken] = useState(false); // context
-    const { token, setToken } = useContext(MenuContext);
+    const { token, setToken } = useContext(TokenContext);
 
     if (!token) {
         return <Login />;
