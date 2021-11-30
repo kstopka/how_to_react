@@ -1,20 +1,26 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import "./css/App.css";
 import GridWrapper from "./components/GridWrapper";
 
 interface AppProps {}
 
+//contextAPI - ilość elementów w tablicy
+// {
+// array.lenght:
+// columns: 4
+// rows: array.lenght/columns -> raczej do poprawy ale jakoś tak 21/4 ma być 6
+// }
 const App: FunctionComponent<AppProps> = () => {
-    console.log(`ok`);
-    const gridwrapped: Element | null = document.querySelector(".gridwrapped");
+    const [widthOfWindow, setWidthOfWindow] = useState(() => window.innerWidth);
 
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidthOfWindow(window.innerWidth));
+    }, [widthOfWindow]);
     return (
         <div>
             <h1>Masonry Grid</h1>
-            <div className="gridwrapped">
-                <GridWrapper />
-            </div>
+            <GridWrapper width={widthOfWindow} />
         </div>
     );
 };

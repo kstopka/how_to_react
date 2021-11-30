@@ -1,0 +1,8 @@
+.grid-wrapper {
+  background-color: green;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (50px)[5];
+      grid-template-rows: repeat(5, 50px);
+}
+/*# sourceMappingURL=grid-wrapper.css.map */
