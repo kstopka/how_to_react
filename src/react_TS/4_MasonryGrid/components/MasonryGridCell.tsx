@@ -3,12 +3,14 @@ import { FunctionComponent } from "react";
 import images from "../Hooks/images";
 import "../css/masnory-grid-cell.css";
 
-interface MasonryGridCellProps {}
+interface MasonryGridCellProps {
+    img: string;
+}
 
-const MasonryGridCell: FunctionComponent<MasonryGridCellProps> = () => {
+const MasonryGridCell: FunctionComponent<MasonryGridCellProps> = ({ img }) => {
     return (
         <div className="masnory-grid-cell">
-            <img src={images[1]} alt="" />
+            <img src={img} alt="" />
         </div>
     );
 };

@@ -8,7 +8,11 @@ interface MasonryGridColumnProps {
 }
 
 const MasonryGridColumn: FunctionComponent<MasonryGridColumnProps> = ({ img }) => {
-    return <div className="masonry-grid-column"></div>;
+    return (
+        <div className="masonry-grid-column">
+            <MasonryGridCell img={img} />
+        </div>
+    );
 };
 
 export default MasonryGridColumn;

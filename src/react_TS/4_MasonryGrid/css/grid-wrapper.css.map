@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,OAAO,EAAE,IAAI;CAAG",
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAe;EACtC,kBAAkB,EAAE,OAAO;CAAG",
     "sources": [
         "grid-wrapper.sass"
     ],
