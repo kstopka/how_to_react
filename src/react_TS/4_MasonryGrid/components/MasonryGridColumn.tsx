@@ -1,18 +1,13 @@
-import * as React from "react";
 import { FunctionComponent } from "react";
-import "../css/masonry-grid-column.css";
 import MasonryGridCell from "./MasonryGridCell";
 
 interface MasonryGridColumnProps {
-    img: string;
+    array: string[];
 }
 
-const MasonryGridColumn: FunctionComponent<MasonryGridColumnProps> = ({ img }) => {
-    return (
-        <div className="masonry-grid-column">
-            <MasonryGridCell img={img} />
-        </div>
-    );
+const MasonryGridColumn: FunctionComponent<MasonryGridColumnProps> = ({ array }) => {
+    const masonryGridCellArray = array.map((item, index) => <MasonryGridCell key={index} img={item} />);
+    return <div className="masonry-grid-column">{masonryGridCellArray}</div>;
 };
 
 export default MasonryGridColumn;

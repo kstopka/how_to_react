@@ -1,7 +1,4 @@
-import * as React from "react";
 import { FunctionComponent } from "react";
-import images from "../Hooks/images";
-import "../css/masnory-grid-cell.css";
 
 interface MasonryGridCellProps {
     img: string;

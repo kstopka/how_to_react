@@ -8,4 +8,18 @@
 body {
   color: royalblue;
 }
+
+.grid-wrapper .masonry-grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+.grid-wrapper .masonry-grid .masonry-grid-column {
+  font-size: 0;
+}
+
+.grid-wrapper .masonry-grid .masonry-grid-column .masnory-grid-cell img {
+  padding: 10px;
+  max-width: 100%;
+}
 /*# sourceMappingURL=App.css.map */

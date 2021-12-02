@@ -1,9 +1,0 @@
-.grid-wrapper {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (25%)[4];
-      grid-template-columns: repeat(4, 25%);
-  -ms-grid-rows: masonry;
-      grid-template-rows: masonry;
-}
-/*# sourceMappingURL=grid-wrapper.css.map */

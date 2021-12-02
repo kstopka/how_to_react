@@ -1,24 +1,20 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import images from "./images";
+import { images } from "../App.hooks";
 
 const counterOfColumns = (width: number) => {
     if (width >= 1200) {
-        const numberOfColumns = 4;
-        return numberOfColumns;
-    } else if (width < 1200 && width > 600) {
-        const numberOfColumns = 2;
-        return numberOfColumns;
+        const numberOfAllColumns = 4;
+        return numberOfAllColumns;
     } else if (width <= 600) {
-        const numberOfColumns = 1;
-        return numberOfColumns;
+        const numberOfAllColumns = 1;
+        return numberOfAllColumns;
     }
-    return 0;
+    const numberOfAllColumns = 2;
+    return numberOfAllColumns;
 };
 
 export const useGridSettings = (width: number) => {
     const numberOfImages: number = images.length;
-    const numberOfColumns: number = counterOfColumns(width);
-    const numberOfRows = Math.ceil(numberOfImages / numberOfColumns);
-    return { numberOfImages, numberOfColumns, numberOfRows };
+    const numberOfAllColumns: number = counterOfColumns(width);
+    const numberOfRows: number = Math.ceil(numberOfImages / numberOfAllColumns);
+    return { numberOfImages, numberOfAllColumns, numberOfRows };
 };
