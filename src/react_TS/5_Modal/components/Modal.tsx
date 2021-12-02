@@ -3,6 +3,9 @@ import { FunctionComponent } from "react";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
+import { modalContext } from "../context/ModalContext";
+
+const { Provider } = modalContext;
 
 interface ModalProps {
     isOpen: boolean;

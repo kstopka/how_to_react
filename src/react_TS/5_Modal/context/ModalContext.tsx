@@ -1,6 +1,7 @@
 import { createContext } from "react";
-
-export const tabContext = createContext({
-    activeId: "",
-    handleClick: () => {},
+import { ModalContextType } from "../App.d";
+//TODO: dopisać typy
+export const modalContext = createContext({
+    isOpen: true,
+    handleModalToggle: () => {},
 });
