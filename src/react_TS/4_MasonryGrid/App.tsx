@@ -16,6 +16,11 @@ const App: FunctionComponent<AppProps> = () => {
 
     useEffect(() => {
         window.addEventListener("resize", () => setWidthOfWindow(window.innerWidth));
+        // on device orientation change
+
+        return () => {
+            // remove ...
+        };
     }, [widthOfWindow]);
     return (
         <div>

@@ -104,10 +104,11 @@ const Login: FunctionComponent = () => {
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         console.log(token);
-        setToken(true);
-        if (check) {
-            setToken(check);
-        }
+        console.log(setToken);
+        // setToken(true);
+        // if (check) {
+        //     setToken(check);
+        // }
     };
 
     return (
@@ -117,15 +118,19 @@ const Login: FunctionComponent = () => {
                 <label htmlFor="">
                     {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
                     <p>User Login:</p>
-                    <input type="text" name="login" onChange={handleChangeName} />
+                    <input type="text" name="login" onChange={handleChangeName} onBlur={...}/>
                     <small style={{ color: "red" }}>{login.errorMessage}</small>
+                </label>
+
+                <label htmlFor="">
                     <p>User Password:</p>
                     <input type="password" name="password" onChange={handleChangeName} />
                     <small style={{ color: "red" }}>{password.errorMessage}</small>
+                </label>
+
                     <div>
                         <button type="submit">Submit</button>
                     </div>
-                </label>
             </form>
         </div>
     );

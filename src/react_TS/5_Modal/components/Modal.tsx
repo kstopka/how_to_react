@@ -18,7 +18,7 @@ const Modal: FunctionComponent<ModalProps> = ({ children }) => {
 
     return <Provider value={{ isOpen, setIsOpen }}>{children}</Provider>;
 };
-
+//inczej :)
 // Modal.Header = Header;
 // Modal.Content = Content;
 // Modal.Footer = Footer;
