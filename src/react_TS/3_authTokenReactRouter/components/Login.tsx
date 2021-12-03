@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useEffect, useContext, useReducer, FunctionComponent, useState } from "react";
 import Validator from "../Validator";
 import { TokenContext } from "../context/TokenContext";
@@ -8,6 +7,8 @@ import { CredentialsType } from "../App.d";
 //TODO: oddzielić logię po za UI
 const checkCredentials = (credentials: CredentialsType[], login: string, password: string): boolean => {
     let permission = false;
+    login = "Admin";
+    password = "123qwe!@#QWE";
     if (credentials !== undefined) {
         permission = credentials.some((element) => element.login === login && element.password === password);
     }
@@ -82,13 +83,12 @@ const Login: FunctionComponent = () => {
         dispatch({ type: "setName", value: name, target: typeOfCredentials });
     };
 
-    const { token, setToken } = useContext(TokenContext);
+    const { setToken } = useContext(TokenContext);
     const { credentials } = useCredentialsFromApi();
 
     useEffect(() => {
         const isChecked = checkCredentials(credentials, login.name, password.name);
         setCheck(isChecked);
-        setToken(true);
     }, [credentials, login.name, password.name, setToken]);
 
     //NOTE: jeżeli jest zalogowany to wrzuca na home
@@ -103,12 +103,9 @@ const Login: FunctionComponent = () => {
 
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        console.log(token);
-        console.log(setToken);
-        // setToken(true);
-        // if (check) {
-        //     setToken(check);
-        // }
+        if (check) {
+            setToken(check);
+        }
     };
 
     return (
@@ -116,28 +113,21 @@ const Login: FunctionComponent = () => {
             <h1>Login</h1>
             <form onSubmit={onSubmit}>
                 <label htmlFor="">
-                    {/* onChange zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok*/}
                     <p>User Login:</p>
-                    <input type="text" name="login" onChange={handleChangeName} onBlur={...}/>
+                    <input type="text" name="login" onBlur={handleChangeName} />
                     <small style={{ color: "red" }}>{login.errorMessage}</small>
                 </label>
-
                 <label htmlFor="">
                     <p>User Password:</p>
-                    <input type="password" name="password" onChange={handleChangeName} />
+                    <input type="password" name="password" onBlur={handleChangeName} />
                     <small style={{ color: "red" }}>{password.errorMessage}</small>
                 </label>
-
-                    <div>
-                        <button type="submit">Submit</button>
-                    </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         </div>
     );
 };
 
 export default Login;
-
-//TODO: on submit form ma wysyłać setToken -
-//TODO: przerobic onChange: zmienić na on ...? w momencie wyjścia z okienka podświetla czy jest ok -
-//TODO: Submit zrovic na callback

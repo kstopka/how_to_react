@@ -7,15 +7,11 @@ import Login from "./components/Login";
 import SecureLink from "./components/SecureLink";
 import Logout from "./components/Logout";
 import { TokenContext, TokenProvider } from "./context/TokenContext";
-// import { useCredentialsContext } from "./App.hooks";
 
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
-    //context
-    // provaider
-    // const [token, setToken] = useState(false); // context
-    const { token, setToken } = useContext(TokenContext);
+    const { token } = useContext(TokenContext);
 
     if (!token) {
         return <Login />;
