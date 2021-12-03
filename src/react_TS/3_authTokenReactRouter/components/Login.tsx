@@ -5,6 +5,7 @@ import { TokenContext } from "../context/TokenContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
 
+//TODO: oddzielić logię po za UI
 const checkCredentials = (credentials: CredentialsType[], login: string, password: string): boolean => {
     let permission = false;
     if (credentials !== undefined) {

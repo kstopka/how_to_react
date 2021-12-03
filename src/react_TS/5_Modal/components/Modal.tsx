@@ -4,11 +4,13 @@ import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import { ModalContext, ModalProvider } from "../context/ModalContext";
+import { JsxElement } from "typescript";
 
 const { Provider } = ModalContext;
 
 interface ModalProps {
     // isOpen: boolean;
+    // Footer: JsxElement;
 }
 
 const Modal: FunctionComponent<ModalProps> = ({ children }) => {
