@@ -1,21 +1,19 @@
 import * as React from "react";
-import { useContext, useEffect } from "react";
-import { ModalContext } from "../context/ModalContext";
 
-interface HeaderProps {}
+interface HeaderProps {
+    toggle: any;
+    title: string;
+}
 
-const Header: React.FunctionComponent<HeaderProps> = ({ children }) => {
-    const { isOpen } = useContext(ModalContext);
+const Header: React.FunctionComponent<HeaderProps> = ({ toggle, title }) => {
+    //TODO: nie klikalne białe tło = header
     return (
-        <Header>
-            {isOpen ? (
-                <div className="header">
-                    <h1 className="title">Modal Title</h1>
-                </div>
-            ) : (
-                ""
-            )}
-        </Header>
+        <div className="header">
+            <h1 className="title">{title}</h1>
+            <div className="toggle" onClick={toggle}>
+                X
+            </div>
+        </div>
     );
 };
 

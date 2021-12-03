@@ -12,12 +12,3 @@ export const TokenProvider = ({ children }: { children: any }) => {
 
     return <TokenContext.Provider value={{ token, setToken }}>{children}</TokenContext.Provider>;
 };
-
-// export const useCredentialsContext = () => {
-//     const { credentials } = useCredentialsFromApi();
-//     const [token, setToken] = useState(false);
-//     const TokenContext = createContext([token, setToken]);
-
-//     //akcja:
-//     return credentials;
-// };

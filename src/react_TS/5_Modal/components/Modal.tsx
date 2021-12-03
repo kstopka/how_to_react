@@ -1,26 +1,26 @@
-import * as React from "react";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useContext } from "react";
+import { ModalContext } from "../context/ModalContext";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
-import { ModalContext, ModalProvider } from "../context/ModalContext";
-import { JsxElement } from "typescript";
+import "../css/modal.css";
 
-const { Provider } = ModalContext;
+interface ModalProps {}
 
-interface ModalProps {
-    // isOpen: boolean;
-    // Footer: JsxElement;
-}
+const Modal: FunctionComponent<ModalProps> = () => {
+    const { isOpen, setIsOpen } = useContext(ModalContext);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+    const title = "Modal-Header Title";
+    //TODO: po kliknięciu w div.modal ma znikać modal.
 
-const Modal: FunctionComponent<ModalProps> = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(true);
-
-    return <Provider value={{ isOpen, setIsOpen }}>{children}</Provider>;
+    return (
+        <div className="modal" onClick={toggle}>
+            <Header toggle={toggle} title={title} />
+            {/* <Content /> */}
+            {/* <Footer /> */}
+        </div>
+    );
 };
-//inczej :)
-// Modal.Header = Header;
-// Modal.Content = Content;
-// Modal.Footer = Footer;
-
 export default Modal;
