@@ -1,7 +1,13 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { ModalContextType } from "../App.d";
-//TODO: dopisać typy
-export const modalContext = createContext({
+
+export const ModalContext = createContext<ModalContextType>({
     isOpen: true,
-    handleModalToggle: () => {},
+    setIsOpen: () => {},
 });
+
+export const ModalProvider = ({ children }: { children: any }) => {
+    const [isOpen, setIsOpen] = useState(true);
+
+    return <ModalContext.Provider value={{ isOpen, setIsOpen }}>{children}</ModalContext.Provider>;
+};
