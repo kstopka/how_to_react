@@ -1,9 +1,21 @@
 import * as React from "react";
 
-interface FooterProps {}
+interface FooterProps {
+    toggle: any;
+}
 
-const Footer: React.FunctionComponent<FooterProps> = () => {
-    return <h1>footer</h1>;
+const Footer: React.FunctionComponent<FooterProps> = ({ toggle }) => {
+    //NOTE: nie klikalne białe tło = footer => wyłączenie toggle na tym polu
+    const callToActionLabel = () => {
+        toggle();
+        alert("OK");
+    };
+    return (
+        <div className="footer">
+            <button onClick={callToActionLabel}>ACCEPT</button>
+            <button onClick={toggle}>CANCEL</button>
+        </div>
+    );
 };
 
 export default Footer;

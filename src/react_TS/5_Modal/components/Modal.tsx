@@ -13,13 +13,11 @@ const Modal: FunctionComponent<ModalProps> = () => {
         setIsOpen(!isOpen);
     };
     const title = "Modal-Header Title";
-    //TODO: po kliknięciu w div.modal ma znikać modal.
-
     return (
         <div className="modal" onClick={toggle}>
             <Header toggle={toggle} title={title} />
-            {/* <Content /> */}
-            {/* <Footer /> */}
+            <Content />
+            <Footer toggle={toggle} />
         </div>
     );
 };
