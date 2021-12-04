@@ -42,6 +42,8 @@ export const images = [
     image20,
 ];
 
+//webpack
+
 // require.context("../images", false, /\.(png|jpe?g|svg)$/);
 
 // const importAll = (r: { (arg0: string): any; keys: () => string[] }) => {
