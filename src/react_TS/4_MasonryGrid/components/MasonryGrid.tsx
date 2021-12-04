@@ -11,14 +11,6 @@ const MasonryGrid: FunctionComponent<MasonryGridProps> = ({ numberOfAllColumns, 
     const styleOfMasonryGrid = { gridTemplateColumns: `repeat(${numberOfAllColumns}, 1fr)` };
     const array = imagesForColumns(numberOfImages, numberOfAllColumns);
 
-    // const arrayOfMasonryGridColumn = Array(numberOfAllColumns).fill(<MasonryGridColumn array={[""]} />);
-
-    // const getMasonryGridColumn = arrayOfMasonryGridColumn.map(
-    //     (item, index) =>
-    //         (item = (
-    //             <MasonryGridColumn key={index} array={imagesForColumns(numberOfImages, numberOfAllColumns)} />
-    //         ))
-    // );
     const getMasonryGridColumn = array.map((item, index) => <MasonryGridColumn key={index} array={item} />);
     return (
         <div className="masonry-grid" style={styleOfMasonryGrid}>
