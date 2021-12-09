@@ -20,12 +20,12 @@ const App: FunctionComponent<AppProps> = () => {
     return (
         <Router>
             <div>
-                <h1>Authentication React Router Hook</h1>
+                <Link to="/">
+                    <h1>Authentication React Router Hook</h1>
+                </Link>
                 <nav>
                     <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
+                        <li></li>
                         <li>
                             <Link to="/logout">Logout</Link>
                         </li>

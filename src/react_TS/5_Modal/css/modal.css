@@ -51,6 +51,7 @@ body {
   color: royalblue;
   padding: 20px;
   font-size: 40px;
+  cursor: pointer;
 }
 
 .modal .content {
