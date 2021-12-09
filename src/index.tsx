@@ -24,8 +24,8 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/2_useMemoStateHook/useMemoStateHook";
 // import App from "./react_TS/3_authTokenReactRouter/Authentication";
 // import App from "./react_TS/4_MasonryGrid/App";
-// import App from "./react_TS/5_Modal/App";
-import App from "./react_TS/6_SearchWithDropdown/App";
+import App from "./react_TS/5_Modal/App";
+// import App from "./react_TS/6_SearchWithDropdown/App";
 
 ReactDOM.render(
     <React.StrictMode>
