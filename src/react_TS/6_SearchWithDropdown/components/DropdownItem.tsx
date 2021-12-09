@@ -1,24 +1,26 @@
 import { FunctionComponent } from "react";
 import { SearchDataItemType } from "../App.d";
-import ShowText from "./ShowText";
 
 interface DropdownItemProps {
+    firstIndex: number;
+    lastIndex: number;
     item: SearchDataItemType;
-    searchWord: string;
 }
 
-const DropdownItem: FunctionComponent<DropdownItemProps> = ({ item, searchWord }) => {
-    const textToSearching = item.name.toLocaleLowerCase();
-    const searchWordLowerCase = searchWord.toLowerCase();
-    const findCorrectSearchingItem = textToSearching.includes(searchWordLowerCase);
-
-    const firstIndex = textToSearching.indexOf(searchWordLowerCase);
-    const lastIndex = firstIndex + searchWord.length;
+const DropdownItem: FunctionComponent<DropdownItemProps> = ({ firstIndex, lastIndex, item }) => {
+    const { name, regularPrice, salePrice } = item;
+    const startText = name.slice(0, firstIndex);
+    const boldedText = name.slice(firstIndex, lastIndex);
+    const endText = name.slice(lastIndex);
 
     return (
-        <div className="dropdown-item">
-            {findCorrectSearchingItem ? <ShowText firstIndex={firstIndex} lastIndex={lastIndex} item={item} /> : ""}
-        </div>
+        <p>
+            {startText}
+            <span style={{ color: "red", fontWeight: "bolder" }}>{boldedText}</span>
+            {endText}
+            <span style={{ color: "gray", marginLeft: "50px", textDecoration: "line-through" }}>${regularPrice}</span>
+            <span style={{ color: "yellow", marginLeft: "50px" }}>${salePrice}</span>
+        </p>
     );
 };
 
