@@ -5,7 +5,7 @@ export const searchData = [
         salePrice: 3.99,
     },
     {
-        name: "Jobify - The Most Popular WordpPress Job Board Theme",
+        name: "Jobify - The Most Popular WordPress Job Board Theme",
         regularPrice: 59,
         salePrice: 3.99,
     },
