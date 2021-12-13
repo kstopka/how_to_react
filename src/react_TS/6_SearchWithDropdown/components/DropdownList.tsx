@@ -8,6 +8,7 @@ interface DropdownListProps {
 }
 
 const DropdownList: FunctionComponent<DropdownListProps> = ({ searchWord, item }) => {
+    // szukasz regexpem po wartościach
     const textToSearching = item.name.toLocaleLowerCase();
     const searchWordLowerCase = searchWord.toLowerCase();
     const findCorrectSearchingItem = textToSearching.includes(searchWordLowerCase);

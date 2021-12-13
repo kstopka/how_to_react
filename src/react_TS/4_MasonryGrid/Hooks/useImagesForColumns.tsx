@@ -19,8 +19,9 @@ import { images } from "../App.hooks";
 
 export const useImagesForColumns = (colCount: number) => {
     //NOTE: do poprawy
-    // const columns = Array<string[]>(colCount).fill([]);
-    const columns: string[][] = [[], [], [], []];
+    const columns: string[][] = new Array(colCount).fill([]);
+    // const columns: string[][] = [[], [], [], []];
+    //TODO: reduce
     for (let img in images) {
         const numberImg: number = parseInt(img);
         const moduloResult = numberImg % colCount;

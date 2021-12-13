@@ -1,18 +1,25 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useCallback } from "react";
 import { ModalContext } from "../context/ModalContext";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import "../css/modal.css";
 
-interface ModalProps {}
+interface ModalProps {
+    title: string;
+}
 
-const Modal: FunctionComponent<ModalProps> = () => {
+const Modal: FunctionComponent<ModalProps> = ({ title }) => {
     const { isOpen, setIsOpen } = useContext(ModalContext);
-    const toggle = () => {
+    const toggle = useCallback(() => {
         setIsOpen(!isOpen);
-    };
-    const title = "Modal-Header Title";
+    }, [isOpen]);
+
+    if (!isOpen) {
+        return null;
+    }
+
+    // const title = "Modal-Header Title";
     return (
         //NOTE: na cały modal onClick zmienia isOpen
         <div className="modal" onClick={toggle}>

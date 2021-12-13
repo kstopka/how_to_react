@@ -7,6 +7,8 @@ interface DropdownItemProps {
     item: SearchDataItemType;
 }
 
+// 'mama'.replace(toFound,`<b>${toFound}</b>`)
+
 const DropdownItem: FunctionComponent<DropdownItemProps> = ({ firstIndex, lastIndex, item }) => {
     const { name, regularPrice, salePrice } = item;
     const startText = name.slice(0, firstIndex);

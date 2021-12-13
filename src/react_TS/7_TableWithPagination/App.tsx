@@ -8,7 +8,7 @@ interface AppProps {}
 const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper-app">
-            <PaginationTable dataEntries={dataEntries} />
+            <PaginatedTable dataEntries={dataEntries} />
         </div>
     );
 };

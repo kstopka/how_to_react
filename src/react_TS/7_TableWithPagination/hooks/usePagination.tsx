@@ -1,23 +1,39 @@
 import * as React from "react";
 import { useState } from "react";
 
-type usePaginationType = (
-    dataEntries: number[],
-    elementsOnPage?: number
-) => {
+type usePaginationState<T> = {
     actualPageIdx: number;
     lastPageIdx: number;
-    entriesOnSelectedPage: number[];
+    entriesOnSelectedPage: T[];
     imBusy: boolean;
-
-    goToFirestPage: void;
-    goToPrevPage: void;
-    goToPage: void;
-    goToNextPage: void;
-    goToLastPage: void;
 };
 
-export const usePagination = (dataEntries: number[], elementsOnPage = 3) => {
+type usePaginationActions = {
+    goToFirestPage: () => void;
+    goToPrevPage: () => void;
+    goToPage: (page: number) => void;
+    goToNextPage: () => void;
+    goToLastPage: () => void;
+};
+
+type usePaginationReturn<T> = [usePaginationState<T>, usePaginationActions];
+
+type usePaginationType = <T>(dataEntries: T[], elementsOnPage?: number) => usePaginationReturn<T>;
+
+// {
+//     actualPageIdx,
+//     lastPageIdx,
+//     entriesOnSelectedPage,
+//     imBusy,
+//     goToFirestPage,
+//     goToPrevPage,
+//     goToPage,
+//     goToNextPage,
+//     goToLastPage,
+// };
+
+// generyczny
+export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3) => {
     //NOTE: gdzie umieścić ten setTimeout?
     //TODO: zrobić setTimeout
     // const idSetTimeout = setTimeout(() => {}, 333);
@@ -41,7 +57,7 @@ export const usePagination = (dataEntries: number[], elementsOnPage = 3) => {
     const imBusy: boolean = false;
     const indexToStartSlice: number = actualPageIdx * elementsOnPage;
     const indexToStopSlice: number = indexToStartSlice + elementsOnPage;
-    const entriesOnSelectedPage: Array<number> = dataEntries.slice(indexToStartSlice, indexToStopSlice);
+    const entriesOnSelectedPage = dataEntries.slice(indexToStartSlice, indexToStopSlice);
 
     const goToFirestPage = () => {
         setActualPageIdx(0);
