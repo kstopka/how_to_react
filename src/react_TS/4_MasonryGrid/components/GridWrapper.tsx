@@ -7,7 +7,7 @@ interface GridWrapperProps {
 }
 
 const GridWrapper: FunctionComponent<GridWrapperProps> = ({ width }) => {
-    const { numberOfAllColumns } = useGridSettings(width);
+    const numberOfAllColumns = useGridSettings(width);
 
     return (
         <div className="grid-wrapper">

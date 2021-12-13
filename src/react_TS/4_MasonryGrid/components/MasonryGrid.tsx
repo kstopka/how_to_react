@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import MasonryGridColumn from "./MasonryGridColumn";
-import { imagesForColumns } from "../App.hooks";
+import { useImagesForColumns } from "../App.hooks";
 
 interface MasonryGridProps {
     numberOfAllColumns: number;
@@ -8,7 +8,7 @@ interface MasonryGridProps {
 
 const MasonryGrid: FunctionComponent<MasonryGridProps> = ({ numberOfAllColumns }) => {
     const styleOfMasonryGrid = { gridTemplateColumns: `repeat(${numberOfAllColumns}, 1fr)` };
-    const array = imagesForColumns(numberOfAllColumns);
+    const array = useImagesForColumns(numberOfAllColumns);
 
     const getMasonryGridColumn = array.map((item, index) => <MasonryGridColumn key={index} array={item} />);
     return (

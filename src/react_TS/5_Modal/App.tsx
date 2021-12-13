@@ -8,7 +8,7 @@ interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
     const { isOpen } = useContext(ModalContext);
-    const showModal = () => (isOpen ? <Modal /> : NaN);
+    const showModal = () => (isOpen ? <Modal /> : "");
     useEffect(() => {
         if (!isOpen) {
             showModal();

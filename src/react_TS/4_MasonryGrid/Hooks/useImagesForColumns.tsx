@@ -17,7 +17,8 @@ import { images } from "../App.hooks";
 //     for id in colLenght
 //         columns[id] = []
 
-export const imagesForColumns = (colCount: number) => {
+export const useImagesForColumns = (colCount: number) => {
+    //NOTE: do poprawy
     // const columns = Array<string[]>(colCount).fill([]);
     const columns: string[][] = [[], [], [], []];
     for (let img in images) {

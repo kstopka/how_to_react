@@ -1,6 +1,4 @@
-import { images } from "../App.hooks";
-
-const counterOfColumns = (width: number) => {
+export const useGridSettings = (width: number) => {
     if (width >= 1200) {
         const numberOfAllColumns = 4;
         return numberOfAllColumns;
@@ -10,11 +8,4 @@ const counterOfColumns = (width: number) => {
     }
     const numberOfAllColumns = 2;
     return numberOfAllColumns;
-};
-
-export const useGridSettings = (width: number) => {
-    const numberOfImages: number = images.length;
-    const numberOfAllColumns: number = counterOfColumns(width);
-    const numberOfRows: number = Math.ceil(numberOfImages / numberOfAllColumns);
-    return { numberOfImages, numberOfAllColumns, numberOfRows };
 };

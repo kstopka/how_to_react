@@ -14,6 +14,7 @@ const Modal: FunctionComponent<ModalProps> = () => {
     };
     const title = "Modal-Header Title";
     return (
+        //NOTE: na cały modal onClick zmienia isOpen
         <div className="modal" onClick={toggle}>
             <Header toggle={toggle} title={title} />
             <Content />
