@@ -91,12 +91,12 @@ const Login: FunctionComponent = () => {
         setCheck(isChecked);
     }, [credentials, login.name, password.name, setToken]);
 
-    //NOTE: jeżeli jest zalogowany to wrzuca na home
+    //TODO: jeżeli jest zalogowany to wrzuca na home
     //control inputs
     //uncontrol
 
     // const onSubmitV2 = useCallback(() => {
-    //     //NOTE: logika
+    //     //TODO: logika
     //     setToken(true);
     //     // ...
     // }, []);
