@@ -9,6 +9,7 @@ interface PaginatedTableProps {
 
 const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries }) => {
     // const elementsOnPage: number = 10;
+    //NOTE: const [{ actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy }, { goToFirstPage, goToPrevPage, goToPage, goToNextPage, goToLastPage }] = usePagination(dataEntries);
     const {
         actualPageIdx,
         lastPageIdx,
@@ -25,17 +26,20 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
     return (
         <div className="paginated-table">
             <p>Actual Page: {actualPageIdx + 1}</p>
+            {/* {//NOTE: Pagination jako button???} */}
             {actualPageIdx ? (
-                <Pagination txt="goToFirestPage" active={false} fn={goToFirestPage} />
+                <Pagination txt="goToFirestPage" active={false} action={goToFirestPage} />
             ) : (
-                <Pagination txt="goToFirestPage" active={true} fn={goToFirestPage} />
+                <Pagination txt="goToFirestPage" active={true} action={goToFirestPage} />
             )}
 
             {actualPageIdx ? (
-                <Pagination txt="goToPrevPage" active={false} fn={goToPrevPage} />
+                <Pagination txt="goToPrevPage" active={false} action={goToPrevPage} />
             ) : (
-                <Pagination txt="goToPrevPage" active={true} fn={goToPrevPage} />
+                <Pagination txt="goToPrevPage" active={true} action={goToPrevPage} />
             )}
+
+            {/* //NOTE: nie wiem jak pobrać liczbę i przekazać? */}
             <form onSubmit={(e) => goToPage}>
                 <input type="text" onChange={(e) => console.log(e.target.value)} />
                 <button type="submit">goToPage</button>
@@ -43,15 +47,15 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
             </form>
 
             {actualPageIdx === lastPageIdx ? (
-                <Pagination txt="goToNextPage" active={true} fn={goToNextPage} />
+                <Pagination txt="goToNextPage" active={true} action={goToNextPage} />
             ) : (
-                <Pagination txt="goToNextPage" active={false} fn={goToNextPage} />
+                <Pagination txt="goToNextPage" active={false} action={goToNextPage} />
             )}
 
             {actualPageIdx === lastPageIdx ? (
-                <Pagination txt="goToLastPage" active={true} fn={goToLastPage} />
+                <Pagination txt="goToLastPage" active={true} action={goToLastPage} />
             ) : (
-                <Pagination txt="goToLastPage" active={false} fn={goToLastPage} />
+                <Pagination txt="goToLastPage" active={false} action={goToLastPage} />
             )}
             <ul>{elementsOnPage}</ul>
         </div>

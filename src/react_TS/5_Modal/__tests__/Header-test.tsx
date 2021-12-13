@@ -5,7 +5,7 @@ import Header from "../components/Header";
 // test("render component", async () => {
 //     const
 // })
-
+//TODO: Testy
 it("render title", () => {
     render(<Header toggle={() => {}} title={"testowy h3"} />);
     expect(screen.getByText("testowy h3")).toBeInTheDocument();

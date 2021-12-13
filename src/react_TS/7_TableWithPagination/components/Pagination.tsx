@@ -4,13 +4,14 @@ import { FunctionComponent } from "react";
 interface PaginationProps {
     txt: string;
     active: boolean;
-    fn: () => void;
+    action: () => void;
 }
 
-const Pagination: FunctionComponent<PaginationProps> = ({ txt, active, fn }) => {
+//const Pagination = ({ paginationState, paginationActions }) => {};
+const Pagination: FunctionComponent<PaginationProps> = ({ txt, active, action }) => {
     return (
         <div className="pagination">
-            <button onClick={fn} disabled={active}>
+            <button onClick={action} disabled={active}>
                 {txt}
             </button>
         </div>

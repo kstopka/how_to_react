@@ -18,7 +18,8 @@ type usePaginationType = (
 };
 
 export const usePagination = (dataEntries: number[], elementsOnPage = 3) => {
-    //TODO:
+    //NOTE: gdzie umieścić ten setTimeout?
+    //TODO: zrobić setTimeout
     // const idSetTimeout = setTimeout(() => {}, 333);
     // isBusy - boolean true/false, defaultowo false, który jest włączony na 333ms podczas gdy zmieniana jest strona i wyświetlane są nowe dane
     const [actualPageIdx, setActualPageIdx] = useState(10);
@@ -59,7 +60,7 @@ export const usePagination = (dataEntries: number[], elementsOnPage = 3) => {
     const goToLastPage = () => {
         setActualPageIdx(lastPageIdx);
     };
-
+    //NOTE:const [{ actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy }, { goToFirstPage, goToPrevPage, goToPage, goToNextPage, goToLastPage }] = usePagination(dataEntries);
     return {
         actualPageIdx,
         lastPageIdx,
