@@ -7,11 +7,11 @@ interface GridWrapperProps {
 }
 
 const GridWrapper: FunctionComponent<GridWrapperProps> = ({ width }) => {
-    const { numberOfImages, numberOfAllColumns } = useGridSettings(width);
+    const { numberOfAllColumns } = useGridSettings(width);
 
     return (
         <div className="grid-wrapper">
-            <MasonryGrid numberOfAllColumns={numberOfAllColumns} numberOfImages={numberOfImages} />
+            <MasonryGrid numberOfAllColumns={numberOfAllColumns} />
         </div>
     );
 };

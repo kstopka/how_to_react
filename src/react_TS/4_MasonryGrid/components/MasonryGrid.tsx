@@ -4,12 +4,11 @@ import { imagesForColumns } from "../App.hooks";
 
 interface MasonryGridProps {
     numberOfAllColumns: number;
-    numberOfImages: number;
 }
 
-const MasonryGrid: FunctionComponent<MasonryGridProps> = ({ numberOfAllColumns, numberOfImages }) => {
+const MasonryGrid: FunctionComponent<MasonryGridProps> = ({ numberOfAllColumns }) => {
     const styleOfMasonryGrid = { gridTemplateColumns: `repeat(${numberOfAllColumns}, 1fr)` };
-    const array = imagesForColumns(numberOfImages, numberOfAllColumns);
+    const array = imagesForColumns(numberOfAllColumns);
 
     const getMasonryGridColumn = array.map((item, index) => <MasonryGridColumn key={index} array={item} />);
     return (

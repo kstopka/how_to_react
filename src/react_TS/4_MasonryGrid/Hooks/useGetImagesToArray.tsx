@@ -19,6 +19,110 @@ import image18 from "../images/image18.jpg";
 import image19 from "../images/image19.jpg";
 import image20 from "../images/image20.jpg";
 
+const img1 = {
+    image: image1,
+    innerHeight: 768,
+};
+const img2 = {
+    image: image2,
+    innerHeight: 768,
+};
+const img3 = {
+    image: image3,
+    innerHeight: 768,
+};
+const img4 = {
+    image: image4,
+    innerHeight: 768,
+};
+const img5 = {
+    image: image5,
+    innerHeight: 768,
+};
+const img6 = {
+    image: image6,
+    innerHeight: 761,
+};
+const img7 = {
+    image: image7,
+    innerHeight: 768,
+};
+const img8 = {
+    image: image8,
+    innerHeight: 768,
+};
+const img9 = {
+    image: image9,
+    innerHeight: 381,
+};
+const img10 = {
+    image: image10,
+    innerHeight: 768,
+};
+const img11 = {
+    image: image11,
+    innerHeight: 768,
+};
+const img12 = {
+    image: image12,
+    innerHeight: 768,
+};
+const img13 = {
+    image: image13,
+    innerHeight: 768,
+};
+const img14 = {
+    image: image14,
+    innerHeight: 492,
+};
+const img15 = {
+    image: image15,
+    innerHeight: 768,
+};
+const img16 = {
+    image: image16,
+    innerHeight: 768,
+};
+const img17 = {
+    image: image17,
+    innerHeight: 768,
+};
+const img18 = {
+    image: image18,
+    innerHeight: 483,
+};
+const img19 = {
+    image: image19,
+    innerHeight: 543,
+};
+const img20 = {
+    image: image20,
+    innerHeight: 768,
+};
+
+export const objImages = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+    img12,
+    img13,
+    img14,
+    img15,
+    img16,
+    img17,
+    img18,
+    img19,
+    img20,
+];
+
 export const images = [
     image1,
     image2,
