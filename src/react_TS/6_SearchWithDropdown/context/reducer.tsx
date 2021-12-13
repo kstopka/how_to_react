@@ -1,4 +1,4 @@
-// import { useReducer } from "react";
+import { useReducer } from "react";
 // import { SearchDataType } from "../App.d";
 
 // const initialSearchData: SearchDataType[] = [
@@ -21,3 +21,5 @@
 // const reducer = () => {
 //     const [searchDataState, dispatch] = useReducer(reducerSearchDataSate, initialSearchData);
 // };
+
+console.log(`ok`);

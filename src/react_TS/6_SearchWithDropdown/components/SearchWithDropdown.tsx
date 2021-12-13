@@ -6,10 +6,12 @@ interface SearchWithDropdownProps {}
 
 const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = () => {
     const [searchWord, setSearchWord] = useState("");
+
     const handleChange = (e: { target: { value: string } }) => {
         const { value } = e.target;
         setSearchWord(value);
     };
+
     const showDropdownList = searchData.map((item, index) => (
         <DropdownList key={index} item={item} searchWord={searchWord} />
     ));
@@ -23,4 +25,3 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = () => {
 };
 
 export default SearchWithDropdown;
-//NOTE: Zrobic context aby pobierac tablice ??? chyba się nie opłaca
