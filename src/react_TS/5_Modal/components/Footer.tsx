@@ -5,7 +5,6 @@ interface FooterProps {
 }
 
 const Footer: React.FunctionComponent<FooterProps> = ({ toggle }) => {
-    //NOTE: nie klikalne białe tło = footer => wyłączenie toggle na tym polu
     const callToActionLabel = () => {
         toggle();
         alert("OK");

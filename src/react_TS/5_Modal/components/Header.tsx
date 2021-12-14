@@ -14,7 +14,7 @@ interface HeaderProps {
 const Header: React.FunctionComponent<HeaderProps> = ({ toggle, title }) => {
     //NOTE: nie klikalne białe tło = header => wyłączenie toggle na tym polu
     return (
-        <div className="header">
+        <div className="header" style={{ zIndex: 55 }}>
             <h3 className="title">{title}</h3>
             <button className="toggle" onClick={toggle}>
                 X
