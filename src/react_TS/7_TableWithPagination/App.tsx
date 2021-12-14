@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { dataEntries } from "./data/dataEntries";
-import PaginationTable from "./components/PaginatedTable";
+import PaginatedTable from "./components/PaginatedTable";
 
 interface AppProps {}
 

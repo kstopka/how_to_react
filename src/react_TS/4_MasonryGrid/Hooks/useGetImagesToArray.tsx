@@ -19,6 +19,29 @@ import image18 from "../images/image18.jpg";
 import image19 from "../images/image19.jpg";
 import image20 from "../images/image20.jpg";
 
+export const images = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+    image7,
+    image8,
+    image9,
+    image10,
+    image11,
+    image12,
+    image13,
+    image14,
+    image15,
+    image16,
+    image17,
+    image18,
+    image19,
+    image20,
+];
+
 const img1 = {
     image: image1,
     innerHeight: 768,
@@ -121,29 +144,6 @@ export const objImages = [
     img18,
     img19,
     img20,
-];
-
-export const images = [
-    image1,
-    image2,
-    image3,
-    image4,
-    image5,
-    image6,
-    image7,
-    image8,
-    image9,
-    image10,
-    image11,
-    image12,
-    image13,
-    image14,
-    image15,
-    image16,
-    image17,
-    image18,
-    image19,
-    image20,
 ];
 
 //webpack

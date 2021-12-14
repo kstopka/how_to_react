@@ -18,8 +18,7 @@ const App: FunctionComponent<AppProps> = () => {
     return (
         <ModalProvider>
             <div>
-                {" "}
-                <Modal />{" "}
+                <Modal title="Modal Title" />
             </div>
         </ModalProvider>
     );

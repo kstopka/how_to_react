@@ -1,31 +1,27 @@
 import { images } from "../App.hooks";
 
-// const columns = [[],[],[]]
-
-// images 42
-
-// colCount 3
-
-// imgs % colCount = 0 | 1 | 2
-// columns[moduloResult].push(img)
-
-// img.reduce((agg, img, idx, refArr)=>{
-//     ...
-// }, [[],[],[]])
-
-// for img in images
-//     for id in colLenght
-//         columns[id] = []
-
 export const useImagesForColumns = (colCount: number) => {
-    //NOTE: do poprawy
-    const columns: string[][] = new Array(colCount).fill([]);
-    // const columns: string[][] = [[], [], [], []];
-    //TODO: reduce
-    for (let img in images) {
-        const numberImg: number = parseInt(img);
-        const moduloResult = numberImg % colCount;
-        columns[moduloResult].push(images[numberImg]);
-    }
+    //NOTE: dalej źle jest ;x
+
+    // let columns: string[][] = new Array(colCount).fill([]);
+    //console po reduce
+    //(4) [Array(20), Array(20), Array(20), Array(20)]
+
+    let columns: string[][] = [[], [], [], []];
+    //console po reduce
+    //(4) [Array(5), Array(5), Array(5), Array(5)]
+
+    columns = images.reduce((accumulator: string[][], currentValue: string, index: number) => {
+        const moduloResult = index % colCount;
+        accumulator[moduloResult].push(currentValue);
+        return accumulator;
+    }, columns);
+    console.log(columns);
     return columns;
 };
+// const columns: string[][] =
+// for (let img in images) {
+//     const numberImg: number = parseInt(img);
+//     const moduloResult = numberImg % colCount;
+//     columns[moduloResult].push(images[numberImg]);
+// }

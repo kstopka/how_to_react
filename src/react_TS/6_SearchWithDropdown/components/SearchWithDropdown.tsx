@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from "react";
+import { SearchDataItemType } from "../App.d";
 import DropdownList from "./DropdownList";
-import { searchData } from "../data/searchData";
 
 interface SearchWithDropdownProps {
-    // ...
+    dataToSearch: SearchDataItemType[];
 }
 
 const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataToSearch }) => {
@@ -19,7 +19,7 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
 
     // use memo -> filter
     // Dropdown item
-    const showDropdownList = searchData.map((item, index) => (
+    const showDropdownList = dataToSearch.map((item, index) => (
         <DropdownList key={index} item={item} searchWord={searchWord} />
     ));
     return (

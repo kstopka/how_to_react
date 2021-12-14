@@ -1,11 +1,10 @@
-import * as React from "react";
 import { useState } from "react";
 
 type usePaginationState<T> = {
     actualPageIdx: number;
     lastPageIdx: number;
     entriesOnSelectedPage: T[];
-    imBusy: boolean;
+    isBusy: boolean;
 };
 
 type usePaginationActions = {
@@ -19,18 +18,6 @@ type usePaginationActions = {
 type usePaginationReturn<T> = [usePaginationState<T>, usePaginationActions];
 
 type usePaginationType = <T>(dataEntries: T[], elementsOnPage?: number) => usePaginationReturn<T>;
-
-// {
-//     actualPageIdx,
-//     lastPageIdx,
-//     entriesOnSelectedPage,
-//     imBusy,
-//     goToFirestPage,
-//     goToPrevPage,
-//     goToPage,
-//     goToNextPage,
-//     goToLastPage,
-// };
 
 // generyczny
 export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3) => {
@@ -54,7 +41,8 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
         console.log(actualPageIdx);
         setActualPageIdx(lastPageIdx);
     }
-    const imBusy: boolean = false;
+
+    const isBusy: boolean = false;
     const indexToStartSlice: number = actualPageIdx * elementsOnPage;
     const indexToStopSlice: number = indexToStartSlice + elementsOnPage;
     const entriesOnSelectedPage = dataEntries.slice(indexToStartSlice, indexToStopSlice);
@@ -65,27 +53,19 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
     const goToPrevPage = () => {
         setActualPageIdx(actualPageIdx - 1);
     };
-    const goToPage = (e: { preventDefault: () => void; target: { value: number } }) => {
-        e.preventDefault();
-        const { value } = e.target;
-        setActualPageIdx(value - 1);
+    const goToPage = () => {
+        setActualPageIdx(actualPageIdx + 1);
     };
+
     const goToNextPage = () => {
         setActualPageIdx(actualPageIdx + 1);
     };
     const goToLastPage = () => {
         setActualPageIdx(lastPageIdx);
     };
-    //NOTE:const [{ actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy }, { goToFirstPage, goToPrevPage, goToPage, goToNextPage, goToLastPage }] = usePagination(dataEntries);
-    return {
-        actualPageIdx,
-        lastPageIdx,
-        entriesOnSelectedPage,
-        imBusy,
-        goToFirestPage,
-        goToPrevPage,
-        goToPage,
-        goToNextPage,
-        goToLastPage,
-    };
+
+    return [
+        { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
+        { goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage },
+    ];
 };

@@ -9,29 +9,16 @@ interface PaginatedTableProps {
 
 const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries }) => {
     // const elementsOnPage: number = 10;
-    //NOTE: const [{ actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy }, { goToFirstPage, goToPrevPage, goToPage, goToNextPage, goToLastPage }] = usePagination(dataEntries);
-    const {
-        actualPageIdx,
-        lastPageIdx,
-        entriesOnSelectedPage,
-        imBusy,
-        goToFirestPage,
-        goToPrevPage,
-        goToPage,
-        goToNextPage,
-        goToLastPage,
-    } = usePagination(dataEntries);
+    const [
+        { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
+        { goToPrevPage, goToPage, goToNextPage, goToLastPage },
+    ] = usePagination(dataEntries);
+    console.log(isBusy);
 
     const elementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
     return (
         <div className="paginated-table">
             <p>Actual Page: {actualPageIdx + 1}</p>
-            {/* {//NOTE: Pagination jako button???} */}
-            {actualPageIdx ? (
-                <Pagination txt="goToFirestPage" active={false} action={goToFirestPage} />
-            ) : (
-                <Pagination txt="goToFirestPage" active={true} action={goToFirestPage} />
-            )}
 
             {actualPageIdx ? (
                 <Pagination txt="goToPrevPage" active={false} action={goToPrevPage} />
