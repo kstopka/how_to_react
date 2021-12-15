@@ -17,10 +17,14 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
     const searchFilter = useCallback(
         (value) => {
             setSearchWord(value);
+            console.log();
             if (value.length < 4) {
                 return null;
             }
             const filter = value.toLowerCase();
+            //NOTE: jak zrobiv regex? popieprzone to
+            // console.log(new RegExp(`\\b${value}\\b`));
+            // const filter = new RegExp(`\\b${value}\\b`);
             const result: SearchDataItemType[] = dataToSearch.filter(
                 (item) => item.name.toLowerCase().indexOf(filter) > -1
             );

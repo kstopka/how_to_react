@@ -1,14 +1,14 @@
 import { FunctionComponent, useContext } from "react";
 import DropdownItem from "./DropdownItem";
 import { SearchDataItemType } from "../App.d";
-import { SearchWordContext, SearchWordProvaider } from "../context/SearchWordContext";
+import { SearchWordContext } from "../context/SearchWordContext";
 
 interface DropdownListProps {
     array: SearchDataItemType[];
 }
 
 const DropdownList: FunctionComponent<DropdownListProps> = ({ array }) => {
-    const { searchWord, setSearchWord } = useContext(SearchWordContext);
+    const { searchWord } = useContext(SearchWordContext);
 
     if (searchWord.length < 4) {
         return null;
