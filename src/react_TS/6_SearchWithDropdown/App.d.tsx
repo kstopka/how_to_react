@@ -1,12 +1,12 @@
+import React from "react";
+
 export type SearchDataItemType = {
     name: string;
     regularPrice: number;
     salePrice: number;
 };
 
-export type SearchWordContext
-
-// export type SearchDataContextType = {
-//     state: SearchDataType[];
-//     dispatch: React.Dispatch<any>;
-// };
+export type SearchWordContextType = {
+    searchWord: string;
+    setSearchWord: React.Dispatch<React.SetStateAction<string>>;
+};

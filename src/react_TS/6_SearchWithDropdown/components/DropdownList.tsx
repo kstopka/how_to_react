@@ -1,26 +1,21 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import DropdownItem from "./DropdownItem";
 import { SearchDataItemType } from "../App.d";
+import { SearchWordContext, SearchWordProvaider } from "../context/SearchWordContext";
 
 interface DropdownListProps {
-    searchWord: string;
-    item: SearchDataItemType;
+    array: SearchDataItemType[];
 }
 
-const DropdownList: FunctionComponent<DropdownListProps> = ({ searchWord, item }) => {
+const DropdownList: FunctionComponent<DropdownListProps> = ({ array }) => {
+    const { searchWord, setSearchWord } = useContext(SearchWordContext);
+
+    if (searchWord.length < 4) {
+        return null;
+    }
     // szukasz regexpem po wartościach
-    const textToSearching = item.name.toLocaleLowerCase();
-    const searchWordLowerCase = searchWord.toLowerCase();
-    const findCorrectSearchingItem = textToSearching.includes(searchWordLowerCase);
-
-    const firstIndex = textToSearching.indexOf(searchWordLowerCase);
-    const lastIndex = firstIndex + searchWord.length;
-
-    return (
-        <div className="dropdown-list">
-            {findCorrectSearchingItem ? <DropdownItem firstIndex={firstIndex} lastIndex={lastIndex} item={item} /> : ""}
-        </div>
-    );
+    const correctItemFromArray = array.map((item, index) => <DropdownItem key={index} item={item} />);
+    return <div className="dropdown-list">{correctItemFromArray}</div>;
 };
 
 export default DropdownList;
