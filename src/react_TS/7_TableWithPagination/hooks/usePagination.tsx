@@ -9,6 +9,7 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
     // const idSetTimeout = setTimeout(() => {}, 333);
     // isBusy - boolean true/false, defaultowo false, który jest włączony na 333ms podczas gdy zmieniana jest strona i wyświetlane są nowe dane
     const [actualPageIdx, setActualPageIdx] = useState(10);
+
     if (isNaN(elementsOnPage) || isNaN(actualPageIdx)) {
         throw new Error("Value cant be NaN");
     }
@@ -21,30 +22,38 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
     const lastPageIdx: number = Math.ceil(dataEntries.length / elementsOnPage) - 1;
 
     if (actualPageIdx > lastPageIdx) {
-        console.log(actualPageIdx);
         setActualPageIdx(lastPageIdx);
     }
 
-    const isBusy: boolean = false;
+    const [isBusy, setIsBusy] = useState(false);
+
     const indexToStartSlice: number = actualPageIdx * elementsOnPage;
     const indexToStopSlice: number = indexToStartSlice + elementsOnPage;
     const entriesOnSelectedPage = dataEntries.slice(indexToStartSlice, indexToStopSlice);
 
+    const changeBusy = (value: number) => {
+        setIsBusy(true);
+        setTimeout(() => {
+            setActualPageIdx(value);
+            setIsBusy(false);
+        }, 333);
+    };
+
     const goToFirestPage = () => {
-        setActualPageIdx(0);
+        changeBusy(0);
     };
     const goToPrevPage = () => {
-        setActualPageIdx(actualPageIdx - 1);
+        changeBusy(actualPageIdx - 1);
     };
     const goToPage = (page: number) => {
-        setActualPageIdx(page);
+        changeBusy(page);
     };
 
     const goToNextPage = () => {
-        setActualPageIdx(actualPageIdx + 1);
+        changeBusy(actualPageIdx + 1);
     };
     const goToLastPage = () => {
-        setActualPageIdx(lastPageIdx);
+        changeBusy(lastPageIdx);
     };
 
     return [

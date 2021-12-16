@@ -4,7 +4,6 @@ import PaginationButton from "./PaginationButton";
 interface PaginationProps {
     actualPageIdx: number;
     lastPageIdx: number;
-    isBusy: boolean;
     goToFirestPage: () => void;
     goToPrevPage: () => void;
     goToPage: (page: number) => void;
@@ -16,7 +15,6 @@ interface PaginationProps {
 const Pagination: FunctionComponent<PaginationProps> = ({
     actualPageIdx,
     lastPageIdx,
-    isBusy,
     goToFirestPage,
     goToPrevPage,
     goToPage,
@@ -60,19 +58,20 @@ const Pagination: FunctionComponent<PaginationProps> = ({
             ) : (
                 <PaginationButton txt="goToNextPage" action={goToNextPage} />
             )}
-            <div>
-                <button
-                    onClick={() => goToPage(actualPageIdx + 3)}
-                    disabled={actualPageIdx + 3 > lastPageIdx ? true : false}
-                    // style={actualPageIdx + 3 > lastPageIdx ? { display: "none" } : { display: "block" }}
-                >{`goTo ${actualPageIdx + 4} Page`}</button>
-            </div>
+
             <div>
                 <button
                     onClick={() => goToPage(actualPageIdx + 2)}
                     disabled={actualPageIdx + 2 > lastPageIdx ? true : false}
                     // style={actualPageIdx + 2 > lastPageIdx ? { display: "none" } : { display: "block" }}
                 >{`goTo ${actualPageIdx + 3} Page`}</button>
+            </div>
+            <div>
+                <button
+                    onClick={() => goToPage(actualPageIdx + 3)}
+                    disabled={actualPageIdx + 3 > lastPageIdx ? true : false}
+                    // style={actualPageIdx + 3 > lastPageIdx ? { display: "none" } : { display: "block" }}
+                >{`goTo ${actualPageIdx + 4} Page`}</button>
             </div>
 
             {actualPageIdx === lastPageIdx ? (

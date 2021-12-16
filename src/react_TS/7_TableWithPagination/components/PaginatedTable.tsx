@@ -14,15 +14,21 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
         { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
         { goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage },
     ] = usePagination(dataEntries, elementsOnPage);
-    console.log(isBusy);
 
     const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item},</li>);
+
+    if (isBusy) {
+        return (
+            <div>
+                <h1 style={{ color: "red" }}>LOADING...</h1>
+            </div>
+        );
+    }
     return (
         <div className="paginated-table">
             <Pagination
                 actualPageIdx={actualPageIdx}
                 lastPageIdx={lastPageIdx}
-                isBusy={isBusy}
                 goToFirestPage={goToFirestPage}
                 goToPrevPage={goToPrevPage}
                 goToPage={goToPage}
