@@ -1,26 +1,13 @@
 import { FunctionComponent } from "react";
 import PaginationButton from "./PaginationButton";
+import { PaginationType } from "../App.d";
 
 interface PaginationProps {
-    actualPageIdx: number;
-    lastPageIdx: number;
-    goToFirestPage: () => void;
-    goToPrevPage: () => void;
-    goToPage: (page: number) => void;
-    goToNextPage: () => void;
-    goToLastPage: () => void;
+    settings: PaginationType;
 }
 
-//const Pagination = ({ paginationState, paginationActions }) => {};
-const Pagination: FunctionComponent<PaginationProps> = ({
-    actualPageIdx,
-    lastPageIdx,
-    goToFirestPage,
-    goToPrevPage,
-    goToPage,
-    goToNextPage,
-    goToLastPage,
-}) => {
+const Pagination: FunctionComponent<PaginationProps> = ({ settings }) => {
+    const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = settings;
     return (
         <div className="pagination">
             {actualPageIdx ? (

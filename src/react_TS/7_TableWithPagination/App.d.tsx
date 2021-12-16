@@ -16,3 +16,13 @@ export type usePaginationActions = {
 export type usePaginationReturn<T> = [usePaginationState<T>, usePaginationActions];
 
 export type usePaginationType = <T>(dataEntries: T[], elementsOnPage?: number) => usePaginationReturn<T>;
+
+export type PaginationType = {
+    actualPageIdx: number;
+    lastPageIdx: number;
+    goToFirestPage: () => void;
+    goToPrevPage: () => void;
+    goToPage: (page: number) => void;
+    goToNextPage: () => void;
+    goToLastPage: () => void;
+};

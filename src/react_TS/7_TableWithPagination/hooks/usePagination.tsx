@@ -1,24 +1,13 @@
 import { useState } from "react";
 import { usePaginationType } from "../App.d";
+import { validation } from "../validation";
 
 // generyczny
 export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3) => {
-    //NOTE: gdzie umieścić ten setTimeout?
-    //TODO: zrobić setTimeout
-    //TODO: wyrzucić validacje
-    // const idSetTimeout = setTimeout(() => {}, 333);
-    // isBusy - boolean true/false, defaultowo false, który jest włączony na 333ms podczas gdy zmieniana jest strona i wyświetlane są nowe dane
-    const [actualPageIdx, setActualPageIdx] = useState(10);
+    const [actualPageIdx, setActualPageIdx] = useState(0);
 
-    if (isNaN(elementsOnPage) || isNaN(actualPageIdx)) {
-        throw new Error("Value cant be NaN");
-    }
-    if (!Number.isInteger(elementsOnPage) || !Number.isInteger(actualPageIdx)) {
-        throw new Error(`Value is not integer`);
-    }
-    if (actualPageIdx < 0) {
-        throw new Error("index can not be negative number");
-    }
+    validation(elementsOnPage, actualPageIdx);
+
     const lastPageIdx: number = Math.ceil(dataEntries.length / elementsOnPage) - 1;
 
     if (actualPageIdx > lastPageIdx) {
@@ -33,10 +22,12 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
 
     const changeBusy = (value: number) => {
         setIsBusy(true);
-        setTimeout(() => {
+        const id = setTimeout(() => {
             setActualPageIdx(value);
             setIsBusy(false);
         }, 333);
+        //NOTE: robić clear?
+        // clearTimeout(id);
     };
 
     const goToFirestPage = () => {

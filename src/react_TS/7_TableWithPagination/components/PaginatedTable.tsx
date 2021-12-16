@@ -2,7 +2,7 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Pagination from "./Pagination";
-import { usePaginationReturn } from "../App.d";
+import { PaginationType } from "../App.d";
 
 interface PaginatedTableProps {
     dataEntries: number[];
@@ -15,6 +15,16 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
         { goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage },
     ] = usePagination(dataEntries, elementsOnPage);
 
+    const settings: PaginationType = {
+        actualPageIdx,
+        lastPageIdx,
+        goToFirestPage,
+        goToPrevPage,
+        goToPage,
+        goToNextPage,
+        goToLastPage,
+    };
+
     const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item},</li>);
 
     if (isBusy) {
@@ -24,17 +34,10 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
             </div>
         );
     }
+
     return (
         <div className="paginated-table">
-            <Pagination
-                actualPageIdx={actualPageIdx}
-                lastPageIdx={lastPageIdx}
-                goToFirestPage={goToFirestPage}
-                goToPrevPage={goToPrevPage}
-                goToPage={goToPage}
-                goToNextPage={goToNextPage}
-                goToLastPage={goToLastPage}
-            />
+            <Pagination settings={settings} />
             <ul>{showElementsOnPage}</ul>
         </div>
     );
