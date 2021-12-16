@@ -1,31 +1,33 @@
-import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Pagination from "./Pagination";
-import { PaginationType } from "../App.d";
 
 interface PaginatedTableProps {
-    dataEntries: number[];
+    //NOTE: data ma mieć any[]???
+    dataEntries: any[];
+    elementsOnPage: number;
 }
 
-const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries }) => {
-    const elementsOnPage: number = 50;
+const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, elementsOnPage }) => {
     const [
         { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
         { goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage },
     ] = usePagination(dataEntries, elementsOnPage);
 
-    const settings: PaginationType = {
-        actualPageIdx,
-        lastPageIdx,
-        goToFirestPage,
-        goToPrevPage,
-        goToPage,
-        goToNextPage,
-        goToLastPage,
-    };
+    const options = useMemo(
+        () => ({
+            actualPageIdx,
+            lastPageIdx,
+            goToFirestPage,
+            goToPrevPage,
+            goToPage,
+            goToNextPage,
+            goToLastPage,
+        }),
+        [actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage]
+    );
 
-    const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item},</li>);
+    const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
 
     if (isBusy) {
         return (
@@ -37,7 +39,7 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries })
 
     return (
         <div className="paginated-table">
-            <Pagination settings={settings} />
+            <Pagination options={options} />
             <ul>{showElementsOnPage}</ul>
         </div>
     );

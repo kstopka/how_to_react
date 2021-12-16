@@ -6,9 +6,10 @@ import PaginatedTable from "./components/PaginatedTable";
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
+    const elementsOnPage: number = 50;
     return (
         <div className="wrapper-app">
-            <PaginatedTable dataEntries={dataEntries} />
+            <PaginatedTable dataEntries={dataEntries} elementsOnPage={elementsOnPage} />
         </div>
     );
 };

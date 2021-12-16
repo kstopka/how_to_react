@@ -1,71 +1,49 @@
 import { FunctionComponent } from "react";
-import PaginationButton from "./PaginationButton";
 import { PaginationType } from "../App.d";
 
 interface PaginationProps {
-    settings: PaginationType;
+    options: PaginationType;
 }
 
-const Pagination: FunctionComponent<PaginationProps> = ({ settings }) => {
-    const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = settings;
+const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
+    const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = options;
     return (
         <div className="pagination">
-            {actualPageIdx ? (
-                <PaginationButton txt="goToFirestPage" action={goToFirestPage} />
-            ) : (
-                <PaginationButton txt="goToFirestPage" active={true} action={goToFirestPage} />
-            )}
-            <div>
-                <button
-                    onClick={() => goToPage(actualPageIdx - 3)}
-                    disabled={actualPageIdx - 3 < 0 ? true : false}
-                    // style={actualPageIdx - 3 < 0 ? { display: "none" } : { display: "block" }}
-                >{`goTo ${actualPageIdx - 2} Page`}</button>
-            </div>
-            <div>
-                <button
-                    onClick={() => goToPage(actualPageIdx - 2)}
-                    disabled={actualPageIdx - 2 < 0 ? true : false}
-                    // style={actualPageIdx - 2 < 0 ? { display: "none" } : { display: "block" }}
-                >{`goTo ${actualPageIdx - 1} Page`}</button>
-            </div>
+            <button
+                //NOTE: disabled czy style: display = none???/
+                disabled={actualPageIdx <= 0}
+                style={actualPageIdx <= 0 ? { display: "none" } : {}}
+                onClick={goToFirestPage}
+            >
+                goToFirestPage
+            </button>
 
-            {actualPageIdx ? (
-                <PaginationButton txt="goToPrevPage" action={goToPrevPage} />
-            ) : (
-                <PaginationButton txt="goToPrevPage" active={true} action={goToPrevPage} />
-            )}
+            <button disabled={actualPageIdx - 3 < 0} onClick={() => goToPage(actualPageIdx - 3)}>
+                {`goTo ${actualPageIdx - 2} Page`}
+            </button>
 
-            <div>
-                <button>{`actualPage ${actualPageIdx + 1}`}</button>
-            </div>
+            <button disabled={actualPageIdx - 2 < 0} onClick={() => goToPage(actualPageIdx - 2)}>
+                {`goTo ${actualPageIdx - 1} Page`}
+            </button>
 
-            {actualPageIdx === lastPageIdx ? (
-                <PaginationButton txt="goToNextPage" active={true} action={goToNextPage} />
-            ) : (
-                <PaginationButton txt="goToNextPage" action={goToNextPage} />
-            )}
+            <button disabled={actualPageIdx <= 0} onClick={goToPrevPage}>
+                goToPrevPage
+            </button>
 
-            <div>
-                <button
-                    onClick={() => goToPage(actualPageIdx + 2)}
-                    disabled={actualPageIdx + 2 > lastPageIdx ? true : false}
-                    // style={actualPageIdx + 2 > lastPageIdx ? { display: "none" } : { display: "block" }}
-                >{`goTo ${actualPageIdx + 3} Page`}</button>
-            </div>
-            <div>
-                <button
-                    onClick={() => goToPage(actualPageIdx + 3)}
-                    disabled={actualPageIdx + 3 > lastPageIdx ? true : false}
-                    // style={actualPageIdx + 3 > lastPageIdx ? { display: "none" } : { display: "block" }}
-                >{`goTo ${actualPageIdx + 4} Page`}</button>
-            </div>
+            <button style={{ color: "red" }}>{`actualPage ${actualPageIdx + 1}`}</button>
+            <button disabled={actualPageIdx === lastPageIdx} onClick={goToNextPage}>
+                goToNextPage
+            </button>
 
-            {actualPageIdx === lastPageIdx ? (
-                <PaginationButton txt="goToLastPage" active={true} action={goToLastPage} />
-            ) : (
-                <PaginationButton txt="goToLastPage" action={goToLastPage} />
-            )}
+            <button onClick={() => goToPage(actualPageIdx + 2)} disabled={actualPageIdx + 2 > lastPageIdx}>
+                {`goTo ${actualPageIdx + 3} Page`}
+            </button>
+            <button onClick={() => goToPage(actualPageIdx + 3)} disabled={actualPageIdx + 3 > lastPageIdx}>
+                {`goTo ${actualPageIdx + 4} Page`}
+            </button>
+            <button disabled={actualPageIdx === lastPageIdx} onClick={goToLastPage}>
+                goToLastPage
+            </button>
         </div>
     );
 };

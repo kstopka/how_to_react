@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { usePaginationType } from "../App.d";
 import { validation } from "../validation";
 
@@ -20,14 +20,13 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
     const indexToStopSlice: number = indexToStartSlice + elementsOnPage;
     const entriesOnSelectedPage = dataEntries.slice(indexToStartSlice, indexToStopSlice);
 
-    const changeBusy = (value: number) => {
+    const changeBusy = (value: SetStateAction<number>, delay = 100) => {
         setIsBusy(true);
-        const id = setTimeout(() => {
+        setTimeout(() => {
             setActualPageIdx(value);
             setIsBusy(false);
-        }, 333);
+        }, delay);
         //NOTE: robić clear?
-        // clearTimeout(id);
     };
 
     const goToFirestPage = () => {

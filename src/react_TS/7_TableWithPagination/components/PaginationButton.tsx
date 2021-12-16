@@ -6,7 +6,6 @@ interface PaginationButtonProps {
     action: () => void;
 }
 
-//const Pagination = ({ paginationState, paginationActions }) => {};
 const PaginationButton: FunctionComponent<PaginationButtonProps> = ({ txt, action, active = false }) => {
     return (
         <div className="pagination-button">

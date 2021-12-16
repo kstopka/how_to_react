@@ -8,4 +8,4 @@ const createArray = (items: number): number[] => {
     return data;
 };
 
-export const dataEntries: Array<number> = createArray(6353);
+export const dataEntries: Array<any> = createArray(6353);
