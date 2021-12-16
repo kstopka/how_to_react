@@ -13,7 +13,7 @@ const Modal: FunctionComponent<ModalProps> = ({ title }) => {
     const { isOpen, setIsOpen } = useContext(ModalContext);
     const toggle = useCallback(() => {
         setIsOpen(!isOpen);
-    }, [isOpen]);
+    }, [isOpen, setIsOpen]);
 
     if (!isOpen) {
         return null;

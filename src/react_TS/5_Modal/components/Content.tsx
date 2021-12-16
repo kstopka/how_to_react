@@ -1,9 +1,9 @@
-import * as React from "react";
+import { FunctionComponent } from "react";
 import Children from "./Children";
 
 interface ContentProps {}
 
-const Content: React.FunctionComponent<ContentProps> = () => {
+const Content: FunctionComponent<ContentProps> = () => {
     return (
         <div className="content">
             <Children />

@@ -30,7 +30,8 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
             );
             setArrayWithCorrectResult(result);
         },
-        [searchWord]
+        // NOTE: coś podkreśla ...?
+        [searchWord, setSearchWord]
     );
 
     // use memo -> filter

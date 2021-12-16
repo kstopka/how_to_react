@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
+import { SearchWordProvaider } from "./context/SearchWordContext";
 import SearchWithDropdown from "./components/SearchWithDropdown";
 import { searchData } from "./data/searchData";
-import { SearchWordContext, SearchWordProvaider } from "./context/SearchWordContext";
 
 interface AppProps {}
 

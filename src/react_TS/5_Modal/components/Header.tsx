@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FunctionComponent } from "react";
 
 interface HeaderProps {
     toggle: any;
@@ -11,7 +11,7 @@ interface HeaderProps {
 // 1000 - formularz
 // 1001 - 100%x100% wxh overlay
 
-const Header: React.FunctionComponent<HeaderProps> = ({ toggle, title }) => {
+const Header: FunctionComponent<HeaderProps> = ({ toggle, title }) => {
     //NOTE: nie klikalne białe tło = header => wyłączenie toggle na tym polu
     return (
         <div className="header" style={{ zIndex: 55 }}>

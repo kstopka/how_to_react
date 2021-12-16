@@ -1,28 +1,11 @@
 import { useState } from "react";
-
-type usePaginationState<T> = {
-    actualPageIdx: number;
-    lastPageIdx: number;
-    entriesOnSelectedPage: T[];
-    isBusy: boolean;
-};
-
-type usePaginationActions = {
-    goToFirestPage: () => void;
-    goToPrevPage: () => void;
-    goToPage: (page: number) => void;
-    goToNextPage: () => void;
-    goToLastPage: () => void;
-};
-
-type usePaginationReturn<T> = [usePaginationState<T>, usePaginationActions];
-
-type usePaginationType = <T>(dataEntries: T[], elementsOnPage?: number) => usePaginationReturn<T>;
+import { usePaginationType } from "../App.d";
 
 // generyczny
 export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3) => {
     //NOTE: gdzie umieścić ten setTimeout?
     //TODO: zrobić setTimeout
+    //TODO: wyrzucić validacje
     // const idSetTimeout = setTimeout(() => {}, 333);
     // isBusy - boolean true/false, defaultowo false, który jest włączony na 333ms podczas gdy zmieniana jest strona i wyświetlane są nowe dane
     const [actualPageIdx, setActualPageIdx] = useState(10);
@@ -53,8 +36,8 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
     const goToPrevPage = () => {
         setActualPageIdx(actualPageIdx - 1);
     };
-    const goToPage = () => {
-        setActualPageIdx(actualPageIdx + 1);
+    const goToPage = (page: number) => {
+        setActualPageIdx(page);
     };
 
     const goToNextPage = () => {

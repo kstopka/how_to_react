@@ -12,7 +12,7 @@ const DropdownItem: FunctionComponent<DropdownItemProps> = ({ item }) => {
     const { searchWord } = useContext(SearchWordContext);
     const { name, regularPrice, salePrice } = item;
     const boldedSearchWord = name.replace(searchWord, `<b>${searchWord}</b>`);
-    //NOTE: wychodzi coś takiego Fixed TOC - table of contents for <b>Word</b>Press plugin
+    //NOTE: wychodzi coś takiego " Fixed TOC - table of contents for <b>Word</b>Press plugin "
 
     return (
         <p>

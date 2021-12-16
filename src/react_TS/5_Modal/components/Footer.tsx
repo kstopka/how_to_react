@@ -1,10 +1,9 @@
-import * as React from "react";
-
+import { FunctionComponent } from "react";
 interface FooterProps {
     toggle: any;
 }
 
-const Footer: React.FunctionComponent<FooterProps> = ({ toggle }) => {
+const Footer: FunctionComponent<FooterProps> = ({ toggle }) => {
     const callToActionLabel = () => {
         toggle();
         alert("OK");
