@@ -1,8 +1,7 @@
 import { generatePerson } from "../functions/generatePerson";
-import { objPersonType } from "../App.d";
+import { objPersonType, fillArrayOfPeopleType } from "../App.d";
 
-const fillArrayOfPeople = (numersOfPeople: number) => {
-    const data = [];
+export const fillArrayOfPeople: fillArrayOfPeopleType<objPersonType> = (numersOfPeople, data = []) => {
     let number = 1;
     while (number <= numersOfPeople) {
         data.push(generatePerson());
@@ -11,4 +10,4 @@ const fillArrayOfPeople = (numersOfPeople: number) => {
     return data;
 };
 
-export const people: objPersonType[] = fillArrayOfPeople(100);
+export const people: objPersonType[] = fillArrayOfPeople(100, []);

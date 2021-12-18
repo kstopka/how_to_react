@@ -4,3 +4,5 @@ export type objPersonType = {
     age: number;
     sex: string;
 };
+
+export type fillArrayOfPeopleType<T> = (numersOfPeople: number, data?: T[]) => T[];

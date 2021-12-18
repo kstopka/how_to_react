@@ -6,7 +6,7 @@ ul li p {
   font-size: 15px;
 }
 
-ul li:nth-child(10) {
+ul li:nth-child(10n) {
   color: red;
 }
 /*# sourceMappingURL=css.css.map */
