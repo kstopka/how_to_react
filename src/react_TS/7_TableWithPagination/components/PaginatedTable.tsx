@@ -8,6 +8,10 @@ interface PaginatedTableProps {
     elementsOnPage: number;
 }
 
+type JSONLike = {
+    [key: string]: unknown;
+};
+
 const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, elementsOnPage }) => {
     const [
         { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
@@ -26,7 +30,7 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, e
         }),
         [actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage]
     );
-
+    //use memo
     const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
 
     if (isBusy) {

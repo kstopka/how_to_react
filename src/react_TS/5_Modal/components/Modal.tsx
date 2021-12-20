@@ -20,11 +20,15 @@ const Modal: FunctionComponent<ModalProps> = ({ title }) => {
     }
 
     return (
-        <div className="modal" onClick={toggle}>
-            <Header toggle={toggle} title={title} />
-            <Content />
-            <Footer toggle={toggle} />
-        </div>
+        <>
+            <a className="modal__overlay" onClick={toggle}></a>
+
+            <div className="modal">
+                <Header toggle={toggle} title={title} />
+                <Content />
+                <Footer toggle={toggle} />
+            </div>
+        </>
     );
 };
 export default Modal;

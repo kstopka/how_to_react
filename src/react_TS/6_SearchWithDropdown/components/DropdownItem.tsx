@@ -14,6 +14,7 @@ const DropdownItem: FunctionComponent<DropdownItemProps> = ({ item }) => {
     const boldedSearchWord = name.replace(searchWord, `<b>${searchWord}</b>`);
     //NOTE: wychodzi coś takiego " Fixed TOC - table of contents for <b>Word</b>Press plugin "
 
+    // wywołać jako html
     return (
         <p>
             {boldedSearchWord}

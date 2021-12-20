@@ -7,7 +7,7 @@ import "../css/css.css";
 interface MoreAndMorePeopleProps {
     items: objPersonType[];
 }
-
+// react visual list
 const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ items }) => {
     const [endIndex, setEndIndex] = useState(10);
 

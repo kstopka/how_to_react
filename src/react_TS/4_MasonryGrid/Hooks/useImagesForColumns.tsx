@@ -3,16 +3,19 @@ import { images } from "../App.hooks";
 export const useImagesForColumns = (colCount: number) => {
     //NOTE: dalej źle jest ;x
 
-    // let columns: string[][] = new Array(colCount).fill([]);
+    let columns: string[][] = new Array(colCount).fill([]);
     //console po reduce
     //(4) [Array(20), Array(20), Array(20), Array(20)]
 
     let columns: string[][] = [[], [], [], []];
     //console po reduce
     //(4) [Array(5), Array(5), Array(5), Array(5)]
+    console.log(columns);
 
     columns = images.reduce((accumulator: string[][], currentValue: string, index: number) => {
         const moduloResult = index % colCount;
+        console.log(moduloResult);
+
         accumulator[moduloResult].push(currentValue);
         return accumulator;
     }, columns);

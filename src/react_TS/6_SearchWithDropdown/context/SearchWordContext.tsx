@@ -13,10 +13,12 @@ import { SearchWordContextType } from "../App.d";
 // //     return <SearchDataContext.Provider value={{ state, dispatch }}>{children}</SearchDataContext.Provider>;
 // // };
 
-export const SearchWordContext = createContext<SearchWordContextType>({
+const initialState: SearchWordContextType = {
     searchWord: "",
     setSearchWord: () => {},
-});
+};
+
+export const SearchWordContext = createContext(initialState);
 
 export const SearchWordProvaider = ({ children }: { children: any }) => {
     const [searchWord, setSearchWord] = useState("");

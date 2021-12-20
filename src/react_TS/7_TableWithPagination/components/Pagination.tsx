@@ -7,6 +7,9 @@ interface PaginationProps {
 
 const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
     const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = options;
+
+    const isEnd = () => actualPageIdx === lastPageIdx;
+
     return (
         <div className="pagination">
             <button
@@ -31,7 +34,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
             </button>
 
             <button style={{ color: "red" }}>{`actualPage ${actualPageIdx + 1}`}</button>
-            <button disabled={actualPageIdx === lastPageIdx} onClick={goToNextPage}>
+            <button disabled={isEnd()} onClick={goToNextPage}>
                 goToNextPage
             </button>
 
@@ -41,7 +44,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
             <button onClick={() => goToPage(actualPageIdx + 3)} disabled={actualPageIdx + 3 > lastPageIdx}>
                 {`goTo ${actualPageIdx + 4} Page`}
             </button>
-            <button disabled={actualPageIdx === lastPageIdx} onClick={goToLastPage}>
+            <button disabled={isEnd} onClick={goToLastPage}>
                 goToLastPage
             </button>
         </div>

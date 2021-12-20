@@ -13,6 +13,8 @@ const DropdownList: FunctionComponent<DropdownListProps> = ({ array }) => {
     if (searchWord.length < 4) {
         return null;
     }
+
+    // useMemo
     const correctItemFromArray = array.map((item, index) => <DropdownItem key={index} item={item} />);
     return <div className="dropdown-list">{correctItemFromArray}</div>;
 };
