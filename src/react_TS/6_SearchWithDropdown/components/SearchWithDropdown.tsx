@@ -2,6 +2,7 @@ import { FunctionComponent, useCallback, useContext, useState, useEffect } from 
 import { SearchDataItemType } from "../App.d";
 import DropdownList from "./DropdownList";
 import { SearchWordContext, SearchWordProvaider } from "../context/SearchWordContext";
+import { Item } from "react-bootstrap/lib/Breadcrumb";
 
 interface SearchWithDropdownProps {
     dataToSearch: SearchDataItemType[];
@@ -17,25 +18,14 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
     const searchFilter = useCallback(
         (value) => {
             setSearchWord(value);
-            console.log();
             if (value.length < 4) {
                 return null;
             }
-            const filter = value.toLowerCase();
-            //NOTE: jak zrobiv regex? popieprzone to
-            // console.log(new RegExp(`\\b${value}\\b`));
-            // const filter = new RegExp(`\\b${value}\\b`);
-
             const pattertToFind = new RegExp(searchWord, "gi");
-            // jakie re ma metody
-
-            const result: SearchDataItemType[] = dataToSearch.filter(
-                (item) => item.name.toLowerCase().indexOf(filter) > -1
-            );
+            const result = dataToSearch.filter((item) => item.name.match(pattertToFind));
             setArrayWithCorrectResult(result);
         },
-        // NOTE: coś podkreśla ...?
-        [searchWord, setSearchWord]
+        [dataToSearch, searchWord, setSearchWord]
     );
 
     // use memo -> filter

@@ -12,7 +12,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
 
     return (
         <div className="pagination">
-            <button
+            {/* <button
                 //NOTE: disabled czy style: display = none???/
                 disabled={actualPageIdx <= 0}
                 style={actualPageIdx <= 0 ? { display: "none" } : {}}
@@ -46,7 +46,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
             </button>
             <button disabled={isEnd} onClick={goToLastPage}>
                 goToLastPage
-            </button>
+            </button> */}
         </div>
     );
 };

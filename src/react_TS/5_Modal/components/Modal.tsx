@@ -21,7 +21,7 @@ const Modal: FunctionComponent<ModalProps> = ({ title }) => {
 
     return (
         <>
-            <a className="modal__overlay" onClick={toggle}></a>
+            <div className="modal__overlay" onClick={toggle}></div>
 
             <div className="modal">
                 <Header toggle={toggle} title={title} />
