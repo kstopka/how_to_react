@@ -23,6 +23,10 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
             }
             const pattertToFind = new RegExp(searchWord, "gi");
             const result = dataToSearch.filter((item) => item.name.match(pattertToFind));
+            dataToSearch.forEach((item) => {
+                console.log(searchWord);
+                console.log(item.name.match(pattertToFind));
+            });
             setArrayWithCorrectResult(result);
         },
         [dataToSearch, searchWord, setSearchWord]
