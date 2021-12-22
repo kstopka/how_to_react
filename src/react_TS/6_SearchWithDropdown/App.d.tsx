@@ -6,7 +6,7 @@ export type SearchDataItemType = {
     salePrice: number;
 };
 
-export type SearchWordContextType = {
-    searchWord: string;
-    setSearchWord: React.Dispatch<React.SetStateAction<string>>;
+export type PattertToFindContextType = {
+    pattertToFind: RegExp;
+    setPattertToFind: React.Dispatch<React.SetStateAction<RegExp>>;
 };

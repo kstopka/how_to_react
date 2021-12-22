@@ -1,8 +1,7 @@
-import { FunctionComponent, useCallback, useContext, useState, useEffect } from "react";
+import { FunctionComponent, useCallback, useContext, useState } from "react";
 import { SearchDataItemType } from "../App.d";
 import DropdownList from "./DropdownList";
-import { SearchWordContext, SearchWordProvaider } from "../context/SearchWordContext";
-import { Item } from "react-bootstrap/lib/Breadcrumb";
+import { PattertToFindContext } from "../context/PattertToFindContext";
 
 interface SearchWithDropdownProps {
     dataToSearch: SearchDataItemType[];
@@ -10,26 +9,23 @@ interface SearchWithDropdownProps {
 
 const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataToSearch }) => {
     // use search logic
-    const { searchWord, setSearchWord } = useContext(SearchWordContext);
+    const { setPattertToFind } = useContext(PattertToFindContext);
     const [arrayWithCorrectResult, setArrayWithCorrectResult] = useState<SearchDataItemType[]>([]);
 
     // use search logic
     // ++use callback
     const searchFilter = useCallback(
         (value) => {
-            setSearchWord(value);
+            const pattertToFind = new RegExp(value, "gi");
+            setPattertToFind(pattertToFind);
             if (value.length < 4) {
+                setPattertToFind(new RegExp("off"));
                 return null;
             }
-            const pattertToFind = new RegExp(searchWord, "gi");
-            const result = dataToSearch.filter((item) => item.name.match(pattertToFind));
-            dataToSearch.forEach((item) => {
-                console.log(searchWord);
-                console.log(item.name.match(pattertToFind));
-            });
-            setArrayWithCorrectResult(result);
+            const correctResult = dataToSearch.filter((item) => item.name.match(pattertToFind));
+            setArrayWithCorrectResult(correctResult);
         },
-        [dataToSearch, searchWord, setSearchWord]
+        [dataToSearch, setPattertToFind]
     );
 
     // use memo -> filter

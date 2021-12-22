@@ -1,17 +1,15 @@
 import { FunctionComponent, useContext } from "react";
 import { SearchDataItemType } from "../App.d";
-import { SearchWordContext } from "../context/SearchWordContext";
-// import parse from "html-react-parser";
+import { PattertToFindContext } from "../context/PattertToFindContext";
 
 interface DropdownItemProps {
     item: SearchDataItemType;
 }
 
 const DropdownItem: FunctionComponent<DropdownItemProps> = ({ item }) => {
-    const { searchWord } = useContext(SearchWordContext);
+    const { pattertToFind } = useContext(PattertToFindContext);
     const { name, regularPrice, salePrice } = item;
-    const regexp = new RegExp(searchWord, "gi");
-    const boldedSearchWord = name.replace(regexp, (match) => `<b>${match}</b>`);
+    const boldedSearchWord = name.replace(pattertToFind, (match) => `<b>${match}</b>`);
 
     return (
         <p>
