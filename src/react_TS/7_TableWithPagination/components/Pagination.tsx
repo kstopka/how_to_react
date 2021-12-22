@@ -1,52 +1,83 @@
 import { FunctionComponent } from "react";
 import { PaginationType } from "../App.d";
+import PaginationButton from "./PaginationButton";
 
 interface PaginationProps {
     options: PaginationType;
 }
+//NOTE: do sprawdzenia
 
 const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
     const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = options;
+    const isActive = (option: string, number: number) => {
+        switch (option) {
+            case "start":
+                return actualPageIdx <= number;
+            case "end":
+                return actualPageIdx + number >= lastPageIdx;
+        }
+    };
 
-    const isEnd = () => actualPageIdx === lastPageIdx;
+    const calculateCorrectIndex = (option: string, number: number): number => {
+        switch (option) {
+            case "start":
+                return actualPageIdx - number;
+            case "end":
+                return actualPageIdx + number;
+            default:
+                return NaN;
+        }
+    };
 
     return (
         <div className="pagination">
-            {/* <button
-                //NOTE: disabled czy style: display = none???/
-                disabled={actualPageIdx <= 0}
-                style={actualPageIdx <= 0 ? { display: "none" } : {}}
-                onClick={goToFirestPage}
-            >
-                goToFirestPage
-            </button>
+            <PaginationButton
+                txt="goToFirestPage.............."
+                action={goToFirestPage}
+                active={isActive("start", 0)}
+            />
+            {isActive("start", 0) ? null : <button onClick={goToFirestPage}>goToFirestPage</button>}
 
-            <button disabled={actualPageIdx - 3 < 0} onClick={() => goToPage(actualPageIdx - 3)}>
-                {`goTo ${actualPageIdx - 2} Page`}
-            </button>
+            <PaginationButton
+                txt={`goTo ${calculateCorrectIndex("start", 2)} Page.............`}
+                active={isActive("start", 3)}
+                // action={goToPage(calculateCorrectIndex("start", 3))}
+                // action={goToPage}
+            />
+            {isActive("start", 3) ? null : (
+                <button onClick={() => goToPage(calculateCorrectIndex("start", 3))}>{`goTo ${calculateCorrectIndex(
+                    "start",
+                    2
+                )} Page`}</button>
+            )}
 
-            <button disabled={actualPageIdx - 2 < 0} onClick={() => goToPage(actualPageIdx - 2)}>
-                {`goTo ${actualPageIdx - 1} Page`}
-            </button>
+            {isActive("start", 2) ? null : (
+                <button onClick={() => goToPage(calculateCorrectIndex("start", 2))}>{`goTo ${calculateCorrectIndex(
+                    "start",
+                    1
+                )} Page`}</button>
+            )}
 
-            <button disabled={actualPageIdx <= 0} onClick={goToPrevPage}>
-                goToPrevPage
-            </button>
+            {isActive("start", 1) ? null : <button onClick={goToPrevPage}>goToPrevPage</button>}
 
             <button style={{ color: "red" }}>{`actualPage ${actualPageIdx + 1}`}</button>
-            <button disabled={isEnd()} onClick={goToNextPage}>
-                goToNextPage
-            </button>
 
-            <button onClick={() => goToPage(actualPageIdx + 2)} disabled={actualPageIdx + 2 > lastPageIdx}>
-                {`goTo ${actualPageIdx + 3} Page`}
-            </button>
-            <button onClick={() => goToPage(actualPageIdx + 3)} disabled={actualPageIdx + 3 > lastPageIdx}>
-                {`goTo ${actualPageIdx + 4} Page`}
-            </button>
-            <button disabled={isEnd} onClick={goToLastPage}>
-                goToLastPage
-            </button> */}
+            {isActive("end", 3) ? null : <button onClick={goToNextPage}>goToNextPage</button>}
+
+            {isActive("end", 2) ? null : (
+                <button onClick={() => goToPage(calculateCorrectIndex("end", 2))}>{`goTo ${calculateCorrectIndex(
+                    "end",
+                    3
+                )} Page`}</button>
+            )}
+            {isActive("end", 1) ? null : (
+                <button onClick={() => goToPage(calculateCorrectIndex("end", 3))}>{`goTo ${calculateCorrectIndex(
+                    "end",
+                    4
+                )} Page`}</button>
+            )}
+
+            {isActive("end", 0) ? null : <button onClick={goToLastPage}>goToLastPage</button>}
         </div>
     );
 };

@@ -3,14 +3,9 @@ import { usePagination } from "../hooks/usePagination";
 import Pagination from "./Pagination";
 
 interface PaginatedTableProps {
-    //NOTE: data ma mieć any[]???
     dataEntries: any[];
     elementsOnPage: number;
 }
-
-type JSONLike = {
-    [key: string]: unknown;
-};
 
 const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, elementsOnPage }) => {
     const [
@@ -30,8 +25,10 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, e
         }),
         [actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage]
     );
-    //use memo
-    const showElementsOnPage = entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
+    //NOTE: ten useMemo jest ok?
+    const showElementsOnPage = useMemo(() => {
+        return entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
+    }, [entriesOnSelectedPage]);
 
     if (isBusy) {
         return (
