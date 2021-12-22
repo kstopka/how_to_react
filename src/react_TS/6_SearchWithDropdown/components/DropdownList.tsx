@@ -1,21 +1,22 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useMemo } from "react";
 import DropdownItem from "./DropdownItem";
 import { SearchDataItemType } from "../App.d";
-import { PattertToFindContext } from "../context/PattertToFindContext";
 
 interface DropdownListProps {
     array: SearchDataItemType[];
 }
 
 const DropdownList: FunctionComponent<DropdownListProps> = ({ array }) => {
-    const { pattertToFind } = useContext(PattertToFindContext);
+    //NOTE: useMemo jest tu i w searchwithdropdown, czy jest ok?
+    const checkedChangesInArray = useMemo(() => {
+        return array;
+    }, [array]);
 
-    if (!pattertToFind) {
+    if (!checkedChangesInArray) {
         return null;
     }
 
-    // useMemo
-    const correctItemFromArray = array.map((item, index) => <DropdownItem key={index} item={item} />);
+    const correctItemFromArray = checkedChangesInArray.map((item, index) => <DropdownItem key={index} item={item} />);
     return <div className="dropdown-list">{correctItemFromArray}</div>;
 };
 

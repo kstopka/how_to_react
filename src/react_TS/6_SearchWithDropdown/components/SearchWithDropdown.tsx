@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useContext, useState } from "react";
+import { FunctionComponent, useCallback, useContext, useState, useMemo } from "react";
 import { SearchDataItemType } from "../App.d";
 import DropdownList from "./DropdownList";
 import { PattertToFindContext } from "../context/PattertToFindContext";
@@ -19,7 +19,7 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
             const pattertToFind = new RegExp(value, "gi");
             setPattertToFind(pattertToFind);
             if (value.length < 4) {
-                setPattertToFind(new RegExp("off"));
+                setArrayWithCorrectResult([]);
                 return null;
             }
             const correctResult = dataToSearch.filter((item) => item.name.match(pattertToFind));
@@ -28,14 +28,16 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
         [dataToSearch, setPattertToFind]
     );
 
-    // use memo -> filter
-    // Dropdown item
+    //NOTE: useMemo jest tu i w dropdownlist, czy jest ok?
+    const checkedChangesInArray = useMemo(() => {
+        return arrayWithCorrectResult;
+    }, [arrayWithCorrectResult]);
 
     return (
         <div className="search-with-dropdown">
             <label htmlFor="">Wyszukaj słowa: </label>
             <input type="text" onChange={(e) => searchFilter(e.target.value)} />
-            <DropdownList array={arrayWithCorrectResult} />
+            <DropdownList array={checkedChangesInArray} />
         </div>
     );
 };
