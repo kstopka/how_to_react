@@ -1,0 +1,12 @@
+ul li h1 {
+  font-size: 15px;
+}
+
+ul li p {
+  font-size: 15px;
+}
+
+ul li:nth-child(10n) {
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
