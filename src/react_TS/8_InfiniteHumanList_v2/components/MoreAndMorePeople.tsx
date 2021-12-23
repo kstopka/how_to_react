@@ -3,7 +3,8 @@ import { FunctionComponent } from "react";
 import SinglePerson from "./SinglePerson";
 import { objPersonType } from "../App.d";
 import "../css/style.css";
-import { List } from "react-virtualized";
+// import { List, Collection } from "react-virtualized";
+import { List, CellMeasurerCache, CellMeasurer, WindowScroller, AutoSizer } from "react-virtualized";
 
 const listHeight = 600;
 const rowHeight = 50;
@@ -15,15 +16,14 @@ interface MoreAndMorePeopleProps {
 
 // react visual list
 const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ items }) => {
-    // const renderRow = ({ index, key }: { index: any; key: any }) => {
-    //     return (
-    //         <div key={key} className="row">
-    //             <div className="content">
-    //                 <div>{items[index].name}</div>
-    //             </div>
-    //         </div>
-    //     );
-    // };
+    const renderRow = ({ index, key }: { index: any; key: any }) => {
+        const person = items[index];
+        return (
+            <div key={key}>
+                <div>{person.name}</div>
+            </div>
+        );
+    };
     // const [endIndex, setEndIndex] = useState(10);
 
     // const showPeople = items.slice(0, endIndex).map((item, index) => (
@@ -32,19 +32,18 @@ const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ items })
     // const showPeople = items.map((item, index) => renderRow(index,index) />);
 
     return (
-        // <ul className="more-and-more-people">
-        //     <List rowRenderer={renderRow} />
-        // </ul>
-        <List
-            width={rowWidth}
-            height={listHeight}
-            rowHeight={rowHeight}
-            rowCount={items.length}
-            rowRenderer={({ key, index, style, parent }) => {
-                const person = items[index];
-                return <div key={key}>{person.name}</div>;
-            }}
-        />
+        <ul className="more-and-more-people">{/* <List /> */}</ul>
+        // <List
+        //     width={rowWidth}
+        //     height={listHeight}
+        //     rowHeight={rowHeight}
+        //     rowCount={items.length}
+        //     rowRenderer={renderRow}
+        //     // rowRenderer={({ key, index, style, parent }) => {
+        //     //     const person = items[index];
+        //     //     return <div key={key}>{person.name}</div>;
+        //     // }}
+        // />
     );
 };
 

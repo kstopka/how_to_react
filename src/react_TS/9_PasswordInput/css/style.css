@@ -1,0 +1,10 @@
+.password-input input {
+  width: 20px;
+  height: 40px;
+  margin: 5px;
+}
+
+.password-input .disabled {
+  background-color: #888;
+}
+/*# sourceMappingURL=style.css.map */
