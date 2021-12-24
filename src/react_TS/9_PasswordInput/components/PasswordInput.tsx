@@ -2,6 +2,7 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 import "../css/style.css";
 import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
+import SingleInput from "./SingleInput";
 
 interface PasswordInputProps {
     password: string;
@@ -10,15 +11,10 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
-
-    return (
-        <div className="password-input">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" className="disabled" disabled={true} />
-        </div>
+    const showInputs = filledArrayInputsWithPassword.map(
+        (element: string | boolean, index: React.Key | null | undefined) => <SingleInput key={index} item={element} />
     );
+    return <div className="password-input">{showInputs}</div>;
 };
 
 export default PasswordInput;
