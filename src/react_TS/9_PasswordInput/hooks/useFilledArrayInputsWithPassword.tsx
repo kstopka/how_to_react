@@ -15,16 +15,17 @@ const shuffle = (array: any[]) => {
     return array;
 };
 
-export const useFilledArrayInputsWithPassword = (password: string) => {
-    const length = password.length;
+const calculateNumbersInputs = (length: number) => {
     const minNsmbers = Math.ceil(length * 1.5);
     const maxNumbers = Math.ceil(length * 2);
-    const numbersInputs = Math.floor(Math.random() * (maxNumbers + 1 - minNsmbers) + minNsmbers);
-    const arrayWithInputs = new Array(numbersInputs).fill(false).fill(true, 0, length);
+    return Math.floor(Math.random() * (maxNumbers + 1 - minNsmbers) + minNsmbers);
+};
+
+export const useFilledArrayInputsWithPassword = (password: string) => {
+    const numbersInputs = calculateNumbersInputs(password.length);
+    const arrayWithInputs = new Array(numbersInputs).fill(false).fill(true, 0, password.length);
     const shuffledArrayWithInputs = shuffle(arrayWithInputs);
-
     const splitedPassword: string[] = password.split("");
-
     const filledArrayWithPassword = shuffledArrayWithInputs.reduce((prev, curr, index) => {
         if (curr) {
             prev[index] = splitedPassword[0];
