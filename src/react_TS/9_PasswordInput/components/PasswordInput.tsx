@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import "../css/style.css";
-import { useCreateShuffledArrayWithInputs } from "../hooks/useCreateShuffledArrayWithInputs";
+import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
 
 interface PasswordInputProps {
     password: string;
@@ -9,17 +9,7 @@ interface PasswordInputProps {
 }
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
-    const result: string[] = password.split("");
-    let iterator = 0;
-    const shuffledArrayWithInputs = useCreateShuffledArrayWithInputs(password.length);
-
-    const filledArrayWithPassword = shuffledArrayWithInputs.reduce((prev, curr, index) => {
-        if (prev[index]) {
-            prev[index] = result[iterator];
-            iterator++;
-        }
-        return prev;
-    }, shuffledArrayWithInputs);
+    const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
 
     return (
         <div className="password-input">
