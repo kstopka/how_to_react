@@ -12,6 +12,7 @@ interface PasswordInputProps {
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
     console.log(filledArrayInputsWithPassword);
+    //NOTE arraye różnią sie????
     const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
         <SingleInput key={index} item={element} index={index} />
     ));
