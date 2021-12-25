@@ -11,9 +11,10 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
-    const showInputs = filledArrayInputsWithPassword.map(
-        (element: string | boolean, index: React.Key | null | undefined) => <SingleInput key={index} item={element} />
-    );
+    console.log(filledArrayInputsWithPassword);
+    const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
+        <SingleInput key={index} item={element} index={index} />
+    ));
     return <div className="password-input">{showInputs}</div>;
 };
 
