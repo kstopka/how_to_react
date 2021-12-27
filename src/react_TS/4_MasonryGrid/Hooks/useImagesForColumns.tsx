@@ -1,4 +1,28 @@
 import { images } from "../App.hooks";
+const testImages = [
+    "Element 1",
+    "Element 2",
+    "Element 3",
+    "Element 4",
+    "Element 5",
+    "Element 6",
+    "Element 7",
+    "Element 8",
+    "Element 9",
+    "Element 10",
+    "Element 11",
+    "Element 12",
+    "Element 13",
+    "Element 14",
+    "Element 15",
+    "Element 16",
+    "Element 17",
+    "Element 18",
+    "Element 19",
+    "Element 20",
+];
+
+// const colCount = 4
 
 export const useImagesForColumns = (colCount: number) => {
     //NOTE: dalej źle jest ;x
@@ -14,14 +38,6 @@ export const useImagesForColumns = (colCount: number) => {
     const result = images.reduce((accumulator, currentValue, index) => {
         const moduloResult = index % colCount; // 0 % 4 === 0
         accumulator[moduloResult].push(currentValue);
-        // console.log("nowy_______________________________________________________________");
-        // console.log(moduloResult);
-        // console.log("curr");
-        // console.log(currentValue);
-        // console.log("acc: ");
-        // console.log(accumulator);
-        // console.log("columns");
-        // console.log(columns);
         return accumulator;
     }, columns);
 
