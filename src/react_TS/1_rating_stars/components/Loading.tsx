@@ -1,13 +1,14 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { FunctionComponent } from "react";
 
-const showLoader = { display: "block", color: "red" };
-const hideLoader = { display: "none" };
+interface LoadingProps {}
 
-export const Loading = ({ status }: { status: boolean }) => {
+const Loading: FunctionComponent<LoadingProps> = () => {
     return (
-        <div className="loading" style={status ? showLoader : hideLoader}>
-            <h1>Loading....</h1>
+        <div className="loading">
+            <h1>Loading...</h1>
         </div>
     );
 };
+
+export default Loading;

@@ -9,7 +9,6 @@ const RatingList = ({ ratings }: { ratings: RatingType[] }) => {
     ));
     const numberOfElementsToDelete = mapRatingList.length - 10;
     mapRatingList.splice(9, numberOfElementsToDelete);
-    // mapRatingList = mapRatingList.slice(0, 10);
     return (
         <div>
             <AverageScore ratings={ratings} />

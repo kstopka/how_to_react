@@ -11,7 +11,7 @@ const Rating = ({
     content: string;
     recordId: string;
 }) => {
-    content = content.slice(0, 119);
+    content = content.slice(0, 120);
 
     return (
         <li>
