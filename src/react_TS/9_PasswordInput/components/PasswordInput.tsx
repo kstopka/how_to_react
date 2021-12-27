@@ -11,12 +11,16 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
+    // useState, useMemo
     console.log(filledArrayInputsWithPassword);
+
     //NOTE arraye różnią sie????
-    const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
-        <SingleInput key={index} item={element} index={index} />
-    ));
-    return <div className="password-input">{showInputs}</div>;
+    // const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
+    //     <SingleInput key={index} item={element} index={index} />
+    // ));
+    return <div className="password-input">{JSON.stringify(filledArrayInputsWithPassword)}</div>;
 };
 
 export default PasswordInput;
+
+// codesandbox

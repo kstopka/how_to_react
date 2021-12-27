@@ -18,6 +18,7 @@ const calculateNumbersInputs = (length: number) => {
 };
 
 export const useFilledArrayInputsWithPassword = (password: string) => {
+    console.log("abc");
     const numbersInputs = calculateNumbersInputs(password.length),
         arrayWithInputs = new Array(numbersInputs).fill(false).fill(true, 0, password.length),
         shuffledArrayWithInputs = shuffle(arrayWithInputs),
@@ -29,6 +30,7 @@ export const useFilledArrayInputsWithPassword = (password: string) => {
             }
             return prev;
         }, shuffledArrayWithInputs);
+    console.log(filledArrayWithPassword);
 
     return filledArrayWithPassword;
 };
