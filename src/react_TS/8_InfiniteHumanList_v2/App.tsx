@@ -8,7 +8,7 @@ interface AppProps {}
 const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper">
-            <MoreAndMorePeople items={people} />
+            <MoreAndMorePeople list={people} />
         </div>
     );
 };

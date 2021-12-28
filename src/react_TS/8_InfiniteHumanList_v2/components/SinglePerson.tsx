@@ -9,7 +9,7 @@ interface SinglePersonProps {
 const SinglePerson: FunctionComponent<SinglePersonProps> = ({ person: { id, name, surname, age, sex } }) => {
     return (
         <li className="single-person">
-            {name}, {surname}, {age}, {sex}, {id}
+            {id}: {name}, {surname}, {age}, {sex}
         </li>
     );
 };

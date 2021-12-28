@@ -1,41 +1,61 @@
 import * as React from "react";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import SinglePerson from "./SinglePerson";
 import { objPersonType } from "../App.d";
 import "../css/style.css";
-import { List, InfiniteLoader, CellMeasurerCache, CellMeasurer } from "react-virtualized";
+import { List, InfiniteLoader, IndexRange, AutoSizer } from "react-virtualized";
+import { fillArrayOfPeople } from "../data/people";
 
-const rowHeight = 50;
 interface MoreAndMorePeopleProps {
-    items: objPersonType[];
+    list: objPersonType[];
 }
 
-const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ items }) => {
+const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ list }) => {
+    const [rowCount, setRowCount] = useState(100);
     const renderRow = ({ index, key }: { index: any; key: any }) => {
-        const person = items[index];
+        const person = list[index];
         return <SinglePerson key={key} person={person} />;
     };
 
-    const isRowLoaded = ({ index }: { index: number }) => {
-        return !!items[index];
+    const isRowLoaded = useCallback(
+        ({ index }) => {
+            if ((index + 1) % 10 === 0) {
+                setRowCount(rowCount + 10);
+                return true;
+            }
+            if (index === list.length) {
+                return false;
+            }
+            return true;
+        },
+        [list.length, rowCount]
+    );
+
+    const loadMoreRows = ({ startIndex, stopIndex }: IndexRange) => {
+        return new Promise((resolve) => {
+            fillArrayOfPeople(10, list);
+            console.log(list);
+        });
     };
 
-    const loadMoreRows = ({ startIndex, stopIndex }: { startIndex: number; stopIndex: number }) => {};
-
     return (
-        <div style={{ width: "100%", height: "100vh" }}>
-            <InfiniteLoader isRowLoaded={isRowLoaded} loadMoreRows={loadMoreRows} rowCount={remoteRowCount}>
+        <div style={{ width: "100%" }}>
+            <InfiniteLoader isRowLoaded={isRowLoaded} rowCount={10} loadMoreRows={loadMoreRows} threshold={10}>
                 {({ onRowsRendered, registerChild }) => (
-                    <List
-                        width={500}
-                        height={600}
-                        rowHeight={50}
-                        onRowsRendered={onRowsRendered}
-                        ref={registerChild}
-                        rowCount={remoteRowCount}
-                        rowRenderer={renderRow}
-                        className="more-and-more-people"
-                    />
+                    <AutoSizer disableHeight>
+                        {({ width }) => (
+                            <List
+                                onRowsRendered={onRowsRendered}
+                                ref={registerChild}
+                                width={width}
+                                height={800}
+                                rowHeight={50}
+                                rowCount={rowCount}
+                                rowRenderer={renderRow}
+                                className="more-and-more-people"
+                            />
+                        )}
+                    </AutoSizer>
                 )}
             </InfiniteLoader>
         </div>
