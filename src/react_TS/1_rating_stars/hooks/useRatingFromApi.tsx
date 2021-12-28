@@ -5,17 +5,14 @@ import mockedData from "../components/fakeApi";
 const asyncWrapperForPromiseWithConnectedState = async (
     promiseWrapper: { (): Promise<RatingType[]>; (): any },
     {
-        setForBusy,
         setForError,
         setForResponse,
     }: {
-        setForBusy: any;
         setForError: any;
         setForResponse: any;
     }
 ) => {
     try {
-        setForBusy();
         const placeholderData = await promiseWrapper();
         setForResponse(placeholderData);
     } catch ({ message, duringError }) {
@@ -36,14 +33,8 @@ const initialState: InitialStateType = {
     error: false,
 };
 
-const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
+const ratingsRecuder = (state: any, action: { type: string; value: string | RatingType }) => {
     switch (action.type) {
-        case "setBusy": {
-            return {
-                ...state,
-                imBusy: false,
-            };
-        }
         case "setError": {
             return {
                 ...state,
@@ -61,11 +52,6 @@ const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
         }
     }
 };
-
-const setBusy = (dispatch: { (value: { type: string; value?: any }): void; (arg0: { type: string }): any }) => () =>
-    dispatch({
-        type: "setBusy",
-    });
 
 const setError = (dispatch: (arg0: { type: string; value: any }) => any) => (payload: any) =>
     dispatch({
@@ -85,7 +71,6 @@ export const useRatingFromApi = () => {
     useEffect(() => {
         if (!imBusy) {
             asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
-                setForBusy: setBusy(dispatch),
                 setForError: setError(dispatch),
                 setForResponse: setRatings(dispatch),
             });

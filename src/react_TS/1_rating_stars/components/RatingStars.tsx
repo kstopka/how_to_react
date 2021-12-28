@@ -10,10 +10,9 @@ interface RatingStarsProps {}
 const RatingsContext = createContext<RatingType[]>([]);
 
 const RatingStars: FunctionComponent<RatingStarsProps> = () => {
-    //TODO: w wolnej chwili dodać context i poprawić loading
+    //TODO: w wolnej chwili dodać context
 
     const { imBusy, ratings, errorMessage, error } = useRatingFromApi();
-    console.log(imBusy);
     if (!imBusy) {
         return <Loading />;
     }
