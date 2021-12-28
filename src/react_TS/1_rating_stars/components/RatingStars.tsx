@@ -13,8 +13,8 @@ const RatingStars: FunctionComponent<RatingStarsProps> = () => {
     //TODO: w wolnej chwili dodać context i poprawić loading
 
     const { imBusy, ratings, errorMessage, error } = useRatingFromApi();
-
-    if (imBusy) {
+    console.log(imBusy);
+    if (!imBusy) {
         return <Loading />;
     }
 

@@ -41,7 +41,7 @@ const ratingsRecuder = (state: any, action: { type: string; value?: any }) => {
         case "setBusy": {
             return {
                 ...state,
-                imBusy: true,
+                imBusy: false,
             };
         }
         case "setError": {
@@ -90,6 +90,6 @@ export const useRatingFromApi = () => {
                 setForResponse: setRatings(dispatch),
             });
         }
-    });
+    }, [imBusy]);
     return { imBusy, ratings, errorMessage, error };
 };
