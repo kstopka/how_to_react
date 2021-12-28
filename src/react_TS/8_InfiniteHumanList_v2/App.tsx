@@ -8,7 +8,6 @@ interface AppProps {}
 const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper">
-            <h1>Infinite Human List</h1>
             <MoreAndMorePeople items={people} />
         </div>
     );

@@ -28,7 +28,6 @@ const SearchWithDropdown: FunctionComponent<SearchWithDropdownProps> = ({ dataTo
         [dataToSearch, setPattertToFind]
     );
 
-    //NOTE: useMemo jest tu i w dropdownlist, czy jest ok?
     const checkedChangesInArray = useMemo(() => arrayWithCorrectResult, [arrayWithCorrectResult]);
 
     return (

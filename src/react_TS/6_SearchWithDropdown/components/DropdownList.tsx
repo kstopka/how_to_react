@@ -7,7 +7,6 @@ interface DropdownListProps {
 }
 
 const DropdownList: FunctionComponent<DropdownListProps> = ({ array }) => {
-    //NOTE: useMemo jest tu i w searchwithdropdown, czy jest ok?
     const checkedChangesInArray = useMemo(() => array, [array]);
 
     if (!checkedChangesInArray) {

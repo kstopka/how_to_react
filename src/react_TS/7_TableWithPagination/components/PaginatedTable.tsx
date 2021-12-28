@@ -25,7 +25,6 @@ const PaginatedTable: FunctionComponent<PaginatedTableProps> = ({ dataEntries, e
         }),
         [actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage]
     );
-    //NOTE: ten useMemo jest ok?
     const showElementsOnPage = useMemo(() => {
         return entriesOnSelectedPage.map((item, index) => <li key={index}>{item}</li>);
     }, [entriesOnSelectedPage]);

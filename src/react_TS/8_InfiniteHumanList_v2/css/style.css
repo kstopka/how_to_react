@@ -1,12 +1,8 @@
-ul li h1 {
+.more-and-more-people li h1 {
   font-size: 15px;
 }
 
-ul li p {
-  font-size: 15px;
-}
-
-ul li:nth-child(10n) {
+.more-and-more-people li:nth-child(10n) {
   color: red;
 }
 /*# sourceMappingURL=style.css.map */
