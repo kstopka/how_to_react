@@ -1,9 +1,8 @@
 import * as React from "react";
-import { FunctionComponent, createContext } from "react";
+import { FunctionComponent } from "react";
 
 import RatingList from "./RatingList";
 import { useRatingFromApi } from "../App.hooks";
-import { RatingType } from "../App.d";
 import Loading from "./Loading";
 
 interface RatingStarsProps {}
