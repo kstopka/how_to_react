@@ -1,23 +1,15 @@
 import ShowStars from "./ShowStars";
+import { RatingType } from "../App.d";
 
-const Rating = ({
-    name,
-    score,
-    content,
-    recordId,
-}: {
-    name: string;
-    score: number;
-    content: string;
-    recordId: string;
-}) => {
-    content = content.slice(0, 120);
+const Rating = ({ rating }: { rating: RatingType }) => {
+    const { content, name, score } = rating;
+    const slicedContent = content.slice(0, 120);
 
     return (
         <li>
             <h1>{name}</h1>
             {<ShowStars number={score} />}
-            <p>{content}</p>
+            <p>{slicedContent}</p>
         </li>
     );
 };

@@ -7,11 +7,8 @@ import { RatingType } from "../App.d";
 import Loading from "./Loading";
 
 interface RatingStarsProps {}
-const RatingsContext = createContext<RatingType[]>([]);
 
 const RatingStars: FunctionComponent<RatingStarsProps> = () => {
-    //TODO: w wolnej chwili dodać context
-
     const { imBusy, ratings, errorMessage, error } = useRatingFromApi();
     if (!imBusy) {
         return <Loading />;
