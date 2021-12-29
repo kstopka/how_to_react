@@ -20,14 +20,9 @@ const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ list }) 
         ({ index }) => {
             const numberOfItem = index + 1;
             const boolean = !!list[numberOfItem];
-            console.log(numberOfItem, boolean, rowCount, list.length);
-
+            // console.log(numberOfItem, boolean, rowCount, list.length);
             if (numberOfItem % 10 === 0 && numberOfItem === rowCount) {
-                if (rowCount === list.length) {
-                    fillArrayOfPeople(10, list);
-                }
                 setRowCount(rowCount + 10);
-                console.log(`rowCount: ` + rowCount);
             }
             return boolean;
         },
@@ -35,10 +30,9 @@ const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ list }) 
     );
 
     const loadMoreRows = ({ startIndex, stopIndex }: IndexRange) => {
-        return new Promise((resolve) => {
-            // fillArrayOfPeople(10, list);
-            // console.log(list);
-        });
+        fillArrayOfPeople(10, list);
+        setRowCount(rowCount + 10);
+        return Promise.resolve();
     };
 
     return (
