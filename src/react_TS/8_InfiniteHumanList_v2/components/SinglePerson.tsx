@@ -4,13 +4,14 @@ import { objPersonType } from "../App.d";
 
 interface SinglePersonProps {
     person: objPersonType;
+    style: any;
 }
 
-const SinglePerson: FunctionComponent<SinglePersonProps> = ({ person: { id, name, surname, age, sex } }) => {
+const SinglePerson: FunctionComponent<SinglePersonProps> = ({ style, person: { id, name, surname, age, sex } }) => {
     return (
-        <li className="single-person">
-            {id}: {name}, {surname}, {age}, {sex}
-        </li>
+        <div className="single-person" style={style}>
+            {id}: {name},{surname},{sex},{age}
+        </div>
     );
 };
 

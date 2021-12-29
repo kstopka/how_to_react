@@ -4,7 +4,8 @@ import { objPersonType, fillArrayOfPeopleType } from "../App.d";
 export const fillArrayOfPeople: fillArrayOfPeopleType<objPersonType> = (numersOfPeople, data = []) => {
     let number = 1;
     while (number <= numersOfPeople) {
-        data.push(generatePerson(number));
+        console.log();
+        data.push(generatePerson(data.length));
         number++;
     }
     return data;
