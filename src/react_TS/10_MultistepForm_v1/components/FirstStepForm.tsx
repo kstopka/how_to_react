@@ -12,6 +12,7 @@ const FirstStepForm: FunctionComponent<FirstStepFormProps> = ({ handleChangeValu
                 Name:
                 <input type="text" name="name" onBlur={handleChangeValue} />
             </label>
+
             <label htmlFor="">
                 Surname:
                 <input type="text" name="surname" onBlur={handleChangeValue} />
