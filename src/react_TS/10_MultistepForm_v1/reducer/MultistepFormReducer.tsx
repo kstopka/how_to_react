@@ -1,5 +1,6 @@
 import { initialStateType } from "../App.d";
 
+//NOTE state jaki typ?
 export const reducer = (state: any, action: { type: string; name: any; value: string }) => {
     const { type, value, name } = action;
     switch (type) {
