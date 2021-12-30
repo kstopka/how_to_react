@@ -23,6 +23,7 @@ export const useIntersectionObserver: useIntersectionObserverType = (elementRef)
         if (!currentElement || isVisible) return;
 
         const options: optionsType = { threshold: 0, root: null, rootMargin: "0%" };
+
         const observer = new IntersectionObserver(updateEntry, options);
         observer.observe(currentElement);
         return () => {
