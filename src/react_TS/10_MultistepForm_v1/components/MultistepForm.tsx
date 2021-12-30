@@ -5,16 +5,9 @@ import { reducer, initialState } from "../reducer/MultistepFormReducer";
 import FirstStepForm from "./FirstStepForm";
 import SecondStepForm from "./SecondStepForm";
 import ThirdStepForm from "./ThirdStepForm";
-import Validator from "../Validator";
+import { validation } from "../Validator";
 
 interface MultistepFormProps {}
-
-// const validation = {
-//     name: (value, name) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
-//     name: (value, name) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
-//     name: (value, name) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
-//     name: (value, name) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
-// }
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const [visibleStep, setVisibleStep] = useState(0);
@@ -22,32 +15,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
 
     const handleChangeValue = (e: { target: { name: string; value: string } }) => {
         const { name, value } = e.target;
-        let chceckIsError = false;
-        let checkErrorMessage = "";
-
-        // validation[name](value, name)
-        if (name === "name" || name === "surname") {
-            const { isError, errorMessage } = Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`);
-            chceckIsError = isError;
-            checkErrorMessage = errorMessage;
-        }
-        if (name === "email") {
-            const { isError, errorMessage } = Validator.whetherTheEmailPropertyIsCorrect(value, `Error MSG ${name}`);
-            chceckIsError = isError;
-            checkErrorMessage = errorMessage;
-        }
-        if (name === "phonenumber") {
-            const { isError, errorMessage } = Validator.whetherThePhoneNumberPropertyIsCorrect(
-                value,
-                `Error MSG ${name}`
-            );
-            chceckIsError = isError;
-            checkErrorMessage = errorMessage;
-        }
-        setDispatchData(chceckIsError, checkErrorMessage, name, value);
-    };
-    // obiekt przy trzech wartosciach
-    const setDispatchData = (isError: boolean, errorMessage: string, name: string, value: string) => {
+        const { isError, errorMessage } = validation[name](name, value);
         if (isError) {
             return dispatchData({ type: "setError", value: errorMessage, name });
         }
@@ -56,17 +24,17 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
 
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        //typy
+        //NOTE typy
         const dataToArray = Object.values(data).every((item: any) => {
-            if (!item.error) {
-                if (!item.value) {
-                    alert("");
-                    return false;
-                }
-                return true;
+            if (item.error) {
+                alert("gdzies jest blad");
+                return false;
             }
-
-            return false;
+            if (!item.value) {
+                alert("Uzupełnij wszystkie pola");
+                return false;
+            }
+            return true;
         });
         if (!dataToArray) return;
         console.log(`send :${data}`);

@@ -1,3 +1,4 @@
+import { validationType } from "./App.d";
 class Validator {
     static whetherTheNamePropertyIsCorrect(value: string, errorMsg: string): any {
         let information = {
@@ -99,5 +100,13 @@ class Validator {
         return information;
     }
 }
+
+export const validation: validationType = {
+    name: (name: string, value: string) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
+    surname: (name: string, value: string) => Validator.whetherTheNamePropertyIsCorrect(value, `Error MSG ${name}`),
+    email: (name: string, value: string) => Validator.whetherTheEmailPropertyIsCorrect(value, `Error MSG ${name}`),
+    phonenumber: (name: string, value: string) =>
+        Validator.whetherThePhoneNumberPropertyIsCorrect(value, `Error MSG ${name}`),
+};
 
 export default Validator;

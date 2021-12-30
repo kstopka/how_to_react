@@ -1,6 +1,6 @@
 import { initialStateType } from "../App.d";
 
-export const reducer = (state: any, action: { type: string; value?: string; name?: any }) => {
+export const reducer = (state: any, action: { type: string; name: any; value: string }) => {
     const { type, value, name } = action;
     switch (type) {
         case "setValue": {
