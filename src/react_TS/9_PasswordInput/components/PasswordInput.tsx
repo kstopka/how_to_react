@@ -1,8 +1,9 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
-import "../css/style.css";
+import { FunctionComponent, useState, useEffect, useContext } from "react";
 import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
-// import SingleInput from "./SingleInput";
+import SingleInput from "./SingleInput";
+import "../css/style.css";
+import { CheckLettersContext } from "../context/ChcekLettersContext";
 
 interface PasswordInputProps {
     password: string;
@@ -10,15 +11,39 @@ interface PasswordInputProps {
 }
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
-    const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
-    // useState, useMemo
-    console.log(filledArrayInputsWithPassword);
+    const [correctPassword, setCorrectPassword] = useState(onSuccess);
+    const { checkLetters, setCheckLetters } = useContext(CheckLettersContext);
 
-    //NOTE arraye różnią sie????
-    // const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
-    //     <SingleInput key={index} item={element} index={index} />
-    // ));
-    return <div className="password-input">{JSON.stringify(filledArrayInputsWithPassword)}</div>;
+    const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
+    // const change = filledArrayInputsWithPassword.map((item) => (!item ? true : item));
+    // console.log(checkLetters, change);
+    // const [checkLetters, setCheckLetters] = useState(change);
+    useEffect(() => {
+        console.log("start");
+        //TODO zmiana correctPassword
+        // setCheckLetters(change);
+        // console.log(checkLetters, change);
+        // const checkAllCorrectLetters = checkLetters.every((item) => item === true);
+        // setCorrectPassword(checkAllCorrectLetters);
+        // console.log(`correctPassword: ${correctPassword}`);
+    }, []);
+
+    const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
+        <SingleInput
+            key={index}
+            item={element}
+            index={index}
+            // setCheckLetters={setCheckLetters}
+            // checkLetters={checkLetters}
+        />
+    ));
+
+    return (
+        <div className="wrapper">
+            <div className="password-input">{showInputs}</div>
+            {correctPassword ? "tak" : "nie"}
+        </div>
+    );
 };
 
 export default PasswordInput;

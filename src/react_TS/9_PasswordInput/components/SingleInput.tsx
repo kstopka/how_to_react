@@ -1,19 +1,30 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
+import { CheckLettersContext } from "../context/ChcekLettersContext";
 
 interface SingleInputProps {
     item: string | boolean;
     index: number;
 }
 
-//TODO jesli uzytkownik w aktywne inputy, wpisze odpowiednie hasło, wtedy wywołany zostaje prop onSuccess np. komunikat o poprawnym haśle pod inputami, w przeciwnym wypadku użytkownik ma otrzymać komunikat o nieprawidłowym haśle.
-//TODO if input === max length go to next input
 //NOTE type text => tekst: type password => *
 const SingleInput: FunctionComponent<SingleInputProps> = ({ item, index }) => {
-    console.log(index, item);
+    const { checkLetters, setCheckLetters } = useContext(CheckLettersContext);
+
+    const checkCorrectPassword = (e: { target: any }) => {
+        const { value } = e.target;
+        const changeStatusOnSingleLetter = checkLetters;
+        if (item === value) {
+            changeStatusOnSingleLetter[index] = true;
+        } else {
+            changeStatusOnSingleLetter[index] = false;
+        }
+        // setCheckLetters(changeStatusOnSingleLetter);
+        // console.log(checkLetters);
+    };
     if (!item) return <input className="disabled" disabled={true} />;
 
-    return <input type="text" maxLength={1} />;
+    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} />;
 };
 
 export default SingleInput;

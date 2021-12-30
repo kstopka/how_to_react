@@ -1,13 +1,16 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import PasswordInput from "./components/PasswordInput";
+import { CheckLettersProvaider } from "./context/ChcekLettersContext";
 
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper">
-            <PasswordInput password={"Polska"} />
+            <CheckLettersProvaider>
+                <PasswordInput password={"Polska"} />
+            </CheckLettersProvaider>
         </div>
     );
 };
