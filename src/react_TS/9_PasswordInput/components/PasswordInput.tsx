@@ -1,9 +1,9 @@
 import * as React from "react";
-import { FunctionComponent, useState, useEffect, useContext } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
 import SingleInput from "./SingleInput";
 import "../css/style.css";
-import { CheckLettersContext } from "../context/ChcekLettersContext";
+// import { CheckLettersContext } from "../context/ChcekLettersContext";
 
 interface PasswordInputProps {
     password: string;
@@ -11,8 +11,8 @@ interface PasswordInputProps {
 }
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
-    const [correctPassword, setCorrectPassword] = useState(onSuccess);
-    const { checkLetters, setCheckLetters } = useContext(CheckLettersContext);
+    // const [correctPassword, setCorrectPassword] = useState(onSuccess);
+    // const { checkLetters, setCheckLetters } = useContext(CheckLettersContext);
 
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
     // const change = filledArrayInputsWithPassword.map((item) => (!item ? true : item));
@@ -41,7 +41,7 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSucc
     return (
         <div className="wrapper">
             <div className="password-input">{showInputs}</div>
-            {correctPassword ? "tak" : "nie"}
+            {/* {correctPassword ? "tak" : "nie"} */}
         </div>
     );
 };
