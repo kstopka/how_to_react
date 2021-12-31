@@ -107,6 +107,20 @@ export const validation: validationType = {
     email: (name: string, value: string) => Validator.whetherTheEmailPropertyIsCorrect(value, `Error MSG ${name}`),
     phonenumber: (name: string, value: string) =>
         Validator.whetherThePhoneNumberPropertyIsCorrect(value, `Error MSG ${name}`),
+    // phonenumber: (name: string, value: string) => {
+    //     let information = {
+    //         isError: false,
+    //         errorMessage: "",
+    //     };
+    //     if (value.length < 9) {
+    //         return (information = {
+    //             isError: true,
+    //             errorMessage: `Error message in ${name}`,
+    //         });
+    //     }
+
+    //     return information;
+    // },
 };
 
 export default Validator;
