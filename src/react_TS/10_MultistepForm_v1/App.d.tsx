@@ -1,22 +1,27 @@
 import React from "react";
 
-export type initialItemType = {
+export interface DataState {
+    [key: string]: DataItem;
+}
+export interface DataItem {
     value: string;
     error: boolean;
     errorMessage: string;
+}
+
+export type DataContextType = {
+    data: DataState;
+    dispatchData: React.Dispatch<DataActionType>;
+    //React.ReducerWithoutAction<any>
 };
 
-export type initialStateType = {
-    [key: string]: initialItemType;
-};
+export interface DataActionType {
+    type: string;
+    name: string;
+    value: string;
+}
 
 //NOTE taki typ, ok?
 export type validationType = {
     [key: string]: (name: string, value: string) => { isError: boolean; errorMessage: string };
-};
-
-//TODO poprawić typ reducera
-export type DataContextType = {
-    initialState: initialStateType;
-    reducer: (state: any, action: { type: string; name: any; value: string })
 };

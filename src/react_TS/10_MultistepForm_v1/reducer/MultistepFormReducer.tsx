@@ -1,7 +1,6 @@
-import { initialStateType } from "../App.d";
+import { DataState, DataActionType } from "../App.d";
 
-//NOTE state jaki typ?
-export const reducer = (state: any, action: { type: string; name: any; value: string }) => {
+export const dataReducer = (state: DataState, action: DataActionType) => {
     const { type, value, name } = action;
     switch (type) {
         case "setValue": {
@@ -18,6 +17,7 @@ export const reducer = (state: any, action: { type: string; name: any; value: st
             return {
                 ...state,
                 [name]: {
+                    value: "",
                     error: true,
                     errorMessage: value,
                 },
@@ -26,7 +26,7 @@ export const reducer = (state: any, action: { type: string; name: any; value: st
     }
 };
 
-export const initialState: initialStateType = {
+export const initidalDataState: DataState = {
     name: {
         value: "",
         error: false,

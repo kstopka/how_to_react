@@ -1,17 +1,18 @@
 import * as React from "react";
-import { FunctionComponent, useReducer, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import "../css/style.css";
-import { reducer, initialState } from "../reducer/MultistepFormReducer";
 import FirstStepForm from "./FirstStepForm";
 import SecondStepForm from "./SecondStepForm";
 import ThirdStepForm from "./ThirdStepForm";
 import { validation } from "../Validator";
+import { DataProvider, DataContext } from "../context/DataContext";
 
 interface MultistepFormProps {}
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const [visibleStep, setVisibleStep] = useState(0);
-    const [data, dispatchData] = useReducer(reducer, initialState);
+    const { data, dispatchData } = useContext(DataContext);
+    // const [data, dispatchData] = useReducer(dataReducer, initidalDataState);
 
     const handleChangeValue = (e: { target: { name: string; value: string } }) => {
         const { name, value } = e.target;
@@ -27,15 +28,16 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
         //NOTE typy
         const dataToArray = Object.values(data).every((item: any) => {
             if (item.error) {
-                alert("gdzies jest blad");
+                alert("Somewhere is error");
                 return false;
             }
             if (!item.value) {
-                alert("Uzupełnij wszystkie pola");
+                alert("Fill all inputs");
                 return false;
             }
             return true;
         });
+
         if (!dataToArray) return;
         console.log(`send :${data}`);
     };
@@ -47,19 +49,22 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     ];
 
     return (
-        <div className="multistep-form">
-            <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
-            <button onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
-                Prev
-            </button>
-            {visibleStep === showStep.length ? (
-                <button disabled={true}>Next</button>
-            ) : (
-                <button type="button" onClick={() => setVisibleStep(visibleStep + 1)}>
-                    Next
+        <DataProvider>
+            <div className="multistep-form">
+                <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
+                <button onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
+                    Prev
                 </button>
-            )}
-        </div>
+                {visibleStep === showStep.length ? (
+                    <button disabled={true}>Next</button>
+                ) : (
+                    <button type="button" onClick={() => setVisibleStep(visibleStep + 1)}>
+                        Next
+                    </button>
+                )}
+                {data}
+            </div>
+        </DataProvider>
     );
 };
 
