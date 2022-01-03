@@ -1,30 +1,30 @@
 import * as React from "react";
-import { FunctionComponent, useContext } from "react";
-import { CheckLettersContext } from "../context/ChcekLettersContext";
+import { FunctionComponent, useState } from "react";
 
 interface SingleInputProps {
     item: string | boolean;
-    index: number;
+    testingRef: any;
 }
 
 //NOTE type text => tekst: type password => *
-const SingleInput: FunctionComponent<SingleInputProps> = ({ item, index }) => {
-    const { checkLetters, setCheckLetters } = useContext(CheckLettersContext);
+const SingleInput: FunctionComponent<SingleInputProps> = ({ item, testingRef }) => {
+    const [correctLetter, setCorrectLetter] = useState(false);
 
     const checkCorrectPassword = (e: { target: any }) => {
         const { value } = e.target;
-        const changeStatusOnSingleLetter = checkLetters;
         if (item === value) {
-            changeStatusOnSingleLetter[index] = true;
+            setCorrectLetter(true);
         } else {
-            changeStatusOnSingleLetter[index] = false;
+            setCorrectLetter(false);
+            // checkLetter = false;
         }
-        // setCheckLetters(changeStatusOnSingleLetter);
-        // console.log(checkLetters);
     };
-    if (!item) return <input className="disabled" disabled={true} />;
+    if (!item) {
+        // checkLetter = true;
+        return <input className="disabled" disabled={true} ref={testingRef} />;
+    }
 
-    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} />;
+    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} ref={testingRef} />;
 };
 
 export default SingleInput;
