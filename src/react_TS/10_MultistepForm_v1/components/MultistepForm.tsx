@@ -51,16 +51,16 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
         <DataProvider>
             <div className="multistep-form">
                 <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
-                <button onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
+                <button type="button" onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
                     Prev
                 </button>
-                {visibleStep === showStep.length ? (
-                    <button disabled={true}>Next</button>
-                ) : (
-                    <button type="button" onClick={() => setVisibleStep(visibleStep + 1)}>
-                        Next
-                    </button>
-                )}
+                <button
+                    type="button"
+                    onClick={() => setVisibleStep(visibleStep + 1)}
+                    disabled={visibleStep === showStep.length - 1}
+                >
+                    Next
+                </button>
                 {data}
             </div>
         </DataProvider>

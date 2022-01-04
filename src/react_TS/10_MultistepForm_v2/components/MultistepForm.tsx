@@ -4,12 +4,19 @@ import "../css/style.css";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { MultistepFormValues } from "../App.d";
 import { MultistepSchema } from "../validator";
+import FirstStepFormProps from "./FirstStepForm";
+import SecondStepForm from "./SecondStepForm";
+import ThirdStepForm from "./ThirdStepForm";
 
 interface MultistepFormProps {}
 
 const renderError = (message: string) => <p className="error-message">{message}</p>;
 
-// const showStep = [<FirstStepForm />, <SecondStepForm />, <ThirdStepForm />];
+const showStep = [
+    <FirstStepFormProps renderError={renderError} />,
+    <SecondStepForm renderError={renderError} />,
+    <ThirdStepForm renderError={renderError} />,
+];
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const [visibleStep, setVisibleStep] = useState(0);
@@ -33,25 +40,16 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
                 }}
             >
                 <Form>
-                    <label htmlFor="name">name</label>
-                    <Field type="text" name="name" />
-                    <ErrorMessage name="name" render={renderError} />
+                    {showStep[visibleStep]}
 
-                    <label htmlFor="surname">surname</label>
-                    <Field type="text" name="surname" />
-                    <ErrorMessage name="surname" render={renderError} />
-
-                    <label htmlFor="email">email@com.com</label>
-                    <Field type="text" name="email" />
-                    <ErrorMessage name="email" render={renderError} />
-
-                    <label htmlFor="phonenumber">phonenumber</label>
-                    <Field type="number" name="phonenumber" />
-                    <ErrorMessage name="phonenumber" render={renderError} />
                     <button type="button" onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
                         Prev
                     </button>
-                    <button type="button" onClick={() => setVisibleStep(visibleStep + 1)} disabled={visibleStep === 2}>
+                    <button
+                        type="button"
+                        onClick={() => setVisibleStep(visibleStep + 1)}
+                        disabled={visibleStep === showStep.length - 1}
+                    >
                         Next
                     </button>
                     <button type="reset">Reset</button>
