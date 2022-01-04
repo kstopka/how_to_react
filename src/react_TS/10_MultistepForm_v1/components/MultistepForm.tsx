@@ -25,8 +25,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
 
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        //NOTE typy
-        const dataToArray = Object.values(data).every((item: any) => {
+        const dataToArray = Object.values(data).every((item: { error: boolean; value: string }) => {
             if (item.error) {
                 alert("Somewhere is error");
                 return false;
