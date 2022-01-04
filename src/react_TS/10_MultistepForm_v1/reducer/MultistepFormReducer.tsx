@@ -24,6 +24,8 @@ export const dataReducer = (state: DataState, action: DataActionType) => {
             };
         }
     }
+
+    return state;
 };
 
 export const initidalDataState: DataState = {

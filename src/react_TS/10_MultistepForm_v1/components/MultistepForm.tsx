@@ -10,6 +10,7 @@ import { DataProvider, DataContext } from "../context/DataContext";
 interface MultistepFormProps {}
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
+    //state dodac do reducera
     const [visibleStep, setVisibleStep] = useState(0);
     const { data, dispatchData } = useContext(DataContext);
     // const [data, dispatchData] = useReducer(dataReducer, initidalDataState);
@@ -23,6 +24,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
         dispatchData({ type: "setValue", value, name });
     };
 
+    //dodac do contextu
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         const dataToArray = Object.values(data).every((item: { error: boolean; value: string }) => {

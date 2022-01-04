@@ -19,6 +19,7 @@ const showStep = [
 ];
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
+    // wmomncie gdy dana partia danych z fomrmularza jest dobrze zmienia sie
     const [visibleStep, setVisibleStep] = useState(0);
     const doSomething = (values: MultistepFormValues) => {
         console.log(values);
@@ -42,6 +43,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
                 <Form>
                     {showStep[visibleStep]}
 
+                    {/* buttony mają byc włączone dopieru gdy inputy są wypełnione, submit kiedy wszystko dobrze jest */}
                     <button type="button" onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
                         Prev
                     </button>

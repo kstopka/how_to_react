@@ -9,6 +9,40 @@ interface PasswordInputProps {
     onSuccess?: boolean;
 }
 
+// 'dupa123'
+
+function getRandomIndexesOfPassword(password) {
+    return {
+        indexes: [1, 3, 4, 6],
+        values: {
+            "1": "",
+            "3": "",
+            "4": "",
+            "6": "",
+        },
+    };
+}
+
+function usePassword() {
+    const [state, setState] = useState({});
+
+    useEffect(() => {
+        setState(getRandomIndexesOfPassword("dupa123"));
+    }, []);
+
+    return { state, setState };
+}
+
+const initialState = {
+    inputs: [1, 3, 4, 6],
+    values: {
+        "1": "d",
+        "3": "p",
+        "4": "a",
+        "6": "2",
+    },
+};
+
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     // const [correctPassword, setCorrectPassword] = useState(onSuccess);
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);

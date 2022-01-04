@@ -6,7 +6,7 @@ interface SingleInputProps {
     index: number;
     correctRef: any;
 }
-
+///forwardRef
 //NOTE type text => tekst: type password => *
 const SingleInput: FunctionComponent<SingleInputProps> = ({ item, correctRef, index }) => {
     const [correctLetter, setCorrectLetter] = useState(false);

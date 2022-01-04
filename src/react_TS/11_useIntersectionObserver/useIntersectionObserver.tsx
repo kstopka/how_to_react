@@ -8,7 +8,15 @@ type optionsType = {
 
 type useIntersectionObserverType = (elementRef: RefObject<Element>) => IntersectionObserverEntry | undefined;
 
+// class IntersectionHandler {
+//     observer = new IntersectionObserver...
+//     addElement(ref){}
+// }
+
+// const instance = new IntersectionHandler()
+
 export const useIntersectionObserver: useIntersectionObserverType = (elementRef) => {
+    //referncja
     const [entry, setEntry] = useState<IntersectionObserverEntry>();
 
     const isVisible: boolean | undefined = entry?.isIntersecting;
@@ -32,4 +40,29 @@ export const useIntersectionObserver: useIntersectionObserverType = (elementRef)
     }, [elementRef, isVisible]);
 
     return entry;
+};
+
+const Comp1 = () => {
+    const ref = useRef(null);
+    const { isVisible, addToObserve } = useIntersectionObserver();
+
+    useEffect(() => {
+        if (ref.current) {
+            addToObserve(ref);
+        }
+    }, [ref]);
+
+    return <>{isVisible}</>;
+};
+
+const Comp1 = () => {
+    return <></>;
+};
+
+const Comp1 = () => {
+    return <></>;
+};
+
+const Comp1 = () => {
+    return <></>;
 };
