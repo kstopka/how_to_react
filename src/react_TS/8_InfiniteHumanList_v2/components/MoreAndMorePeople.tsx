@@ -9,6 +9,7 @@ interface MoreAndMorePeopleProps {
     list: objPersonType[];
 }
 
+//NOTE: do sprawdzenia
 const MoreAndMorePeople: FunctionComponent<MoreAndMorePeopleProps> = ({ list }) => {
     const [rowCount, setRowCount] = useState(10);
     const rowRender = ({ index, key, style }: { index: any; key: any; style: any }) => {

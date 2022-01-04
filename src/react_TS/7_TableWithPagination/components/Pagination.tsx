@@ -1,11 +1,9 @@
 import { FunctionComponent } from "react";
 import { PaginationType } from "../App.d";
-import PaginationButton from "./PaginationButton";
 
 interface PaginationProps {
     options: PaginationType;
 }
-//NOTE: do sprawdzenia
 
 const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
     const { actualPageIdx, lastPageIdx, goToFirestPage, goToPrevPage, goToPage, goToNextPage, goToLastPage } = options;
@@ -31,19 +29,8 @@ const Pagination: FunctionComponent<PaginationProps> = ({ options }) => {
 
     return (
         <div className="pagination">
-            <PaginationButton
-                txt="goToFirestPage.............."
-                action={goToFirestPage}
-                active={isActive("start", 0)}
-            />
             {isActive("start", 0) ? null : <button onClick={goToFirestPage}>goToFirestPage</button>}
 
-            <PaginationButton
-                txt={`goTo ${calculateCorrectIndex("start", 2)} Page.............`}
-                active={isActive("start", 3)}
-                // action={goToPage(calculateCorrectIndex("start", 3))}
-                // action={goToPage}
-            />
             {isActive("start", 3) ? null : (
                 <button onClick={() => goToPage(calculateCorrectIndex("start", 3))}>{`goTo ${calculateCorrectIndex(
                     "start",
