@@ -13,6 +13,9 @@ const renderError = (message: string) => <p className="error-message">{message}<
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const [visibleStep, setVisibleStep] = useState(0);
+    const doSomething = (values: MultistepFormValues) => {
+        console.log(values);
+    };
     return (
         <div className="multistep-form">
             <Formik
@@ -24,13 +27,12 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
                 }}
                 validationSchema={MultistepSchema}
                 onSubmit={(values: MultistepFormValues, { setSubmitting }: FormikHelpers<MultistepFormValues>) => {
-                    // console.log(values);
-                    alert(JSON.stringify(values, null, 2));
+                    doSomething(values);
+                    // alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
                 }}
             >
                 <Form>
-                    {}
                     <label htmlFor="name">name</label>
                     <Field type="text" name="name" />
                     <ErrorMessage name="name" render={renderError} />
@@ -39,7 +41,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
                     <Field type="text" name="surname" />
                     <ErrorMessage name="surname" render={renderError} />
 
-                    <label htmlFor="email">email</label>
+                    <label htmlFor="email">email@com.com</label>
                     <Field type="text" name="email" />
                     <ErrorMessage name="email" render={renderError} />
 
