@@ -28,10 +28,10 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/6_SearchWithDropdown/App";
 // import App from "./react_TS/7_TableWithPagination/App";
 // import App from "./react_TS/8_InfiniteHumanList/App";
-// import App from "./react_TS/8_InfiniteHumanList_v2/App";
+import App from "./react_TS/8_InfiniteHumanList_v2/App";
 // import App from "./react_TS/9_PasswordInput/App";
 // import App from "./react_TS/10_MultistepForm_v1/App";
-import App from "./react_TS/10_MultistepForm_v2/App";
+// import App from "./react_TS/10_MultistepForm_v2/App";
 
 ReactDOM.render(
     <React.StrictMode>

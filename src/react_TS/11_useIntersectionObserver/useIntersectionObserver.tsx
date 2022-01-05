@@ -42,27 +42,27 @@ export const useIntersectionObserver: useIntersectionObserverType = (elementRef)
     return entry;
 };
 
-const Comp1 = () => {
-    const ref = useRef(null);
-    const { isVisible, addToObserve } = useIntersectionObserver();
+// const Comp1 = () => {
+//     const ref = useRef(null);
+//     const { isVisible, addToObserve } = useIntersectionObserver();
 
-    useEffect(() => {
-        if (ref.current) {
-            addToObserve(ref);
-        }
-    }, [ref]);
+//     useEffect(() => {
+//         if (ref.current) {
+//             addToObserve(ref);
+//         }
+//     }, [ref]);
 
-    return <>{isVisible}</>;
-};
+//     return <>{isVisible}</>;
+// };
 
-const Comp1 = () => {
-    return <></>;
-};
+// const Comp1 = () => {
+//     return <></>;
+// };
 
-const Comp1 = () => {
-    return <></>;
-};
+// const Comp1 = () => {
+//     return <></>;
+// };
 
-const Comp1 = () => {
-    return <></>;
-};
+// const Comp1 = () => {
+//     return <></>;
+// };
