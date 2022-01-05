@@ -1,34 +1,25 @@
 import * as React from "react";
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent } from "react";
 
 interface SingleInputProps {
     item: string | boolean;
     index: number;
-    correctRef: any;
 }
 ///forwardRef
 //NOTE type text => tekst: type password => *
-const SingleInput: FunctionComponent<SingleInputProps> = ({ item, correctRef, index }) => {
-    const [correctLetter, setCorrectLetter] = useState(false);
-
+const SingleInput: FunctionComponent<SingleInputProps> = ({ item, index }) => {
     const checkCorrectPassword = (e: { target: any }) => {
         const { value } = e.target;
         if (item === value) {
-            // correctRef.current[index] = value;
-            setCorrectLetter(true);
         } else {
-            setCorrectLetter(false);
         }
     };
-    useEffect(() => {
-        console.log("correctLetter " + correctLetter);
-    }, [correctLetter]);
 
     if (!item) {
         return <input className="disabled" disabled={true} />;
     }
 
-    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} ref={correctRef} />;
+    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} />;
 };
 
 export default SingleInput;

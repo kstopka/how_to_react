@@ -8,7 +8,7 @@ const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper">
             {/* <CheckLettersProvaider> */}
-            <PasswordInput password={"Polska"} />
+            <PasswordInput password={"PolskaMistrzem"} />
             {/* </CheckLettersProvaider> */}
         </div>
     );
