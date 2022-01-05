@@ -1,6 +1,7 @@
 // import * as React from "react";
 import { initial } from "lodash";
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useContext } from "react";
+import { PasswordContext } from "../context/PasswordContext";
 
 const shuffle = (array: any[]) => {
     let currentIndex = array.length;
@@ -36,12 +37,12 @@ const getRandomIndexesOfPassword = (password: string) => {
 };
 
 export const usePassword = (password: string) => {
-    const [passwordState, setPasswordState] = useReducer(reducer, initial);
+    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
     useEffect(() => {
-        setPasswordState(getRandomIndexesOfPassword(password));
+        dispatchPasswordState(getRandomIndexesOfPassword(password));
     }, [password]);
 
-    return { passwordState, setPasswordState };
+    return { passwordState, dispatchPasswordState };
 };
 
 // NOTE: initial state to moj password
