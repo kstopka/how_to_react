@@ -43,3 +43,8 @@ export const usePassword = (password: string) => {
 
     return { passwordState, setPasswordState };
 };
+
+// NOTE: initial state to moj password
+// dodac generator  initial state
+// dodac jakiego reducera
+//
