@@ -1,8 +1,13 @@
 import React from "react";
 
+export interface NewDataState {
+    visibleStep: number;
+    dataState: DataState;
+}
 export interface DataState {
     [key: string]: DataItem;
 }
+
 export interface DataItem {
     value: string;
     error: boolean;
@@ -10,7 +15,7 @@ export interface DataItem {
 }
 
 export type DataContextType = {
-    data: DataState;
+    data: NewDataState;
     dispatchData: React.Dispatch<DataActionType>;
     //React.ReducerWithoutAction<any>
 };
