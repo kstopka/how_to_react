@@ -2,6 +2,7 @@ import { NewDataState, DataActionType } from "../App.d";
 
 export const dataReducer = (state: NewDataState, action: DataActionType) => {
     console.log("dataReducer");
+    //TEST
     const { type, value, name } = action;
     switch (type) {
         case "setValue": {
