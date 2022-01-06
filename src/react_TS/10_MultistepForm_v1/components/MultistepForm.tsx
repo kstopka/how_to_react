@@ -5,14 +5,12 @@ import FirstStepForm from "./FirstStepForm";
 import SecondStepForm from "./SecondStepForm";
 import ThirdStepForm from "./ThirdStepForm";
 import { validation } from "../Validator";
-import { DataProvider, DataContext } from "../context/DataContext";
+import { DataContext } from "../context/DataContext";
 
 interface MultistepFormProps {}
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const { data, dispatchData } = useContext(DataContext);
-    //     //state dodac do reducera
-    const [visibleStep, setVisibleStep] = useState(0);
 
     const handleChangeValue = (e: { target: { name: string; value: string } }) => {
         const { name, value } = e.target;
@@ -23,7 +21,7 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
         dispatchData({ type: "setValue", value, name });
     };
 
-    //     //dodac do contextu
+    //dodac do contextu
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         const dataToArray = Object.values(data).every((item: { error: boolean; value: string }) => {
@@ -49,21 +47,23 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     ];
 
     return (
-        <DataProvider>
-            <div className="multistep-form">
-                <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
-                <button type="button" onClick={() => setVisibleStep(visibleStep - 1)} disabled={!visibleStep}>
-                    Prev
-                </button>
-                <button
-                    type="button"
-                    onClick={() => setVisibleStep(visibleStep + 1)}
-                    disabled={visibleStep === showStep.length - 1}
-                >
-                    Next
-                </button>
-            </div>
-        </DataProvider>
+        <div className="multistep-form">
+            <form onSubmit={onSubmit}>{showStep[data.visibleStep]}</form>
+            <button
+                type="button"
+                onClick={() => dispatchData({ type: "setVisibleStep", name: "subtraction", value: "1" })}
+                disabled={!data.visibleStep}
+            >
+                Prev
+            </button>
+            <button
+                type="button"
+                onClick={() => dispatchData({ type: "setVisibleStep", name: "addition", value: "1" })}
+                disabled={data.visibleStep === showStep.length - 1}
+            >
+                Next
+            </button>
+        </div>
     );
 };
 

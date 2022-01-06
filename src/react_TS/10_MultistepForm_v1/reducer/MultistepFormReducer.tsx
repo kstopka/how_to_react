@@ -1,13 +1,13 @@
 import { NewDataState, DataActionType } from "../App.d";
 
 export const dataReducer = (state: NewDataState, action: DataActionType) => {
-    console.log("dataReducer");
     const { type, value, name } = action;
     switch (type) {
         case "setValue": {
             return {
                 ...state,
-                datastate: {
+
+                dataState: {
                     [name]: {
                         value,
                         error: false,
@@ -19,7 +19,7 @@ export const dataReducer = (state: NewDataState, action: DataActionType) => {
         case "setError": {
             return {
                 ...state,
-                datastate: {
+                dataState: {
                     [name]: {
                         value: "",
                         error: true,
@@ -29,6 +29,13 @@ export const dataReducer = (state: NewDataState, action: DataActionType) => {
             };
         }
         case "setVisibleStep": {
+            //NOTE: nie działa
+            if (name === "addition") {
+                state.visibleStep = state.visibleStep + 1;
+            } else if (name === "subtraction") {
+                state.visibleStep = state.visibleStep - 1;
+            }
+            console.log(state.visibleStep);
             return {
                 ...state,
             };

@@ -1,6 +1,7 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { DataContextType } from "../App.d";
 import { initidalDataState, dataReducer } from "../reducer/MultistepFormReducer";
+import { validation } from "../Validator";
 
 const DataContextInintial: DataContextType = {
     data: initidalDataState,
@@ -10,11 +11,6 @@ export const DataContext = createContext(DataContextInintial);
 
 //TODO dokończyć context
 export const DataProvider = ({ children }: { children: any }) => {
-    //reducer musi zwracac stan
     const [data, dispatchData] = useReducer(dataReducer, initidalDataState);
-
-    /////
-
     return <DataContext.Provider value={{ data, dispatchData }}>{children}</DataContext.Provider>;
-    // return <DataContext.Provider value={children}>{children}</DataContext.Provider>;
 };
