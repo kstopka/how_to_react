@@ -1,10 +1,11 @@
 import React from "react";
 
+export interface Values {
+    [key: string]: string;
+}
 export interface PasswordState {
     indexes: number[];
-    values: {
-        [key: string]: string;
-    };
+    values: Values;
 }
 
 export type PasswordContextType = {
@@ -14,7 +15,6 @@ export type PasswordContextType = {
 
 export interface PasswordActionType {
     type: string;
-    name: string;
     value: string;
     index: number;
 }

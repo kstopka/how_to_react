@@ -1,23 +1,20 @@
 import { PasswordState, PasswordActionType } from "../App.d";
 
 export const passwordReducer = (state: PasswordState, action: PasswordActionType) => {
-    const { type, value, name, index } = action;
+    const { type, value, index } = action;
     switch (type) {
         case "setInitialPassword": {
+            console.log(`start reducer`);
+            // state.indexes.push(index);
+            state.values[index] = value;
             return {
                 ...state,
-                indexes: [index],
-                values: {
-                    [name]: "",
-                },
             };
         }
         case "setValues": {
+            state.values[index] = value;
             return {
                 ...state,
-                values: {
-                    [name]: value,
-                },
             };
         }
 
@@ -29,4 +26,11 @@ export const passwordReducer = (state: PasswordState, action: PasswordActionType
 export const initialPasswordState: PasswordState = {
     indexes: [],
     values: {},
+    // indexes: [1, 3, 4, 6],
+    // values: {
+    //     "1": "",
+    //     "3": "",
+    //     "4": "",
+    //     "6": "",
+    // },
 };

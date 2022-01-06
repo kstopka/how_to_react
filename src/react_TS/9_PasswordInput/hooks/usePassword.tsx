@@ -1,7 +1,7 @@
 // import * as React from "react";
-import { initial } from "lodash";
-import { useReducer, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { PasswordContext } from "../context/PasswordContext";
+import { Values } from "../App.d";
 
 const shuffle = (array: any[]) => {
     let currentIndex = array.length;
@@ -24,25 +24,30 @@ const calculateNumberOfIndexes = (length: number) => {
 const getRandomIndexesOfPassword = (password: string) => {
     const length = password.length;
     // const splitedPassword = password.split("");
-    const allIndexes = [...new Array(length)].map((item, index) => (item = index));
-    const shuffleAllIndexes = shuffle(allIndexes);
-    const numberOfIndexes = calculateNumberOfIndexes(length);
-    const indexes = shuffleAllIndexes.slice(0, numberOfIndexes);
-    const values = indexes.reduce((previous, current) => {
-        previous[current] = "";
-        return previous;
-    }, {});
-
+    const allIndexes: number[] = [...new Array(length)].map((item, index) => (item = index));
+    const shuffleAllIndexes: number[] = shuffle(allIndexes);
+    const numberOfIndexes: number = calculateNumberOfIndexes(length);
+    const indexes: number[] = shuffleAllIndexes.slice(0, numberOfIndexes);
+    const values: Values = indexes.reduce(
+        (previous, current) => ({
+            ...previous,
+            [current]: "",
+        }),
+        {}
+    );
     return { indexes, values };
 };
 
 export const usePassword = (password: string) => {
-    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
+    const { dispatchPasswordState } = useContext(PasswordContext);
     useEffect(() => {
-        dispatchPasswordState(getRandomIndexesOfPassword(password));
-    }, [password]);
+        const { indexes, values } = getRandomIndexesOfPassword(password);
+        console.log(indexes);
+        indexes.forEach((item) => dispatchPasswordState({ type: "setInitialPassword", index: item, value: "" }));
+        // dispatchPasswordState({ type: "setInitialPassword", index: 2, value: "" });
+    }, [dispatchPasswordState, password]);
 
-    return { passwordState, dispatchPasswordState };
+    return { dispatchPasswordState };
 };
 
 // NOTE: initial state to moj password

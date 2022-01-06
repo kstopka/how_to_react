@@ -1,9 +1,11 @@
 import * as React from "react";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useContext } from "react";
 import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
 import SingleInput from "./SingleInput";
+import { PasswordContext } from "../context/PasswordContext";
 import "../css/style.css";
 import { usePassword } from "../hooks/usePassword";
+// import { usePassword } from "../hooks/usePassword";
 
 interface PasswordInputProps {
     password: string;
@@ -44,12 +46,17 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     // const [correctPassword, setCorrectPassword] = useState(onSuccess);
-    const { passwordState, setPasswordState } = usePassword(password);
+    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
 
+    usePassword(password);
+    console.log(passwordState);
     const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
     const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
         <SingleInput key={index} item={element} index={index} />
     ));
+    // useEffect(() => {
+    // dispatchPasswordState({ type: "setValues", index: 1, value: "K" });
+    // }, [dispatchPasswordState]);
 
     return (
         <div className="wrapper">
