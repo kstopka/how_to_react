@@ -1,4 +1,4 @@
-import { validationType } from "./App.d";
+import { validationType, DataItemType, DataType, InitialStateType } from "./App.d";
 class Validator {
     static whetherTheNamePropertyIsCorrect(value: string, errorMsg: string): any {
         let information = {
@@ -121,6 +121,39 @@ export const validation: validationType = {
 
     //     return information;
     // },
+};
+
+export const checkProperties = {
+    functionToCheckProperties: (dataItem: DataItemType): boolean => {
+        if (dataItem.error) return false;
+        if (!dataItem.value) return false;
+        return true;
+    },
+    all: (data: DataType) => {
+        const allArray = [
+            checkProperties["name"](data),
+            checkProperties["surname"](data),
+            checkProperties["email"](data),
+            checkProperties["phonenumber"](data),
+        ];
+        return !allArray.some((item) => item === false);
+    },
+    name: (data: DataType) => checkProperties["functionToCheckProperties"](data.name),
+    surname: (data: DataType) => checkProperties["functionToCheckProperties"](data.surname),
+    email: (data: DataType) => checkProperties["functionToCheckProperties"](data.email),
+    phonenumber: (data: DataType) => checkProperties["functionToCheckProperties"](data.phonenumber),
+};
+
+export const chceckShowedStep = (state: InitialStateType) => {
+    const { visibleStep, data } = state;
+    if (visibleStep === 0) {
+        return checkProperties["name"](data) && checkProperties["surname"](data);
+    } else if (visibleStep === 1) {
+        return checkProperties["name"](data);
+    } else if (visibleStep === 2) {
+        return checkProperties["phonenumber"](data);
+    }
+    return false;
 };
 
 export default Validator;

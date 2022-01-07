@@ -1,42 +1,32 @@
 import * as React from "react";
-import { FunctionComponent, useContext, useState } from "react";
-import "../css/style.css";
+import { FunctionComponent, useContext } from "react";
+import { DataContext } from "../context/DataContext";
+import { chceckShowedStep, validation } from "../Validator";
 import FirstStepForm from "./FirstStepForm";
 import SecondStepForm from "./SecondStepForm";
 import ThirdStepForm from "./ThirdStepForm";
-import { validation } from "../Validator";
-import { DataContext } from "../context/DataContext";
+import Buttons from "./Buttons";
+import "../css/style.css";
+import { Types } from "../App.d";
 
 interface MultistepFormProps {}
 
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
-    const { data, dispatchData } = useContext(DataContext);
+    const { state, dispatch } = useContext(DataContext);
+    const { visibleStep, data } = state;
 
     const handleChangeValue = (e: { target: { name: string; value: string } }) => {
         const { name, value } = e.target;
         const { isError, errorMessage } = validation[name](name, value);
         if (isError) {
-            return dispatchData({ type: "setError", value: errorMessage, name });
+            return dispatch({ type: Types.setError, payload: { name, value: errorMessage } });
         }
-        dispatchData({ type: "setValue", value, name });
+        dispatch({ type: Types.setValue, payload: { name, value } });
     };
 
     //dodac do contextu
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        const dataToArray = Object.values(data).every((item: { error: boolean; value: string }) => {
-            if (item.error) {
-                alert("Somewhere is error");
-                return false;
-            }
-            if (!item.value) {
-                alert("Fill all inputs");
-                return false;
-            }
-            return true;
-        });
-
-        if (!dataToArray) return;
         console.log(`send :${data}`);
     };
 
@@ -46,23 +36,16 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
         <ThirdStepForm handleChangeValue={handleChangeValue} />,
     ];
 
+    if (chceckShowedStep(state))
+        return (
+            <div className="multistep-form">
+                <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
+                <Buttons length={showStep.length} />
+            </div>
+        );
     return (
         <div className="multistep-form">
-            <form onSubmit={onSubmit}>{showStep[data.visibleStep]}</form>
-            <button
-                type="button"
-                onClick={() => dispatchData({ type: "setVisibleStep", name: "subtraction", value: "1" })}
-                disabled={!data.visibleStep}
-            >
-                Prev
-            </button>
-            <button
-                type="button"
-                onClick={() => dispatchData({ type: "setVisibleStep", name: "addition", value: "1" })}
-                disabled={data.visibleStep === showStep.length - 1}
-            >
-                Next
-            </button>
+            <form onSubmit={onSubmit}>{showStep[visibleStep]}</form>
         </div>
     );
 };
