@@ -1,10 +1,11 @@
 import * as React from "react";
-import { FunctionComponent, useEffect, useContext } from "react";
+import { FunctionComponent } from "react";
 import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
 import SingleInput from "./SingleInput";
-import { PasswordContext } from "../context/PasswordContext";
+// import { PasswordContext } from "../context/PasswordContext";
 import "../css/style.css";
 import { usePassword } from "../hooks/usePassword";
+import { element } from "prop-types";
 // import { usePassword } from "../hooks/usePassword";
 
 interface PasswordInputProps {
@@ -46,21 +47,14 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
     // const [correctPassword, setCorrectPassword] = useState(onSuccess);
-    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
+    // const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
 
     usePassword(password);
-    console.log(passwordState);
-    const filledArrayInputsWithPassword = useFilledArrayInputsWithPassword(password);
-    const showInputs = filledArrayInputsWithPassword.map((element: string | boolean, index: number) => (
-        <SingleInput key={index} item={element} index={index} />
-    ));
-    // useEffect(() => {
-    // dispatchPasswordState({ type: "setValues", index: 1, value: "K" });
-    // }, [dispatchPasswordState]);
+    const inputs = password.split("").map((letter, index) => <SingleInput key={index} letter={letter} index={index} />);
 
     return (
         <div className="wrapper">
-            <div className="password-input">{showInputs}</div>
+            <div className="password-input">{inputs}</div>
         </div>
     );
 };
