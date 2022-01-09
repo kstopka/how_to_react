@@ -23,7 +23,6 @@ const calculateNumberOfIndexes = (length: number) => {
 
 const getRandomIndexesOfPassword = (password: string) => {
     const length = password.length;
-    // const splitedPassword = password.split("");
     const allIndexes: number[] = [...new Array(length)].map((item, index) => (item = index));
     const shuffleAllIndexes: number[] = shuffle(allIndexes);
     const numberOfIndexes: number = calculateNumberOfIndexes(length);
@@ -41,10 +40,9 @@ const getRandomIndexesOfPassword = (password: string) => {
 export const usePassword = (password: string) => {
     const { dispatchPasswordState } = useContext(PasswordContext);
     useEffect(() => {
-        const { indexes, values } = getRandomIndexesOfPassword(password);
+        const { indexes } = getRandomIndexesOfPassword(password);
         console.log(indexes);
         indexes.forEach((item) => dispatchPasswordState({ type: "setInitialPassword", index: item, value: "" }));
-        // dispatchPasswordState({ type: "setInitialPassword", index: 2, value: "" });
     }, [dispatchPasswordState, password]);
 
     return { dispatchPasswordState };

@@ -4,17 +4,22 @@ export const passwordReducer = (state: PasswordState, action: PasswordActionType
     const { type, value, index } = action;
     switch (type) {
         case "setInitialPassword": {
-            console.log(`start reducer`);
-            // state.indexes.push(index);
-            state.values[index] = value;
             return {
                 ...state,
+                values: {
+                    ...state.values,
+                    [index]: value,
+                },
+                indexes: [index, ...state.indexes],
             };
         }
-        case "setValues": {
-            state.values[index] = value;
+        case "setValue": {
             return {
                 ...state,
+                values: {
+                    ...state.values,
+                    [index]: value,
+                },
             };
         }
 

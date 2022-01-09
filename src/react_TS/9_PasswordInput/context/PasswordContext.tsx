@@ -1,11 +1,10 @@
 import { createContext, useReducer } from "react";
 import { passwordReducer, initialPasswordState } from "../reducer/passwordReducer";
-import { usePassword } from "../hooks/usePassword";
 import { PasswordContextType } from "../App.d";
 
 const PasswordContextInitial: PasswordContextType = {
     passwordState: initialPasswordState,
-    dispatchPasswordState: () => {},
+    dispatchPasswordState: () => null,
 };
 
 export const PasswordContext = createContext(PasswordContextInitial);
