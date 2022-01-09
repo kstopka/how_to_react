@@ -15,4 +15,8 @@ form input {
 form button {
   width: 150px;
 }
+
+.errorMSG {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

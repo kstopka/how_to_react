@@ -1,4 +1,3 @@
-//NOTE taki typ, ok?
 export type validationType = {
     [key: string]: (name: string, value: string) => { isError: boolean; errorMessage: string };
 };
@@ -16,6 +15,11 @@ export type DataType = {
 export type InitialStateType = {
     data: DataType;
     visibleStep: number;
+};
+
+export type DataContextType = {
+    state: InitialStateType;
+    dispatch: React.Dispatch<VisibleStepActions | DataActions>;
 };
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -52,5 +56,7 @@ type VisibleStepPayload = {
     [Types.subtraction]: undefined;
 };
 
-export type DataActions = ActionMap<DataPayload>[keyof ActionMap<DataPayload>];
-export type VisibleStepActions = ActionMap<VisibleStepPayload>[keyof ActionMap<VisibleStepPayload>];
+type DataActions = ActionMap<DataPayload>[keyof ActionMap<DataPayload>];
+type VisibleStepActions = ActionMap<VisibleStepPayload>[keyof ActionMap<VisibleStepPayload>];
+
+export type MainActions = DataActions | VisibleStepActions;

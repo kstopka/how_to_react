@@ -25,11 +25,14 @@ const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     };
 
     //dodac do contextu
+    //do poprawy, nie działa
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        console.log(`send :${data}`);
+        console.log(`ok`);
+        alert(`send: ${data}`);
     };
-
+    //NOTE handleChangeValue do contextu
+    // handle zmienia stany czyli automatyczne wywolanie dispatcha??? nie wiem :x
     const showStep = [
         <FirstStepForm handleChangeValue={handleChangeValue} />,
         <SecondStepForm handleChangeValue={handleChangeValue} />,

@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import { dataReducer, visibleStepreducer } from "../reducer/MultistepFormReducer";
-import { InitialStateType, VisibleStepActions, DataActions } from "../App.d";
+import { InitialStateType, MainActions, DataContextType } from "../App.d";
 
 const initialState: InitialStateType = {
     data: {
@@ -28,15 +28,14 @@ const initialState: InitialStateType = {
     visibleStep: 0,
 };
 
-export const DataContext = createContext<{
-    state: InitialStateType;
-    dispatch: React.Dispatch<VisibleStepActions | DataActions>;
-}>({
+const DataContextInitial: DataContextType = {
     state: initialState,
     dispatch: () => null,
-});
+};
 
-const mainReducer = ({ data, visibleStep }: InitialStateType, action: VisibleStepActions | DataActions) => ({
+export const DataContext = createContext(DataContextInitial);
+
+const mainReducer = ({ data, visibleStep }: InitialStateType, action: MainActions) => ({
     data: dataReducer(data, action),
     visibleStep: visibleStepreducer(visibleStep, action),
 });

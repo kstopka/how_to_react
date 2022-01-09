@@ -1,6 +1,6 @@
-import { Types, DataType, DataActions, VisibleStepActions } from "../App.d";
+import { Types, DataType, MainActions } from "../App.d";
 
-export const dataReducer = (state: DataType, action: VisibleStepActions | DataActions) => {
+export const dataReducer = (state: DataType, action: MainActions) => {
     switch (action.type) {
         case Types.setValue: {
             return {
@@ -28,7 +28,7 @@ export const dataReducer = (state: DataType, action: VisibleStepActions | DataAc
     return state;
 };
 
-export const visibleStepreducer = (state: number, action: VisibleStepActions | DataActions) => {
+export const visibleStepreducer = (state: number, action: MainActions) => {
     switch (action.type) {
         case Types.addition:
             return state + 1;
