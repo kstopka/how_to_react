@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { PasswordContext } from "../context/PasswordContext";
-import { Values } from "../App.d";
+import { ActionType } from "../App.d";
+// import { Values, ActionType } from "../App.d";
 
 const shuffle = (array: any[]) => {
     let currentIndex = array.length;
@@ -26,14 +27,15 @@ const getRandomIndexesOfPassword = (password: string) => {
     const shuffleAllIndexes: number[] = shuffle(allIndexes);
     const numberOfIndexes: number = calculateNumberOfIndexes(length);
     const indexes: number[] = shuffleAllIndexes.slice(0, numberOfIndexes);
-    const values: Values = indexes.reduce(
-        (previous, current) => ({
-            ...previous,
-            [current]: "",
-        }),
-        {}
-    );
-    return { indexes, values };
+    // const values: Values = indexes.reduce(
+    //     (previous, current) => ({
+    //         ...previous,
+    //         [current]: "",
+    //     }),
+    //     {}
+    // );
+    // return { indexes, values };
+    return { indexes };
 };
 
 export const usePassword = (password: string) => {
@@ -42,8 +44,8 @@ export const usePassword = (password: string) => {
     useEffect(() => {
         const { indexes } = getRandomIndexesOfPassword(password);
 
-        indexes.forEach((item) => dispatchPasswordState({ type: "setInitialPassword", index: item, value: "" }));
-    }, [dispatchPasswordState, password]);
-
-    return { dispatchPasswordState };
+        indexes.forEach((item) =>
+            dispatchPasswordState({ type: ActionType.setInitialPassword, payload: { index: item, value: "" } })
+        );
+    }, [password]);
 };

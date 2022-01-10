@@ -1,14 +1,19 @@
 import * as React from "react";
 import { FunctionComponent, useContext } from "react";
 import { PasswordContext } from "../context/PasswordContext";
+import { ActionType } from "../App.d";
 
 interface SingleInputProps {
-    letter: string;
-    index: number;
+    singleInputProps: {
+        letter: string;
+        index: number;
+        showPassword: boolean;
+    };
 }
 ///forwardRef
 //NOTE type text => tekst: type password => *
-const SingleInput: FunctionComponent<SingleInputProps> = ({ letter, index }) => {
+const SingleInput: FunctionComponent<SingleInputProps> = ({ singleInputProps }) => {
+    const { letter, index, showPassword } = singleInputProps;
     const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
     const { indexes } = passwordState;
 
@@ -17,10 +22,9 @@ const SingleInput: FunctionComponent<SingleInputProps> = ({ letter, index }) => 
     const checkCorrectPassword = (e: { target: any }) => {
         const { value } = e.target;
         if (letter === value) {
-            console.log(value);
-            dispatchPasswordState({ type: "setValue", index, value });
+            dispatchPasswordState({ type: ActionType.setValue, payload: { index, value } });
         } else {
-            dispatchPasswordState({ type: "setValue", index, value: "" });
+            dispatchPasswordState({ type: ActionType.setValue, payload: { index, value: "" } });
         }
     };
 
@@ -28,7 +32,7 @@ const SingleInput: FunctionComponent<SingleInputProps> = ({ letter, index }) => 
         return <input className="disabled" disabled={true} />;
     }
 
-    return <input type="text" maxLength={1} onBlur={checkCorrectPassword} />;
+    return <input type={showPassword ? "password" : "text"} maxLength={1} onBlur={checkCorrectPassword} />;
 };
 
 export default SingleInput;

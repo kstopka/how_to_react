@@ -1,31 +1,36 @@
-import { PasswordState, PasswordActionType } from "../App.d";
+import { PasswordState, PasswordActions, ActionType } from "../App.d";
 
-export const passwordReducer = (state: PasswordState, action: PasswordActionType) => {
-    const { type, value, index } = action;
-    switch (type) {
-        case "setInitialPassword": {
+export const passwordReducer = (state: PasswordState, action: PasswordActions) => {
+    switch (action.type) {
+        case ActionType.setInitialPassword: {
+            const { value, index } = action.payload;
+            const { values, indexes } = state;
             return {
                 ...state,
                 values: {
-                    ...state.values,
+                    ...values,
                     [index]: value,
                 },
-                indexes: [index, ...state.indexes],
+                indexes: [index, ...indexes],
             };
         }
-        case "setValue": {
+        case ActionType.setValue: {
+            const { value, index } = action.payload;
+            const { values } = state;
+
             return {
                 ...state,
                 values: {
-                    ...state.values,
+                    ...values,
                     [index]: value,
                 },
             };
         }
-        case "setOnSuccess": {
+        case ActionType.setOnSuccess: {
+            const { onSuccess } = action.payload;
             return {
                 ...state,
-                onSuccess: true,
+                onSuccess: onSuccess,
             };
         }
 
@@ -38,11 +43,4 @@ export const initialPasswordState: PasswordState = {
     indexes: [],
     values: {},
     onSuccess: false,
-    // indexes: [1, 3, 4, 6],
-    // values: {
-    //     "1": "",
-    //     "3": "",
-    //     "4": "",
-    //     "6": "",
-    // },
 };

@@ -3,7 +3,9 @@ import { FunctionComponent, useContext, useEffect, useState } from "react";
 import SingleInput from "./SingleInput";
 import { PasswordContext } from "../context/PasswordContext";
 import { usePassword } from "../hooks/usePassword";
+import { ActionType } from "../App.d";
 import "../css/style.css";
+import e from "cors";
 
 interface PasswordInputProps {
     password: string;
@@ -43,27 +45,38 @@ interface PasswordInputProps {
 // };
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
-    //correctPassword dodac do contextu
-    // const [correctPassword, setCorrectPassword] = useState(onSuccess);
+    const [showPassword, setShowPassword] = useState(true);
     const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
     const { indexes, values, onSuccess } = passwordState;
 
     usePassword(password);
 
     const splitedPassword: string[] = password.split("");
-    const inputs = splitedPassword.map((letter, index) => <SingleInput key={index} letter={letter} index={index} />);
+    const inputs = splitedPassword.map((letter, index) => {
+        const singleInputProps = {
+            letter,
+            index,
+            showPassword,
+        };
+        return <SingleInput key={index} singleInputProps={singleInputProps} />;
+    });
+    // const handleClick = () => {
+    //     setShowPassword();
+    // };
 
     useEffect(() => {
-        const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
-        if (isSuccess) {
-            dispatchPasswordState({ type: "setOnSuccess", index: 0, value: "" });
+        const checkIndexes = !indexes.some((item) => values[item] === "");
+        if (!checkIndexes) {
+            const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
+            dispatchPasswordState({ type: ActionType.setOnSuccess, payload: { onSuccess: isSuccess } });
         }
-    }, [dispatchPasswordState, indexes, splitedPassword, values]);
+    }, [values]);
 
     if (onSuccess)
         return (
             <div className="wrapper">
                 <div className="password-input">{inputs}</div>
+                <button onClick={() => setShowPassword(!showPassword)}>showPassword</button>
                 <p>Success</p>
             </div>
         );
@@ -71,6 +84,7 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
     return (
         <div className="wrapper">
             <div className="password-input">{inputs}</div>
+            <button onClick={() => setShowPassword(!showPassword)}>showPassword</button>
         </div>
     );
 };
