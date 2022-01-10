@@ -1,12 +1,10 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
-import { useFilledArrayInputsWithPassword } from "../hooks/useFilledArrayInputsWithPassword";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import SingleInput from "./SingleInput";
-// import { PasswordContext } from "../context/PasswordContext";
-import "../css/style.css";
+import { PasswordContext } from "../context/PasswordContext";
 import { usePassword } from "../hooks/usePassword";
-import { element } from "prop-types";
-// import { usePassword } from "../hooks/usePassword";
+import "../css/style.css";
+import { result } from "lodash";
 
 interface PasswordInputProps {
     password: string;
@@ -46,11 +44,27 @@ interface PasswordInputProps {
 // };
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
-    // const [correctPassword, setCorrectPassword] = useState(onSuccess);
-    // const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
+    //correctPassword dodac do contextu
+    const [correctPassword, setCorrectPassword] = useState(onSuccess);
+    const { passwordState } = useContext(PasswordContext);
+    const { indexes, values } = passwordState;
 
     usePassword(password);
-    const inputs = password.split("").map((letter, index) => <SingleInput key={index} letter={letter} index={index} />);
+    const splitedPassword: string[] = password.split("");
+    const inputs = splitedPassword.map((letter, index) => <SingleInput key={index} letter={letter} index={index} />);
+
+    useEffect(() => {
+        const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
+        setCorrectPassword(isSuccess);
+    }, [indexes, splitedPassword, values]);
+
+    if (correctPassword)
+        return (
+            <div className="wrapper">
+                <div className="password-input">{inputs}</div>
+                <p>Success</p>
+            </div>
+        );
 
     return (
         <div className="wrapper">

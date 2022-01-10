@@ -11,7 +11,9 @@ interface SingleInputProps {
 const SingleInput: FunctionComponent<SingleInputProps> = ({ letter, index }) => {
     const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
     const { indexes } = passwordState;
+
     const chcekDisabledInput = indexes.findIndex((item) => item === index);
+
     const checkCorrectPassword = (e: { target: any }) => {
         const { value } = e.target;
         if (letter === value) {

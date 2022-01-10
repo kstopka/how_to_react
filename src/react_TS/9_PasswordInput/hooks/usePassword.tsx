@@ -1,4 +1,3 @@
-// import * as React from "react";
 import { useEffect, useContext } from "react";
 import { PasswordContext } from "../context/PasswordContext";
 import { Values } from "../App.d";
@@ -39,16 +38,12 @@ const getRandomIndexesOfPassword = (password: string) => {
 
 export const usePassword = (password: string) => {
     const { dispatchPasswordState } = useContext(PasswordContext);
+
     useEffect(() => {
         const { indexes } = getRandomIndexesOfPassword(password);
-        console.log(indexes);
+
         indexes.forEach((item) => dispatchPasswordState({ type: "setInitialPassword", index: item, value: "" }));
     }, [dispatchPasswordState, password]);
 
     return { dispatchPasswordState };
 };
-
-// NOTE: initial state to moj password
-// dodac generator  initial state
-// dodac jakiego reducera
-//
