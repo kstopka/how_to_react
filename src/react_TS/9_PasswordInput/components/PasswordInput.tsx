@@ -4,7 +4,6 @@ import SingleInput from "./SingleInput";
 import { PasswordContext } from "../context/PasswordContext";
 import { usePassword } from "../hooks/usePassword";
 import "../css/style.css";
-import { result } from "lodash";
 
 interface PasswordInputProps {
     password: string;
@@ -43,22 +42,25 @@ interface PasswordInputProps {
 //     },
 // };
 
-const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password, onSuccess = false }) => {
+const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
     //correctPassword dodac do contextu
-    const [correctPassword, setCorrectPassword] = useState(onSuccess);
-    const { passwordState } = useContext(PasswordContext);
-    const { indexes, values } = passwordState;
+    // const [correctPassword, setCorrectPassword] = useState(onSuccess);
+    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
+    const { indexes, values, onSuccess } = passwordState;
 
     usePassword(password);
+
     const splitedPassword: string[] = password.split("");
     const inputs = splitedPassword.map((letter, index) => <SingleInput key={index} letter={letter} index={index} />);
 
     useEffect(() => {
         const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
-        setCorrectPassword(isSuccess);
-    }, [indexes, splitedPassword, values]);
+        if (isSuccess) {
+            dispatchPasswordState({ type: "setOnSuccess", index: 0, value: "" });
+        }
+    }, [dispatchPasswordState, indexes, splitedPassword, values]);
 
-    if (correctPassword)
+    if (onSuccess)
         return (
             <div className="wrapper">
                 <div className="password-input">{inputs}</div>

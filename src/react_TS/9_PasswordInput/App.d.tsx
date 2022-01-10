@@ -6,6 +6,7 @@ export interface Values {
 export interface PasswordState {
     indexes: number[];
     values: Values;
+    onSuccess: boolean;
 }
 
 export type PasswordContextType = {
