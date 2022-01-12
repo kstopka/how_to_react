@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from "react";
 import { dataReducer, visibleStepreducer } from "../reducer/MultistepFormReducer";
-import { InitialStateType, MainActions, DataContextType, Types } from "../App.d";
+import { InitialStateType, MainActions, DataContextType, Types, HandleChangeValueType } from "../App.d";
 import { validation } from "../Validator";
+import useForm from "../hooks/useForm";
 
 const initialState: InitialStateType = {
     data: {
@@ -32,6 +33,8 @@ const initialState: InitialStateType = {
 const DataContextInitial: DataContextType = {
     state: initialState,
     dispatch: () => null,
+    handleChangeValue: () => null,
+    onSubmit: () => null,
 };
 
 export const DataContext = createContext(DataContextInitial);
@@ -54,10 +57,11 @@ const mainReducer = ({ data, visibleStep }: InitialStateType, action: MainAction
 
 export const DataProvider = ({ children }: { children: any }) => {
     const [state, dispatch] = useReducer(mainReducer, initialState);
+    // const { handleChangeValue, onSubmit } = useForm();
 
     // const dispatchedActions = dispatchAllActions(actions, dispatch)
 
-    const handleChangeValue = (e: { target: { name: string; value: string } }) => {
+    const handleChangeValue: HandleChangeValueType = (e) => {
         const { name, value } = e.target;
         const { isError, errorMessage } = validation[name](name, value);
         if (isError) {
@@ -66,5 +70,12 @@ export const DataProvider = ({ children }: { children: any }) => {
         dispatch({ type: Types.setValue, payload: { name, value } });
     };
 
-    return <DataContext.Provider value={{ state, dispatch }}>{children}</DataContext.Provider>;
+    const onSubmit = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        alert(`send: ${state.data}`);
+    };
+
+    return (
+        <DataContext.Provider value={{ state, dispatch, handleChangeValue, onSubmit }}>{children}</DataContext.Provider>
+    );
 };

@@ -2,12 +2,10 @@ import * as React from "react";
 import { FunctionComponent, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
-interface ThirdStepFormProps {
-    handleChangeValue: any;
-}
+interface ThirdStepFormProps {}
 
-const ThirdStepForm: FunctionComponent<ThirdStepFormProps> = ({ handleChangeValue }) => {
-    const { state } = useContext(DataContext);
+const ThirdStepForm: FunctionComponent<ThirdStepFormProps> = () => {
+    const { state, handleChangeValue } = useContext(DataContext);
 
     const { error, errorMessage } = state.data.phonenumber;
     return (

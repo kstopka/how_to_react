@@ -2,12 +2,10 @@ import * as React from "react";
 import { FunctionComponent, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
-interface SecondStepFormProps {
-    handleChangeValue: any;
-}
+interface SecondStepFormProps {}
 
-const SecondStepForm: FunctionComponent<SecondStepFormProps> = ({ handleChangeValue }) => {
-    const { state } = useContext(DataContext);
+const SecondStepForm: FunctionComponent<SecondStepFormProps> = () => {
+    const { state, handleChangeValue } = useContext(DataContext);
     const { error, errorMessage } = state.data.email;
     return (
         <div className="second-step-form">

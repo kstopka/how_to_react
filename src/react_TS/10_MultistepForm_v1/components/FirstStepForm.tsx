@@ -2,12 +2,10 @@ import * as React from "react";
 import { FunctionComponent, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
-interface FirstStepFormProps {
-    handleChangeValue: any;
-}
+interface FirstStepFormProps {}
 
-const FirstStepForm: FunctionComponent<FirstStepFormProps> = ({ handleChangeValue }) => {
-    const { state } = useContext(DataContext);
+const FirstStepForm: FunctionComponent<FirstStepFormProps> = () => {
+    const { state, handleChangeValue } = useContext(DataContext);
     const { name, surname } = state.data;
 
     return (

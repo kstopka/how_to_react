@@ -17,9 +17,20 @@ export type InitialStateType = {
     visibleStep: number;
 };
 
+export type HandleChangeValueType = (e: {
+    target: {
+        name: string;
+        value: string;
+    };
+}) => void;
+
+type OnSubmitType = (e: { preventDefault: () => void }) => void;
+
 export type DataContextType = {
     state: InitialStateType;
     dispatch: React.Dispatch<VisibleStepActions | DataActions>;
+    handleChangeValue: HandleChangeValueType;
+    onSubmit: OnSubmitType;
 };
 
 type ActionMap<M extends { [index: string]: any }> = {
