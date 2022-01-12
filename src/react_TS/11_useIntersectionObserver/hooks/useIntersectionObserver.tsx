@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { optionsType } from "../App.d";
+import { useState, useContext } from "react";
+import { OptionsType } from "../App.d";
+import { RefContext } from "../context/context";
 
 export const useIntersectionObserver = () => {
+    const { refState, refDispatch } = useContext(RefContext);
+
     // jeden observer.
     // wszystkie componenty maja miec ref do tablicy.
     const [isVisible, setIsVisible] = useState(false);
@@ -12,13 +15,14 @@ export const useIntersectionObserver = () => {
         setIsVisible(entry.isIntersecting);
     };
 
-    const options: optionsType = { threshold: 0.1, root: null, rootMargin: "0%" };
+    const options: OptionsType = { threshold: 0.1, root: null, rootMargin: "0%" };
 
     const addToObserve = (ref: { current: Element | null }) => {
         const observer = new IntersectionObserver(callbackFn, options);
-        //unobserve
+
         if (ref.current) observer.observe(ref.current);
 
+        //unobserve
         return () => {
             if (ref.current) observer.unobserve(ref.current);
         };
