@@ -43,18 +43,18 @@ interface PasswordInputProps {
 //     },
 // };
 
-// const Inputs = ({password, showPassword})=> {
+// const Inputs = ({ password, showPassword }: { password: string; showPassword: boolean }) => {
 //     const splitedPassword: string[] = password.split("");
 
-// return     splitedPassword.map((letter, index) => {
-//     const singleInputProps = {
-//         letter,
-//         index,
-//         showPassword,
-//     };
-//     return <SingleInput key={index} singleInputProps={singleInputProps} />;
-
-// });
+//     return splitedPassword.map((letter, index) => {
+//         const singleInputProps = {
+//             letter,
+//             index,
+//             showPassword,
+//         };
+//         return <SingleInput key={index} singleInputProps={singleInputProps} />;
+//     });
+// };
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
     const [showPassword, setShowPassword] = useState(true);
@@ -72,9 +72,6 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
         };
         return <SingleInput key={index} singleInputProps={singleInputProps} />;
     });
-    // const handleClick = () => {
-    //     setShowPassword();
-    // };
 
     useEffect(() => {
         const checkIndexes = !indexes.some((item) => values[item] === "");

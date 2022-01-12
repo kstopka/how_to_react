@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import { dataReducer, visibleStepreducer } from "../reducer/MultistepFormReducer";
 import { InitialStateType, MainActions, DataContextType, Types, HandleChangeValueType } from "../App.d";
 import { validation } from "../Validator";
-import useForm from "../hooks/useForm";
+// import useForm from "../hooks/useForm";
 
 const initialState: InitialStateType = {
     data: {
