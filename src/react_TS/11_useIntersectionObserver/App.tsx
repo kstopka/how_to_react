@@ -9,14 +9,14 @@ const App: FunctionComponent<AppProps> = () => {
     return (
         <div className="wrapper">
             <Component />
+            {/* <Component />
             <Component />
             <Component />
             <Component />
             <Component />
             <Component />
             <Component />
-            <Component />
-            <Component />
+            <Component /> */}
         </div>
     );
 };
