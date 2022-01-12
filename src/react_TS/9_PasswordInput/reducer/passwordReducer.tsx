@@ -27,15 +27,15 @@ export const passwordReducer = (state: PasswordState, action: PasswordActions) =
             };
         }
         case ActionType.setOnSuccess: {
-            const { onSuccess } = action.payload;
+            const { isSuccess } = action.payload;
             return {
                 ...state,
-                onSuccess: onSuccess,
+                onSuccess: isSuccess,
             };
         }
 
         default:
-            return { ...state };
+            return state;
     }
 };
 

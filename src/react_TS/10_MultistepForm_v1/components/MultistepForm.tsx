@@ -11,6 +11,25 @@ import { Types } from "../App.d";
 
 interface MultistepFormProps {}
 
+// const useForm = () => {
+//     const { state, dispatch } = useContext(DataContext);
+
+//     const handleChangeValue = (e: { target: { name: string; value: string } }) => {
+//         const { name, value } = e.target;
+//         const { isError, errorMessage } = validation[name](name, value);
+//         if (isError) {
+//             return dispatch({ type: Types.setError, payload: { name, value: errorMessage } });
+//         }
+//         dispatch({ type: Types.setValue, payload: { name, value } });
+//     };
+
+//     const onSubmit = (e: { preventDefault: () => void }) => {
+//         e.preventDefault();
+//         console.log(`ok`);
+//         alert(`send: ${data}`);
+//     };
+// };
+
 const MultistepForm: FunctionComponent<MultistepFormProps> = () => {
     const { state, dispatch } = useContext(DataContext);
     const { visibleStep, data } = state;

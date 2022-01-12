@@ -5,7 +5,6 @@ import { PasswordContext } from "../context/PasswordContext";
 import { usePassword } from "../hooks/usePassword";
 import { ActionType } from "../App.d";
 import "../css/style.css";
-import e from "cors";
 
 interface PasswordInputProps {
     password: string;
@@ -44,6 +43,19 @@ interface PasswordInputProps {
 //     },
 // };
 
+// const Inputs = ({password, showPassword})=> {
+//     const splitedPassword: string[] = password.split("");
+
+// return     splitedPassword.map((letter, index) => {
+//     const singleInputProps = {
+//         letter,
+//         index,
+//         showPassword,
+//     };
+//     return <SingleInput key={index} singleInputProps={singleInputProps} />;
+
+// });
+
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
     const [showPassword, setShowPassword] = useState(true);
     const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
@@ -68,7 +80,7 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
         const checkIndexes = !indexes.some((item) => values[item] === "");
         if (!checkIndexes) {
             const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
-            dispatchPasswordState({ type: ActionType.setOnSuccess, payload: { onSuccess: isSuccess } });
+            dispatchPasswordState({ type: ActionType.setOnSuccess, payload: { isSuccess } });
         }
     }, [values]);
 

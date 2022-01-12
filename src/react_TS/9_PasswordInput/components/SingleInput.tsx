@@ -10,8 +10,6 @@ interface SingleInputProps {
         showPassword: boolean;
     };
 }
-///forwardRef
-//NOTE type text => tekst: type password => *
 const SingleInput: FunctionComponent<SingleInputProps> = ({ singleInputProps }) => {
     const { letter, index, showPassword } = singleInputProps;
     const { passwordState, dispatchPasswordState } = useContext(PasswordContext);

@@ -30,7 +30,7 @@ export interface setValue {
 }
 export interface setOnSuccess {
     type: ActionType.setOnSuccess;
-    payload: { onSuccess: boolean };
+    payload: { isSuccess: boolean };
 }
 
 export type PasswordActions = setInitialPassword | setValue | setOnSuccess;

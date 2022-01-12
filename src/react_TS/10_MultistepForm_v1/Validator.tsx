@@ -144,16 +144,22 @@ export const checkProperties = {
     phonenumber: (data: DataType) => checkProperties["functionToCheckProperties"](data.phonenumber),
 };
 
+// const stepsValidation = [(state, data) => true, () => true, () => true];
+const stepsValidation = [
+    (data: DataType) => {
+        return checkProperties["name"](data) && checkProperties["surname"](data);
+    },
+    (data: DataType) => {
+        return checkProperties["email"](data);
+    },
+    (data: DataType) => {
+        return checkProperties["phonenumber"](data);
+    },
+];
+
 export const chceckShowedStep = (state: InitialStateType) => {
     const { visibleStep, data } = state;
-    if (visibleStep === 0) {
-        return checkProperties["name"](data) && checkProperties["surname"](data);
-    } else if (visibleStep === 1) {
-        return checkProperties["name"](data);
-    } else if (visibleStep === 2) {
-        return checkProperties["phonenumber"](data);
-    }
-    return false;
+    return stepsValidation[visibleStep](data);
 };
 
 export default Validator;
