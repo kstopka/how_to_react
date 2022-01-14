@@ -12,9 +12,12 @@ const Component: FunctionComponent<ComponentProps> = () => {
 
     useEffect(() => {
         if (ref.current) {
-            addToObserve(ref);
+            // console.log(ref.current);
+            // refDispatch({ type: "addRef", payload: { value: ref.current } });
+            // addToObserve(ref);
+            // console.log(refState.refComponents);
         }
-    }, [addToObserve, ref]);
+    }, [ref]);
 
     return (
         <>

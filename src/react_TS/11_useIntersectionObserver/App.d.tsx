@@ -7,7 +7,7 @@ export type OptionsType = {
 };
 
 export type RefStateType = {
-    refComponents: (Element | null)[];
+    refComponents: { current: Element | null }[];
 };
 
 export type RefContextType = {
@@ -17,5 +17,5 @@ export type RefContextType = {
 
 export type Actions = {
     type: string;
-    payload: { value: Element | null };
+    payload: { value: { current: Element | null } };
 };
