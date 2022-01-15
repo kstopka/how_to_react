@@ -1,6 +1,6 @@
-import { isEqual, eq } from "lodash";
+import { isEqual } from "lodash";
 import * as React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { FunctionComponent } from "react";
 // import { useRef, useMemo } from "react";
 
