@@ -1,28 +1,16 @@
-import { geoDataType, ActionType, GeoDataActions } from "../App.d";
+import { geoDataStateType, ActionType, GeoDataActions } from "../App.d";
 
-export const geoDataInitialState: geoDataType = {
-    latitude: 0,
-    longitude: 0,
+export const geoDataInitialState: geoDataStateType = {
+    geoData: {
+        latitude: 0,
+        longitude: 0,
+    },
     isToggle: true,
 };
 
-export const geoDataReducer = (state: geoDataType, action: GeoDataActions) => {
+export const geoDataReducer = (state: geoDataStateType, action: GeoDataActions) => {
     switch (action.type) {
-        case ActionType.changeLatitude: {
-            return {
-                ...state,
-                latitude: action.location,
-            };
-        }
-        case ActionType.changeLongitude: {
-            return {
-                ...state,
-                longitude: action.location,
-            };
-        }
         case ActionType.toggleListeningLocation: {
-            console.log("toggleReducer");
-            console.log(action.isToggle);
             return {
                 ...state,
                 isToggle: action.isToggle,
@@ -31,15 +19,19 @@ export const geoDataReducer = (state: geoDataType, action: GeoDataActions) => {
         case ActionType.changeLocation: {
             return {
                 ...state,
-                latitude: action.latitude,
-                longitude: action.longitude,
+                geoData: {
+                    latitude: action.latitude,
+                    longitude: action.longitude,
+                },
             };
         }
         case ActionType.resetLocation: {
             return {
-                latitude: 0,
-                longitude: 0,
-                isToggle: false,
+                geoData: {
+                    latitude: 0,
+                    longitude: 0,
+                },
+                isToggle: true,
             };
         }
         default:

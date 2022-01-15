@@ -1,10 +1,9 @@
-export type geoDataType = {
-    longitude: number;
-    latitude: number;
+export type geoDataStateType = {
+    geoData: geoDataType;
     isToggle: boolean;
 };
 
-export type geoData = {
+export type geoDataType = {
     longitude: number;
     latitude: number;
 };

@@ -1,16 +1,14 @@
 import { useReducer } from "react";
 import { geoDataReducer, geoDataInitialState } from "../reducer/geoDataReducer";
-import { ActionType, geoData } from "../App.d";
+import { ActionType, geoDataType } from "../App.d";
 
-export const useGeo = (): [geoData, () => void] => {
+export const useGeo = (): [geoDataType, () => void] => {
     const [geoDataState, geoDataDispatch] = useReducer(geoDataReducer, geoDataInitialState);
-    const { isToggle } = geoDataState;
+    const { isToggle, geoData } = geoDataState;
 
     const toggleListening = (): void => {
-        console.log(`toggleListening`);
-        geoDataDispatch({ type: ActionType.toggleListeningLocation, isToggle: !isToggle });
-
-        const success = (position: any) => {
+        const success = (position: GeolocationPosition) => {
+            console.log(position);
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
 
@@ -18,17 +16,11 @@ export const useGeo = (): [geoData, () => void] => {
         };
 
         if (isToggle) {
-            console.log("isToggle");
+            geoDataDispatch({ type: ActionType.toggleListeningLocation, isToggle: false });
             navigator.geolocation.getCurrentPosition(success);
         } else {
-            console.log("!isToggle");
             geoDataDispatch({ type: ActionType.resetLocation });
         }
-    };
-
-    const geoData = {
-        latitude: geoDataState.latitude,
-        longitude: geoDataState.longitude,
     };
 
     return [geoData, toggleListening];
