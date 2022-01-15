@@ -1,28 +1,17 @@
-export type geoDataStateType = {
-    geoData: geoDataType;
-    isToggle: boolean;
-};
-
 export type geoDataType = {
     longitude: number;
     latitude: number;
 };
 
+export type geoDataStateType = {
+    geoData: geoDataType;
+    isToggle: boolean;
+};
+
 export enum ActionType {
-    changeLatitude,
-    changeLongitude,
     toggleListeningLocation,
     changeLocation,
     resetLocation,
-}
-
-export interface changeLatitude {
-    type: ActionType.changeLatitude;
-    location: number;
-}
-export interface changeLongitude {
-    type: ActionType.changeLongitude;
-    location: number;
 }
 
 export interface changeLocation {
@@ -39,9 +28,4 @@ export interface resetLocation {
     type: ActionType.resetLocation;
 }
 
-export type GeoDataActions =
-    | changeLatitude
-    | changeLongitude
-    | toggleListeningLocation
-    | changeLocation
-    | resetLocation;
+export type GeoDataActions = toggleListeningLocation | changeLocation | resetLocation;
