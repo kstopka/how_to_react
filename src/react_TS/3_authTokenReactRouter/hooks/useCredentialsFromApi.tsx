@@ -1,6 +1,8 @@
 import { useEffect, useReducer } from "react";
-import { CredentialsType, InitialStateType } from "../App.d";
 import mockedData from "../data/fakeAPI";
+import { credentialsReducer, initialState } from "../reducer/reducerTakedCredentials";
+import { CredentialsType } from "../App.d";
+
 const asyncWrapperForPromiseWithConnectedState = async (
     promiseWrapper: { (): Promise<CredentialsType[]>; (): any },
     {
@@ -19,38 +21,6 @@ const asyncWrapperForPromiseWithConnectedState = async (
         setForResponse(placeholderData);
     } catch ({ message, duringError }) {
         setForError(message);
-    }
-};
-const initialState: InitialStateType = {
-    imBusy: false,
-    Credentials: [],
-    errorMessage: "",
-    error: false,
-};
-
-const credentialsReducer = (state: any, action: { type: string; value?: any }) => {
-    switch (action.type) {
-        case "setBusy": {
-            return {
-                ...state,
-                imBusy: true,
-            };
-        }
-        case "setError": {
-            return {
-                ...state,
-                imBusy: true,
-                errorMessage: action.value,
-                error: true,
-            };
-        }
-        case "setData": {
-            return {
-                ...state,
-                imBusy: true,
-                credentials: action.value,
-            };
-        }
     }
 };
 

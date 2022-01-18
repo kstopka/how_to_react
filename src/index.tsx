@@ -32,9 +32,8 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/9_PasswordInput/App";
 // import App from "./react_TS/10_MultistepForm_v1/App";
 // import App from "./react_TS/10_MultistepForm_v2/App";
-// import App from "./react_TS/11_useIntersectionObserver/App";
-
-import App from "./react_TS/12_useGeo/App";
+import App from "./react_TS/11_useIntersectionObserver/App";
+// import App from "./react_TS/12_useGeo/App";
 
 ReactDOM.render(
     <React.StrictMode>

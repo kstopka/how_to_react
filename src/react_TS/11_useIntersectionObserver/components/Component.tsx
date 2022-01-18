@@ -14,7 +14,7 @@ const Component: FunctionComponent<ComponentProps> = () => {
         if (ref.current) {
             // console.log(ref.current);
             // refDispatch({ type: "addRef", payload: { value: ref.current } });
-            // addToObserve(ref);
+            addToObserve(ref);
             // console.log(refState.refComponents);
         }
     }, [ref]);

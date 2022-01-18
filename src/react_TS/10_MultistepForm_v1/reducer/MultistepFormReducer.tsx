@@ -13,7 +13,6 @@ export const dataReducer = (state: DataType, action: MainActions) => {
             };
         }
         case Types.setError: {
-            console.log(action.payload.name);
             return {
                 ...state,
                 [action.payload.name]: {

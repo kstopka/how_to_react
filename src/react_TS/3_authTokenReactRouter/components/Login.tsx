@@ -1,5 +1,6 @@
 import { useEffect, useContext, useReducer, FunctionComponent, useState } from "react";
 import Validator from "../Validator";
+import { reducerTakedCredentials, initialCredentials } from "../reducer/reducerTakedCredentials";
 import { TokenContext } from "../context/TokenContext";
 import { useCredentialsFromApi } from "../App.hooks";
 import { CredentialsType } from "../App.d";
@@ -13,43 +14,6 @@ const checkCredentials = (credentials: CredentialsType[], login: string, passwor
         permission = credentials.some((element) => element.login === login && element.password === password);
     }
     return permission;
-};
-
-const reducerTakedCredentials = (state: any, action: { type: string; value?: string; target?: any }) => {
-    switch (action.type) {
-        case "setName": {
-            return {
-                ...state,
-                [action.target]: {
-                    name: action.value,
-                    error: false,
-                    errorMessage: "",
-                },
-            };
-        }
-        case "setError": {
-            return {
-                ...state,
-                [action.target]: {
-                    error: true,
-                    errorMessage: action.value,
-                },
-            };
-        }
-    }
-};
-
-const initialCredentials = {
-    login: {
-        value: "",
-        error: false,
-        errorMessage: "",
-    },
-    password: {
-        value: "",
-        error: false,
-        errorMessage: "",
-    },
 };
 
 const Login: FunctionComponent = () => {

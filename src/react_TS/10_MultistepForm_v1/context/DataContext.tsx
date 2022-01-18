@@ -57,6 +57,7 @@ const mainReducer = ({ data, visibleStep }: InitialStateType, action: MainAction
 
 export const DataProvider = ({ children }: { children: any }) => {
     const [state, dispatch] = useReducer(mainReducer, initialState);
+    //NOTE: przeniosłem handle change value and submit do useForm, ale coś nie działa
     // const { handleChangeValue, onSubmit } = useForm();
 
     // const dispatchedActions = dispatchAllActions(actions, dispatch)
