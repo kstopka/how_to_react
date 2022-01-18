@@ -6,7 +6,7 @@ import { RefContext } from "../context/context";
 interface ComponentProps {}
 
 const Component: FunctionComponent<ComponentProps> = () => {
-    const { refState, refDispatch } = useContext(RefContext);
+    // const { refState, refDispatch } = useContext(RefContext);
     const ref = useRef(null);
     const { isVisible, addToObserve } = useIntersectionObserver();
 
@@ -14,10 +14,10 @@ const Component: FunctionComponent<ComponentProps> = () => {
         if (ref.current) {
             // console.log(ref.current);
             // refDispatch({ type: "addRef", payload: { value: ref.current } });
-            addToObserve(ref);
+            addToObserve(ref.current);
             // console.log(refState.refComponents);
         }
-    }, [ref]);
+    }, [ref.current]);
 
     return (
         <>
