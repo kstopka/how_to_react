@@ -1,0 +1,46 @@
+{
+    "result": [
+        {
+            "gender": "male",
+            "name": { "title": "mr", "first": "william", "last": "martin" },
+            "location": {
+                "street": "7822 devonport road",
+                "city": "whangarei",
+                "state": "waikato",
+                "postcode": 61385,
+                "coordinates": { "latitude": "60.2519", "longitude": "-39.5552" },
+                "timezone": {
+                    "offset": "+10:00",
+                    "description": "Eastern Australia, Guam, Vladivostok"
+                }
+            },
+            "email": "william.martin@example.com",
+            "login": {
+                "uuid": "f7fc3fd9-fda8-4115-bff9-5b4d5f200010",
+                "username": "yellowmeercat427",
+                "password": "yesyes",
+                "salt": "9ZMFghvn",
+                "md5": "008a301fde54f17672b802373a4fdd86",
+                "sha1": "c80864675dbdd4bc044d0c96de4a1d2a2fc6d952",
+                "sha256": "1000029fafcbf7253e105b10d301da139f773261b29ddc71fe12f7eb36b0fdb4"
+            },
+            "dob": { "date": "1983-06-19T23:29:12Z", "age": 36 },
+            "registered": { "date": "2006-06-05T08:38:42Z", "age": 13 },
+            "phone": "(391)-000-0063",
+            "cell": "(710)-679-6466",
+            "id": { "name": "", "value": null },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/men/82.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/men/82.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/men/82.jpg"
+            },
+            "nat": "NZ"
+        }
+    ],
+    "info": {
+        "seed": "9228fa7a491843fb",
+        "results": 1,
+        "page": 1,
+        "version": "1.2"
+    }
+}
