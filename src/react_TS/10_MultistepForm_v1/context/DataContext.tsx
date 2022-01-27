@@ -57,13 +57,14 @@ const mainReducer = ({ data, visibleStep }: InitialStateType, action: MainAction
 
 export const DataProvider = ({ children }: { children: any }) => {
     const [state, dispatch] = useReducer(mainReducer, initialState);
-    //NOTE: przeniosłem handle change value and submit do useForm, ale coś nie działa
     // const { handleChangeValue, onSubmit } = useForm();
 
     // const dispatchedActions = dispatchAllActions(actions, dispatch)
 
     const handleChangeValue: HandleChangeValueType = (e) => {
         const { name, value } = e.target;
+
+        //NOTE: tuta j est
         const { isError, errorMessage } = validation[name](name, value);
         if (isError) {
             return dispatch({ type: Types.setError, payload: { name, value: errorMessage } });

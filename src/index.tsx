@@ -22,7 +22,7 @@ import reportWebVitals from "./reportWebVitals";
 
 // import App from "./react_TS/1_rating_stars/App";
 // import App from "./react_TS/2_useMemoStateHook/useMemoStateHook";
-// import App from "./react_TS/3_authTokenReactRouter/Authentication";
+import App from "./react_TS/3_authTokenReactRouter/Authentication";
 // import App from "./react_TS/4_MasonryGrid/App";
 // import App from "./react_TS/5_Modal/App";
 // import App from "./react_TS/6_SearchWithDropdown/App";
@@ -33,7 +33,7 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/10_MultistepForm_v1/App";
 // import App from "./react_TS/10_MultistepForm_v2/App";
 // import App from "./react_TS/11_useIntersectionObserver/App";
-import App from "./react_TS/12_useGeo/App";
+// import App from "./react_TS/12_useGeo/App";
 
 ReactDOM.render(
     <React.StrictMode>

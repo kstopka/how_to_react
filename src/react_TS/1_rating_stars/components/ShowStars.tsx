@@ -16,10 +16,7 @@ const GrayStar = () => (
 );
 
 const ShowStars = ({ number }: { number: number }) => {
-    //NOTE: pewnie da się prościej ale nie mogę wymyślić nic lepszego
-    // tablica z szarymi gwiazdkami
-    //podmienic szare na zółte
-    const starsQuality: number[] = [1, 2, 3, 4, 5];
+    const starsQuality: number[] = [...new Array(5)].map((item, index) => (item = index + 1));
     const stars = starsQuality.map((item, index) =>
         number >= item ? <YellowStar key={index} /> : <GrayStar key={index} />
     );

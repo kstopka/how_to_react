@@ -1,12 +1,14 @@
-import { InitialStateType } from "../App.d";
+import { type } from "os";
+import { ActionDispatch, InitialCredentials, InitialStateType } from "../App.d";
 
-export const reducerTakedCredentials = (state: any, action: { type: string; value?: string; target?: any }) => {
-    switch (action.type) {
+export const reducerTakedCredentials = (state: any, action: ActionDispatch) => {
+    const { type, value, name } = action;
+    switch (type) {
         case "setName": {
             return {
                 ...state,
-                [action.target]: {
-                    name: action.value,
+                [name]: {
+                    name: value,
                     error: false,
                     errorMessage: "",
                 },
@@ -15,16 +17,17 @@ export const reducerTakedCredentials = (state: any, action: { type: string; valu
         case "setError": {
             return {
                 ...state,
-                [action.target]: {
+                [name]: {
                     error: true,
-                    errorMessage: action.value,
+                    errorMessage: value,
                 },
             };
         }
     }
+    return state;
 };
 
-export const initialCredentials = {
+export const initialCredentials: InitialCredentials = {
     login: {
         value: "",
         error: false,

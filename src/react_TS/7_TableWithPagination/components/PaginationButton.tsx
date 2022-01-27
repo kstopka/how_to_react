@@ -3,7 +3,6 @@ import { FunctionComponent } from "react";
 interface PaginationButtonProps {
     txt: string;
     active?: boolean;
-    //TODO: typ do action?
     action?: any;
 }
 

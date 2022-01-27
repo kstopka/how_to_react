@@ -26,7 +26,6 @@ export const usePagination: usePaginationType = (dataEntries, elementsOnPage = 3
             setActualPageIdx(value);
             setIsBusy(false);
         }, delay);
-        //NOTE: robić clear?
     };
 
     const goToFirestPage = () => {
