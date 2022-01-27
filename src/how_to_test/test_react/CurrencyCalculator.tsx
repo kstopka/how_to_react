@@ -24,7 +24,7 @@ const CurrencyCalculator: FunctionComponent<CurrencyCalculatorProps> = () => {
                 const json = await response.json();
                 setCurrencies(json[0].rates);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
                 setError("Can not connect to NBP...");
             }
         };

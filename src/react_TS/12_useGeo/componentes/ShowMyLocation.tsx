@@ -5,8 +5,7 @@ import { useGeo } from "../hooks/useGeo";
 interface ShowMyLocationProps {}
 
 const ShowMyLocation: FunctionComponent<ShowMyLocationProps> = () => {
-    const [geoData, toggleListening] = useGeo();
-    const { latitude, longitude } = geoData;
+    const [{ latitude, longitude }, toggleListening] = useGeo();
 
     return (
         <div className="wrapper">
