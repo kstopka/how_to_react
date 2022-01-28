@@ -2,8 +2,8 @@ import { geoDataStateType, ActionType, GeoDataActions } from "../App.d";
 
 export const geoDataInitialState: geoDataStateType = {
     geoData: {
-        latitude: 0,
-        longitude: 0,
+        latitude: null,
+        longitude: null,
     },
     isToggle: true,
 };
@@ -28,8 +28,8 @@ export const geoDataReducer = (state: geoDataStateType, action: GeoDataActions) 
         case ActionType.resetLocation: {
             return {
                 geoData: {
-                    latitude: 0,
-                    longitude: 0,
+                    latitude: null,
+                    longitude: null,
                 },
                 isToggle: true,
             };

@@ -13,14 +13,21 @@ export const useGeo = (): [geoDataType, () => void] => {
             navigator.geolocation.clearWatch(locationWatchId.current);
         }
     };
+    const error = () => {
+        return { error: "you must accept the location to use the application" };
+    };
 
     const toggleListening = (): void => {
+        if (!navigator.geolocation) {
+            // alert("not supported");
+            throw new Error("not supported");
+        }
         if (isToggle) {
             geoDataDispatch({ type: ActionType.toggleListeningLocation, isToggle: false });
             // navigator.geolocation.getCurrentPosition(success);
 
             //watching przy przemieszczaniu sie
-            locationWatchId.current = navigator.geolocation.watchPosition(success);
+            locationWatchId.current = navigator.geolocation.watchPosition(success, error);
         } else {
             geoDataDispatch({ type: ActionType.resetLocation });
         }

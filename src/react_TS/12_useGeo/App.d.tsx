@@ -1,6 +1,6 @@
 export type geoDataType = {
-    longitude: number;
-    latitude: number;
+    longitude: number | null;
+    latitude: number | null;
 };
 
 export type geoDataStateType = {
@@ -16,8 +16,8 @@ export enum ActionType {
 
 export interface changeLocation {
     type: ActionType.changeLocation;
-    latitude: number;
-    longitude: number;
+    latitude: number | null;
+    longitude: number | null;
 }
 
 export interface toggleListeningLocation {
