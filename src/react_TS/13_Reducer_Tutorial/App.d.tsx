@@ -9,8 +9,8 @@ export interface ICartProduct {
     product: IProduct;
     quantity: number;
     discount: number;
-    // totalValue: number;
-    // totalValueWithDiscount: number;
+    // totalValue: number | null;
+    // totalValueWithDiscount: number | null;
 }
 
 export interface ICart {
@@ -40,18 +40,19 @@ export enum ActionType {
 
 export interface ProductFromAPI {
     type: ActionType.ProductFromAPI;
-    payload: { cartProductList: ICartProduct[] };
+    cartProductList: ICartProduct[];
 }
 export interface AdditionProduct {
     type: ActionType.AdditionProduct;
-    payload: { index: number };
+    index: number;
 }
 export interface SubtractionProduct {
     type: ActionType.SubtractionProduct;
+    index: number;
 }
 export interface SubtractionAllProduct {
     type: ActionType.SubtractionAllProduct;
-    payload: { index: number };
+    index: number;
 }
 export interface SubmitCart {
     type: ActionType.SubmitCart;

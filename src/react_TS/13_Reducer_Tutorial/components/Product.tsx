@@ -13,11 +13,6 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
             <p style={{ color: "red" }}>name: {name}</p>
             <p>price: {price}</p>
             <p>category: {category}</p>
-            {/* NOTE: jeżeli ilość 0 button się nie renderuje */}
-            <button>subbtraction</button>
-            <button>addition</button>
-            <button>removeAll</button>
-            <button>submit</button>
         </div>
     );
 };
