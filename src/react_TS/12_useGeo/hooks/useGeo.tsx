@@ -7,6 +7,9 @@ export const useGeo = (): [geoDataType, () => void] => {
     const locationWatchId = useRef(0);
 
     const success = ({ coords }: GeolocationPosition) => {
+        if (!coords) {
+            throw new Error("Navigation cannot read the coordinates");
+        }
         const { latitude, longitude } = coords;
         geoDataDispatch({ type: ActionType.changeLocation, latitude, longitude });
         if (locationWatchId.current && navigator.geolocation) {
@@ -14,13 +17,13 @@ export const useGeo = (): [geoDataType, () => void] => {
         }
     };
     const error = () => {
-        return { error: "you must accept the location to use the application" };
+        throw new Error("Location consent required for application");
     };
 
     const toggleListening = (): void => {
         if (!navigator.geolocation) {
             // alert("not supported");
-            throw new Error("not supported");
+            throw new Error("Navigation is not supported");
         }
         if (isToggle) {
             geoDataDispatch({ type: ActionType.toggleListeningLocation, isToggle: false });
@@ -30,6 +33,7 @@ export const useGeo = (): [geoDataType, () => void] => {
             locationWatchId.current = navigator.geolocation.watchPosition(success, error);
         } else {
             geoDataDispatch({ type: ActionType.resetLocation });
+            alert("navigation is turned off");
         }
     };
     return [geoData, toggleListening];
