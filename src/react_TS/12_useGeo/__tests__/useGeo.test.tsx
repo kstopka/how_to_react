@@ -32,7 +32,9 @@ describe("useGeo hook properly handles errors", () => {
     it("throw error when device has no navigation", () => {
         expect(() => {
             const { result } = renderHook(useGeo);
-            const [{ latitude, longitude }, toggleListening] = result.current;
+            //NOTE: co lepsze ? \/
+            // const [{}, toggleListening] = result.current;
+            const toggleListening = result.current[1];
             act(() => {
                 toggleListening();
             });
@@ -42,7 +44,7 @@ describe("useGeo hook properly handles errors", () => {
     it("throw error when someone wants to read the location if they haven't agreed to listen", () => {
         expect(() => {
             const { result } = renderHook(useGeo);
-            const [{ latitude, longitude }, toggleListening] = result.current;
+            const toggleListening = result.current[1];
             const { watchPositionMock } = mockNavigatorGeolocation();
             watchPositionMock.mockImplementationOnce((success, rejected) => rejected());
             act(() => {
@@ -54,7 +56,7 @@ describe("useGeo hook properly handles errors", () => {
     it("throw error when a navigation read error has occurred", () => {
         expect(() => {
             const { result } = renderHook(useGeo);
-            const [{ latitude, longitude }, toggleListening] = result.current;
+            const toggleListening = result.current[1];
             const { watchPositionMock } = mockNavigatorGeolocation();
             watchPositionMock.mockImplementationOnce((success, rejected) =>
                 success({
@@ -103,8 +105,8 @@ describe("useGeo hook works correctly", () => {
         );
         const { result } = renderHook(useGeo);
         let [{ latitude, longitude }, toggleListening] = result.current;
-        expect(latitude).toBe(null);
-        expect(longitude).toBe(null);
+        expect(latitude).toBeNull();
+        expect(longitude).toBeNull();
         // const toggleListening = result.current[1];
         act(() => {
             toggleListening();
@@ -121,24 +123,24 @@ describe("useGeo hook works correctly", () => {
         const { result } = renderHook(useGeo);
         const [{ latitude, longitude }] = result.current;
 
-        expect(latitude).toBe(null);
-        expect(longitude).toBe(null);
+        expect(latitude).toBeNull();
+        expect(longitude).toBeNull();
     });
     // zwraca informację jeśli nawigacja jest wyłączona
     it("returns information if navigation is turned off", () => {
         //TODO:
         const { result } = renderHook(useGeo);
-        const [{ latitude, longitude }, toggleListening] = result.current;
-        const alertMock = jest.spyOn(window, "alert");
+        const toggleListening = result.current[1];
+        // const alertMock = jest.spyOn(window, "alert");
 
         act(() => {
             toggleListening();
-            // throw new Error("you must accept the location to use the application");
         });
         act(() => {
             toggleListening();
         });
     });
+
     // mozna właczyć i wyłaczyć nasłuch nawigacji
     it("can turn navigation on or off", () => {
         const { watchPositionMock } = mockNavigatorGeolocation();
@@ -151,7 +153,7 @@ describe("useGeo hook works correctly", () => {
             })
         );
         const { result } = renderHook(useGeo);
-        const [{ latitude, longitude }, toggleListening] = result.current;
+        const toggleListening = result.current[1];
 
         act(() => {
             toggleListening();
