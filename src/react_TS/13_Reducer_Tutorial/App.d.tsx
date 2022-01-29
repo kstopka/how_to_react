@@ -25,6 +25,11 @@ export interface IInitialStateCart {
     cartProductList: ICartProduct[];
 }
 
+export interface IContextInitialCart {
+    stateCart: IInitialStateCart;
+    dispatchCart: React.Dispatch<ActionsCart>;
+}
+
 export enum ActionType {
     ProductFromAPI,
     AdditionProduct,

@@ -3,15 +3,15 @@ import React from "react";
 export interface Values {
     [key: string]: string;
 }
-export interface PasswordState {
+export interface IInitialStatePassowrd {
     indexes: number[];
     values: Values;
     onSuccess: boolean;
 }
 
-export type PasswordContextType = {
-    passwordState: PasswordState;
-    dispatchPasswordState: React.Dispatch<PasswordActions>;
+export type ContextPasswordType = {
+    statePassword: IInitialStatePassowrd;
+    dispatchPassword: React.Dispatch<ActionsCart>;
 };
 
 export enum ActionType {
@@ -33,4 +33,4 @@ export interface setOnSuccess {
     payload: { isSuccess: boolean };
 }
 
-export type PasswordActions = setInitialPassword | setValue | setOnSuccess;
+export type ActionsCart = setInitialPassword | setValue | setOnSuccess;

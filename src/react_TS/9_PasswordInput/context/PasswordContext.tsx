@@ -1,17 +1,15 @@
 import { createContext, useReducer } from "react";
-import { passwordReducer, initialPasswordState } from "../reducer/passwordReducer";
-import { PasswordContextType } from "../App.d";
+import { passwordReducer, initialStatePassword } from "../reducer/passwordReducer";
+import { ContextPasswordType } from "../App.d";
 
-const PasswordContextInitial: PasswordContextType = {
-    passwordState: initialPasswordState,
-    dispatchPasswordState: () => null,
+const ContextInitialPassword: ContextPasswordType = {
+    statePassword: initialStatePassword,
+    dispatchPassword: () => null,
 };
 
-export const PasswordContext = createContext(PasswordContextInitial);
+export const ContextPassword = createContext(ContextInitialPassword);
 
 export const PasswordProvider = ({ children }: { children: any }) => {
-    const [passwordState, dispatchPasswordState] = useReducer(passwordReducer, initialPasswordState);
-    return (
-        <PasswordContext.Provider value={{ passwordState, dispatchPasswordState }}>{children}</PasswordContext.Provider>
-    );
+    const [statePassword, dispatchPassword] = useReducer(passwordReducer, initialStatePassword);
+    return <ContextPassword.Provider value={{ statePassword, dispatchPassword }}>{children}</ContextPassword.Provider>;
 };

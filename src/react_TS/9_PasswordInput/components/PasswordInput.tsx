@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import SingleInput from "./SingleInput";
-import { PasswordContext } from "../context/PasswordContext";
+import { ContextPassword } from "../context/PasswordContext";
 import { usePassword } from "../hooks/usePassword";
 import { ActionType } from "../App.d";
 import "../css/style.css";
@@ -58,8 +58,8 @@ interface PasswordInputProps {
 
 const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
     const [showPassword, setShowPassword] = useState(true);
-    const { passwordState, dispatchPasswordState } = useContext(PasswordContext);
-    const { indexes, values, onSuccess } = passwordState;
+    const { statePassword, dispatchPassword } = useContext(ContextPassword);
+    const { indexes, values, onSuccess } = statePassword;
 
     usePassword(password);
 
@@ -77,7 +77,7 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({ password }) => {
         const checkIndexes = !indexes.some((item) => values[item] === "");
         if (!checkIndexes) {
             const isSuccess = indexes.every((item) => splitedPassword[item] === values[item]);
-            dispatchPasswordState({ type: ActionType.setOnSuccess, payload: { isSuccess } });
+            dispatchPassword({ type: ActionType.setOnSuccess, payload: { isSuccess } });
         }
     }, [values]);
 

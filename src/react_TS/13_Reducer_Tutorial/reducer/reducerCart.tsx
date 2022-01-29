@@ -8,8 +8,8 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
         case ActionType.AdditionProduct: {
             console.log(action.payload.index);
             // const quantityToChange = state.cartProductList[action.payload.index].quantity
-            state.cartProductList[action.payload.index].quantity += 1000;
-            console.log(state.cartProductList[action.payload.index].quantity);
+            // state.cartProductList[action.payload.index].quantity += 1000;
+            // console.log(state.cartProductList[action.payload.index].quantity);
             return {
                 ...state,
                 cartProductList: [...state.cartProductList],

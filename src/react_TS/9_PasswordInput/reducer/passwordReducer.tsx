@@ -1,6 +1,6 @@
-import { PasswordState, PasswordActions, ActionType } from "../App.d";
+import { IInitialStatePassowrd, ActionsCart, ActionType } from "../App.d";
 
-export const passwordReducer = (state: PasswordState, action: PasswordActions) => {
+export const passwordReducer = (state: IInitialStatePassowrd, action: ActionsCart) => {
     switch (action.type) {
         case ActionType.setInitialPassword: {
             const { value, index } = action.payload;
@@ -39,7 +39,7 @@ export const passwordReducer = (state: PasswordState, action: PasswordActions) =
     }
 };
 
-export const initialPasswordState: PasswordState = {
+export const initialStatePassword: IInitialStatePassowrd = {
     indexes: [],
     values: {},
     onSuccess: false,

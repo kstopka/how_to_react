@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { PasswordContext } from "../context/PasswordContext";
+import { ContextPassword } from "../context/PasswordContext";
 import { ActionType } from "../App.d";
 // import { Values, ActionType } from "../App.d";
 
@@ -39,13 +39,13 @@ const getRandomIndexesOfPassword = (password: string) => {
 };
 
 export const usePassword = (password: string) => {
-    const { dispatchPasswordState } = useContext(PasswordContext);
+    const { dispatchPassword } = useContext(ContextPassword);
 
     useEffect(() => {
         const { indexes } = getRandomIndexesOfPassword(password);
 
         indexes.forEach((item) =>
-            dispatchPasswordState({ type: ActionType.setInitialPassword, payload: { index: item, value: "" } })
+            dispatchPassword({ type: ActionType.setInitialPassword, payload: { index: item, value: "" } })
         );
     }, [password]);
 };
