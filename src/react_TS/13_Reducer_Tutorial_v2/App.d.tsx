@@ -75,6 +75,7 @@ export type ActionsProduct = ProductFromAPI | AdditionProduct | SubtractionProdu
 export enum ActionTypeCart {
     AdditionToCart,
     RemoveFromCart,
+    ChangeQuantity,
 }
 export interface AdditionToCart {
     type: ActionTypeCart.AdditionToCart;
@@ -82,7 +83,12 @@ export interface AdditionToCart {
 }
 export interface RemoveFromCart {
     type: ActionTypeCart.RemoveFromCart;
-    cartProduct: ICartProduct;
+    id: string;
+}
+export interface ChangeQuantity {
+    type: ActionTypeCart.ChangeQuantity;
+    id: string;
+    mode: string;
 }
 
-export type ActionsCart = AdditionToCart | RemoveFromCart;
+export type ActionsCart = AdditionToCart | RemoveFromCart | ChangeQuantity;

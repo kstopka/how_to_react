@@ -7,7 +7,7 @@ interface ProductProps {
 }
 
 const Product: FunctionComponent<ProductProps> = ({ product }) => {
-    const { name, price, category } = product;
+    const { price, category } = product;
     return (
         <div className="product">
             <p>price: {price}</p>

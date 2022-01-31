@@ -23,8 +23,8 @@ const Cart: FunctionComponent<CartProps> = () => {
         const addProduct = (cartProduct: ICartProduct) => {
             dispatchCart({ type: ActionTypeCart.AdditionToCart, cartProduct });
         };
-        const removeProduct = (cartProduct: ICartProduct) => {
-            dispatchCart({ type: ActionTypeCart.RemoveFromCart, cartProduct });
+        const removeProduct = (id: string) => {
+            dispatchCart({ type: ActionTypeCart.RemoveFromCart, id });
         };
         const returnCartProduct = () => {
             return stateCart.cartProductList.find((item) => item.product.id === cartProduct.product.id);
@@ -35,8 +35,12 @@ const Cart: FunctionComponent<CartProps> = () => {
                 {cartProduct.product.name}
                 {corretctCartProduct ? (
                     <div>
-                        <CartProduct key={cartProduct.product.id} cartProduct={corretctCartProduct} />
-                        <button onClick={() => removeProduct(cartProduct)}>Remove from Cart</button>
+                        <CartProduct
+                            key={cartProduct.product.id}
+                            cartProduct={corretctCartProduct}
+                            maxQuantity={cartProduct.quantity}
+                        />
+                        <button onClick={() => removeProduct(cartProduct.product.id)}>Remove from Cart</button>
                     </div>
                 ) : (
                     <button onClick={() => addProduct(cartProduct)}>Add to Cart</button>
@@ -45,7 +49,14 @@ const Cart: FunctionComponent<CartProps> = () => {
         );
     });
 
-    return <ul className="cart">{cartProducts}</ul>;
+    return (
+        <ul className="cart">
+            {cartProducts}
+            {/*         this.discountCart = this.changeValueToPercent(discountCart);
+        this.discountCode = discountCode;
+        this.totalCartPrice = this.calcTotalCartPrice(); */}
+        </ul>
+    );
 };
 
 export default Cart;

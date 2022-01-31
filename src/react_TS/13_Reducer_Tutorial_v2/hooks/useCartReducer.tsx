@@ -16,5 +16,5 @@ export const useCartReducer = () => {
         dispatchProduct({ type: ActionTypeProduct.SubtractionAllProduct, index });
     };
 
-    return { stateCart: stateProduct, addition, subtraction, subtractionAllProduct };
+    return { stateProduct, addition, subtraction, subtractionAllProduct };
 };
