@@ -9,7 +9,7 @@ const ContextInitialProduct: IContextInitialProduct = {
 
 export const ContextProduct = createContext(ContextInitialProduct);
 
-export const ProviderCart = ({ children }: { children: any }) => {
+export const ProviderProduct = ({ children }: { children: any }) => {
     const [stateProduct, dispatchProduct] = useReducer(reducerProduct, initialStateProduct);
     return <ContextProduct.Provider value={{ stateProduct, dispatchProduct }}>{children}</ContextProduct.Provider>;
 };

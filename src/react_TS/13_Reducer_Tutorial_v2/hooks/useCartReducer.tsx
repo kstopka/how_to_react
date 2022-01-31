@@ -1,20 +1,20 @@
 import { useContext, useEffect, useReducer } from "react";
 import { ContextProduct } from "../context/contextProduct";
-import { ActionType } from "../App.d";
+import { ActionTypeProduct } from "../App.d";
 
 export const useCartReducer = () => {
-    const { stateProduct: stateCart, dispatchProduct: dispatchCart } = useContext(ContextProduct);
+    const { stateProduct, dispatchProduct } = useContext(ContextProduct);
 
     const addition = (index: number) => {
-        dispatchCart({ type: ActionType.AdditionProduct, index });
+        dispatchProduct({ type: ActionTypeProduct.AdditionProduct, index });
     };
 
     const subtraction = (index: number) => {
-        dispatchCart({ type: ActionType.SubtractionProduct, index });
+        dispatchProduct({ type: ActionTypeProduct.SubtractionProduct, index });
     };
     const subtractionAllProduct = (index: number) => {
-        dispatchCart({ type: ActionType.SubtractionAllProduct, index });
+        dispatchProduct({ type: ActionTypeProduct.SubtractionAllProduct, index });
     };
 
-    return { stateCart, addition, subtraction, subtractionAllProduct };
+    return { stateCart: stateProduct, addition, subtraction, subtractionAllProduct };
 };

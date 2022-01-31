@@ -18,19 +18,31 @@ export interface ICart {
     cartProductList: ICartProduct[];
     discountCart: number;
     discountCode: boolean;
-    // totalCartPrice: number;
+    totalCartPrice: number;
 }
 
 export interface IInitialStateProduct {
     cartProductList: ICartProduct[];
 }
 
+export interface IInitialStateCart {
+    id: string;
+    cartProductList: ICartProduct[];
+    discountCart: number;
+    discountCode: boolean;
+    totalCartPrice: number;
+}
+
 export interface IContextInitialProduct {
     stateProduct: IInitialStateProduct;
     dispatchProduct: React.Dispatch<ActionsProduct>;
 }
+export interface IContextInitialCart {
+    stateCart: IInitialStateCart;
+    dispatchCart: React.Dispatch<ActionsCart>;
+}
 
-export enum ActionType {
+export enum ActionTypeProduct {
     ProductFromAPI,
     AdditionProduct,
     SubtractionProduct,
@@ -39,23 +51,38 @@ export enum ActionType {
 }
 
 export interface ProductFromAPI {
-    type: ActionType.ProductFromAPI;
+    type: ActionTypeProduct.ProductFromAPI;
     cartProductList: ICartProduct[];
 }
 export interface AdditionProduct {
-    type: ActionType.AdditionProduct;
+    type: ActionTypeProduct.AdditionProduct;
     index: number;
 }
 export interface SubtractionProduct {
-    type: ActionType.SubtractionProduct;
+    type: ActionTypeProduct.SubtractionProduct;
     index: number;
 }
 export interface SubtractionAllProduct {
-    type: ActionType.SubtractionAllProduct;
+    type: ActionTypeProduct.SubtractionAllProduct;
     index: number;
 }
 export interface SubmitCart {
-    type: ActionType.SubmitCart;
+    type: ActionTypeProduct.SubmitCart;
 }
 
 export type ActionsProduct = ProductFromAPI | AdditionProduct | SubtractionProduct | SubtractionAllProduct | SubmitCart;
+
+export enum ActionTypeCart {
+    AdditionToCart,
+    RemoveFromCart,
+}
+export interface AdditionToCart {
+    type: ActionTypeCart.AdditionToCart;
+    cartProduct: ICartProduct;
+}
+export interface RemoveFromCart {
+    type: ActionTypeCart.RemoveFromCart;
+    cartProduct: ICartProduct;
+}
+
+export type ActionsCart = AdditionToCart | RemoveFromCart;

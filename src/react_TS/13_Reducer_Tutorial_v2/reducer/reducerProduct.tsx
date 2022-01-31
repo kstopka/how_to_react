@@ -1,11 +1,11 @@
-import { ActionsProduct, ActionType, IInitialStateProduct } from "../App.d";
+import { ActionsProduct, ActionTypeProduct, IInitialStateProduct } from "../App.d";
 
 export const reducerProduct = (state: IInitialStateProduct, action: ActionsProduct) => {
     switch (action.type) {
-        case ActionType.ProductFromAPI: {
+        case ActionTypeProduct.ProductFromAPI: {
             return { ...state, cartProductList: action.cartProductList };
         }
-        case ActionType.AdditionProduct: {
+        case ActionTypeProduct.AdditionProduct: {
             const { cartProductList } = state;
             const { index } = action;
             cartProductList[index].quantity = cartProductList[index].quantity + 0.5;
@@ -15,7 +15,7 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
                 // cartProductList: [...cartProductList],
             };
         }
-        case ActionType.SubtractionProduct: {
+        case ActionTypeProduct.SubtractionProduct: {
             const { cartProductList } = state;
             const { index } = action;
             const quantityToChange = cartProductList[index].quantity;
@@ -29,7 +29,7 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
             }
             return { ...state };
         }
-        case ActionType.SubtractionAllProduct: {
+        case ActionTypeProduct.SubtractionAllProduct: {
             const { cartProductList } = state;
             const { index } = action;
             if (cartProductList[index].quantity <= 0) return state;
@@ -37,7 +37,7 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
 
             return { ...state };
         }
-        case ActionType.SubmitCart: {
+        case ActionTypeProduct.SubmitCart: {
             return { ...state };
         }
         default:
