@@ -11,7 +11,7 @@ interface CartProps {}
 
 const Cart: FunctionComponent<CartProps> = () => {
     const { stateProduct, dispatchProduct } = useContext(ContextProduct);
-    const { stateCart, dispatchCart } = useContext(ContextCart);
+    const { stateCart } = useContext(ContextCart);
     const { cartProductList } = stateProduct;
     const { additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } =
         useCartReducer();
