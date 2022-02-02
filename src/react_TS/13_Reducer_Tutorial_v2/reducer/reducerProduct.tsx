@@ -1,4 +1,5 @@
 import { ActionsProduct, ActionTypeProduct, IInitialStateProduct } from "../App.d";
+import { Validator } from "../Validator";
 
 export const reducerProduct = (state: IInitialStateProduct, action: ActionsProduct) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
@@ -10,9 +11,7 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
             const index = showIndex(action.id);
             const cartQuantity = action.quantity;
             const dataQuantity = state.cartProductList[index].quantity;
-            if (cartQuantity > dataQuantity) {
-                throw new Error("The value is too high, you cant't buy that much");
-            }
+            Validator.throwErrorIfTheseNumbersCannotBeSubtracted(cartQuantity, dataQuantity, "quantity");
             const quantity = dataQuantity - cartQuantity;
 
             return {

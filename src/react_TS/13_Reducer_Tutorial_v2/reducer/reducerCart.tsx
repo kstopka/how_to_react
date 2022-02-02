@@ -1,4 +1,5 @@
 import { IInitialStateCart, ActionTypeCart, ActionsCart } from "../App.d";
+import { Validator } from "../Validator";
 
 export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
@@ -49,18 +50,13 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
                 discountCode: !state.discountCode,
             };
         }
-        //TODO: powinno byc w reducer product
         case ActionTypeCart.ChangeProductValue: {
             const index = showIndex(action.id);
             const cartProduct = state.cartProductList[index];
             const { product, quantity, discount } = cartProduct;
-            if (product.price < 0) {
-                throw new Error("The price value cannot be less than 0");
-            }
+            Validator.throwErrorIfLessThanZero(product.price, "price");
             const totalValue = quantity * product.price;
-            if (cartProduct.discount > 100) {
-                throw new Error("The discount cannot be greater than 100 percent");
-            }
+            Validator.throwErrorIfGreaterThanOneHundred(discount, "discount");
 
             const discountPercent = (100 - discount) / 100;
             const totalValueWithDiscount = totalValue * discountPercent;
@@ -73,9 +69,8 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
         }
         case ActionTypeCart.ChangeCartValue: {
             const { cartProductList, discountCode, discountCart } = state;
-            if (discountCart > 100) {
-                throw new Error("The discount cannot be greater than 100 percent");
-            }
+
+            Validator.throwErrorIfGreaterThanOneHundred(discountCart, "discount of cart");
             const discountPercent = (100 - discountCart) / 100;
 
             let totalCartPrice = cartProductList.reduce(
