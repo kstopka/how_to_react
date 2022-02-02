@@ -1,6 +1,12 @@
 import { IInitialStateCart, ActionTypeCart, ActionsCart } from "../App.d";
 import { Validator } from "../Validator";
 
+const actionOnQty = {
+    addition: 1,
+    subtraction: -1,
+    start: 0,
+};
+
 export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
     switch (action.type) {
@@ -14,6 +20,7 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
             return {
                 ...state,
                 //NOTE sprawdzić slice
+                //filter robi kopie
                 cartProductList: [...state.cartProductList.filter((item) => item.product.id !== action.id)],
             };
         }
@@ -23,6 +30,14 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
             const quantityToChange = state.cartProductList[index].quantity;
 
             let quantity: number;
+            // mode jako
+
+            if (actionOnQty[mode] == 0) {
+                quantity = 1;
+            } else {
+                quantity = quantityToChange + actionOnQty[mode];
+            }
+
             if (mode === "addition") {
                 //NOTE: validajca? przyciski do zmiany wyłączają się kiedy trzeba
                 quantity = quantityToChange + 1;

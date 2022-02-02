@@ -9,6 +9,8 @@ import { ContextCart } from "../context/contextCart";
 
 interface CartProps {}
 
+//prodacts data
+
 const Cart: FunctionComponent<CartProps> = () => {
     const { stateProduct, dispatchProduct } = useContext(ContextProduct);
     const { stateCart } = useContext(ContextCart);

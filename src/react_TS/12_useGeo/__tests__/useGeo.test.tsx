@@ -110,6 +110,7 @@ describe("useGeo hook works correctly", () => {
         // const toggleListening = result.current[1];
         act(() => {
             toggleListening();
+            //
         });
         // const { latitude, longitude } = result.current[0];
         latitude = result.current[0].latitude;
@@ -144,6 +145,8 @@ describe("useGeo hook works correctly", () => {
     // mozna właczyć i wyłaczyć nasłuch nawigacji
     it("can turn navigation on or off", () => {
         const { watchPositionMock } = mockNavigatorGeolocation();
+        // stanem
+        // nasluch na odpalony success
         watchPositionMock.mockImplementationOnce((success, rejected) =>
             success({
                 coords: {

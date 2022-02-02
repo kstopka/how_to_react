@@ -3,13 +3,28 @@ import { IContextInitialCart } from "../App.d";
 import { initialStateCart, reducerCart } from "../reducer/reducerCart";
 
 const ContextInitialCart: IContextInitialCart = {
-    stateCart: initialStateCart,
+    cart: initialStateCart,
     dispatchCart: () => null,
 };
 
 export const ContextCart = createContext(ContextInitialCart);
 
 export const ProviderCart = ({ children }: { children: any }) => {
-    const [stateCart, dispatchCart] = useReducer(reducerCart, initialStateCart);
-    return <ContextCart.Provider value={{ stateCart, dispatchCart }}>{children}</ContextCart.Provider>;
+    const [cart, dispatch] = useReducer(reducerCart, initialStateCart);
+
+    const cleanCart = ()=> {
+        dispatch({...})
+    }
+
+    useEffect(()=>{
+        // ...
+    },[])
+
+    // wyczyscic koszyk
+    // dodac do koszyka
+    // zmienic ilosc pozycji
+    // usunac z koszyka
+    // dodac rabat
+
+    return <ContextCart.Provider value={{ cart, dispatch }}>{children}</ContextCart.Provider>;
 };
