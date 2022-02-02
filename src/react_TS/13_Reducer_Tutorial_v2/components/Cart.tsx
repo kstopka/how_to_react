@@ -2,48 +2,59 @@ import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
 import dataCart from "../data/data.json";
 import CartProduct from "./CartProduct";
-import { ContextCart } from "../context/contextCart";
 import { ContextProduct } from "../context/contextProduct";
 import { ActionTypeCart, ActionTypeProduct, ICartProduct } from "../App.d";
+import { useCartReducer } from "../hooks/useCartReducer";
+import { ContextCart } from "../context/contextCart";
 
 interface CartProps {}
 
 const Cart: FunctionComponent<CartProps> = () => {
     const { stateProduct, dispatchProduct } = useContext(ContextProduct);
     const { stateCart, dispatchCart } = useContext(ContextCart);
+    const { cartProductList } = stateProduct;
+    const { additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart } = useCartReducer();
 
-    // const { stateCart, additionProduct } = useCartReducer(dataCart.cart.cartProductList);
     useEffect(() => {
         const cartProductList: ICartProduct[] = dataCart.cartProductList;
         dispatchProduct({ type: ActionTypeProduct.ProductFromAPI, cartProductList });
     }, [dispatchProduct]);
-    const { cartProductList } = stateProduct;
 
-    const cartProducts = cartProductList.map((cartProduct, index) => {
-        const addProduct = (cartProduct: ICartProduct) => {
-            dispatchCart({ type: ActionTypeCart.AdditionToCart, cartProduct });
-        };
-        const removeProduct = (id: string) => {
-            dispatchCart({ type: ActionTypeCart.RemoveFromCart, id });
-        };
+    useEffect(() => {
+        dispatchCart({ type: ActionTypeCart.ChangeCartValue });
+    }, [dispatchCart, stateCart.cartProductList, stateCart.discountCode]);
+
+    const cartProducts = cartProductList.map((cartProduct) => {
         const returnCartProduct = () => {
             return stateCart.cartProductList.find((item) => item.product.id === cartProduct.product.id);
         };
-        const corretctCartProduct = returnCartProduct();
+        const addedProductToCart = returnCartProduct();
+
+        const checkDisabled = () => {
+            if (cartProduct.quantity === 0) {
+                return true;
+            }
+            return false;
+        };
+        const isDisabledButtonAdd = checkDisabled();
+
         return (
             <li>
                 {cartProduct.product.name}
-                {corretctCartProduct ? (
+                {addedProductToCart ? (
                     <div>
+                        {/* key ?? */}
                         <CartProduct
                             key={cartProduct.product.id}
-                            cartProduct={corretctCartProduct}
+                            cartProduct={addedProductToCart}
                             maxQuantity={cartProduct.quantity}
                         />
                         <button onClick={() => removeProduct(cartProduct.product.id)}>Remove from Cart</button>
                     </div>
                 ) : (
-                    <button onClick={() => addProduct(cartProduct)}>Add to Cart</button>
+                    <button onClick={() => additionProduct(cartProduct)} disabled={isDisabledButtonAdd}>
+                        Add to Cart
+                    </button>
                 )}
             </li>
         );
@@ -52,11 +63,15 @@ const Cart: FunctionComponent<CartProps> = () => {
     return (
         <ul className="cart">
             {cartProducts}
-            {/*         this.discountCart = this.changeValueToPercent(discountCart);
-        this.discountCode = discountCode;
-        this.totalCartPrice = this.calcTotalCartPrice(); */}
+            <button onClick={subtractionAllProduct}>ClearCart</button>
+            <button onClick={changeDiscountCode}>Get Discount Code</button>
+            <p>totalCartPrice {stateCart.totalCartPrice.toFixed(2)}</p>
+            <button onClick={submittCart}>Submit</button>
         </ul>
     );
 };
 
 export default Cart;
+
+// discount od 0 do 100
+// quantity policzalne

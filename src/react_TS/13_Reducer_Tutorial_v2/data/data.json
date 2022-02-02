@@ -7,8 +7,10 @@
                 "id": "c7fa1f6f-3666-41a9-8146-516cb0ccb2d0",
                 "category": "category"
             },
-            "quantity": 10,
-            "discount": 10
+            "quantity": 3,
+            "discount": 12,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         },
         {
             "product": {
@@ -17,8 +19,10 @@
                 "id": "5ce09ecf-01ba-4177-95ab-dddb64f987e3",
                 "category": "category"
             },
-            "quantity": 10,
-            "discount": 10
+            "quantity": 0,
+            "discount": 5,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         },
         {
             "product": {
@@ -28,7 +32,9 @@
                 "category": "category"
             },
             "quantity": 5,
-            "discount": 10
+            "discount": 20,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         },
         {
             "product": {
@@ -37,8 +43,10 @@
                 "id": "9b5911d6-6917-41ca-9316-eaef1cec053b",
                 "category": "category"
             },
-            "quantity": 8,
-            "discount": 10
+            "quantity": 89,
+            "discount": 33,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         },
         {
             "product": {
@@ -48,7 +56,9 @@
                 "category": "category"
             },
             "quantity": 2,
-            "discount": 10
+            "discount": 15,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         },
         {
             "product": {
@@ -57,8 +67,10 @@
                 "id": "5c727bb9-f3a2-42c4-a714-a017ee1993e4",
                 "category": "category"
             },
-            "quantity": 6,
-            "discount": 10
+            "quantity": 60,
+            "discount": 101,
+            "totalValue": 0,
+            "totalValueWithDiscount": 0
         }
     ]
 }

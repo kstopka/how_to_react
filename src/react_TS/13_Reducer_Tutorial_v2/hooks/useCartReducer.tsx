@@ -1,20 +1,37 @@
-import { useContext, useEffect, useReducer } from "react";
+import { useContext } from "react";
+import { ActionTypeCart, ActionTypeProduct, ICartProduct } from "../App.d";
+import { ContextCart } from "../context/contextCart";
 import { ContextProduct } from "../context/contextProduct";
-import { ActionTypeProduct } from "../App.d";
 
 export const useCartReducer = () => {
-    const { stateProduct, dispatchProduct } = useContext(ContextProduct);
+    const { stateCart, dispatchCart } = useContext(ContextCart);
+    const { dispatchProduct } = useContext(ContextProduct);
 
-    const addition = (index: number) => {
-        dispatchProduct({ type: ActionTypeProduct.AdditionProduct, index });
+    const additionProduct = (cartProduct: ICartProduct) => {
+        const { id } = cartProduct.product;
+        dispatchCart({ type: ActionTypeCart.AdditionToCart, cartProduct });
+        dispatchCart({ type: ActionTypeCart.ChangeQuantity, id, mode: "start" });
     };
 
-    const subtraction = (index: number) => {
-        dispatchProduct({ type: ActionTypeProduct.SubtractionProduct, index });
+    const removeProduct = (id: string) => {
+        dispatchCart({ type: ActionTypeCart.RemoveFromCart, id });
     };
-    const subtractionAllProduct = (index: number) => {
-        dispatchProduct({ type: ActionTypeProduct.SubtractionAllProduct, index });
+    const subtractionAllProduct = () => {
+        dispatchCart({ type: ActionTypeCart.ClearCart });
+    };
+    const submittCart = () => {
+        // moze reduce ?
+        stateCart.cartProductList.forEach((element) => {
+            const { quantity, product } = element;
+            const { id } = product;
+            dispatchProduct({ type: ActionTypeProduct.ChangeProductQuantity, quantity, id });
+        });
+        dispatchCart({ type: ActionTypeCart.ClearCart });
     };
 
-    return { stateProduct, addition, subtraction, subtractionAllProduct };
+    const changeDiscountCode = () => {
+        dispatchCart({ type: ActionTypeCart.ChangeDiscountCode });
+    };
+
+    return { stateCart, additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart };
 };

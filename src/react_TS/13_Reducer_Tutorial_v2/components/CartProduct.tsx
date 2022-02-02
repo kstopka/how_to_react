@@ -1,11 +1,7 @@
-import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
 import { ContextCart } from "../context/contextCart";
-import { ContextProduct } from "../context/contextProduct";
-import { useCalculateCartProduct } from "../hooks/useCalculateCartProduct";
-import { useCartReducer } from "../hooks/useCartReducer";
 import Product from "./Product";
-import { ICartProduct, IInitialStateProduct, ActionTypeCart } from "../App.d";
+import { ICartProduct, ActionTypeCart } from "../App.d";
 
 interface CartProductProps {
     cartProduct: ICartProduct;
@@ -16,9 +12,12 @@ const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuan
     const { stateCart, dispatchCart } = useContext(ContextCart);
 
     const { product, quantity, discount } = cartProduct;
-    const { id } = product;
-    const { stateProduct, addition, subtraction, subtractionAllProduct } = useCartReducer();
-    const { totalValue, totalValueWithDiscount } = useCalculateCartProduct(cartProduct);
+    const { id, price } = product;
+    const { totalValue, totalValueWithDiscount } = stateCart.cartProductList[0];
+
+    useEffect(() => {
+        dispatchCart({ type: ActionTypeCart.ChangeProductValue, id });
+    }, [price, quantity, discount, dispatchCart, id]);
 
     return (
         <div className="cart-product">

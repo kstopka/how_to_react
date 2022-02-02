@@ -9,8 +9,8 @@ export interface ICartProduct {
     product: IProduct;
     quantity: number;
     discount: number;
-    // totalValue: number | null;
-    // totalValueWithDiscount: number | null;
+    totalValue: number;
+    totalValueWithDiscount: number;
 }
 
 export interface ICart {
@@ -44,38 +44,29 @@ export interface IContextInitialCart {
 
 export enum ActionTypeProduct {
     ProductFromAPI,
-    AdditionProduct,
-    SubtractionProduct,
-    SubtractionAllProduct,
-    SubmitCart,
+    ChangeProductQuantity,
 }
 
 export interface ProductFromAPI {
     type: ActionTypeProduct.ProductFromAPI;
     cartProductList: ICartProduct[];
 }
-export interface AdditionProduct {
-    type: ActionTypeProduct.AdditionProduct;
-    index: number;
-}
-export interface SubtractionProduct {
-    type: ActionTypeProduct.SubtractionProduct;
-    index: number;
-}
-export interface SubtractionAllProduct {
-    type: ActionTypeProduct.SubtractionAllProduct;
-    index: number;
-}
-export interface SubmitCart {
-    type: ActionTypeProduct.SubmitCart;
+export interface ChangeProductQuantity {
+    type: ActionTypeProduct.ChangeProductQuantity;
+    id: string;
+    quantity: number;
 }
 
-export type ActionsProduct = ProductFromAPI | AdditionProduct | SubtractionProduct | SubtractionAllProduct | SubmitCart;
+export type ActionsProduct = ProductFromAPI | ChangeProductQuantity;
 
 export enum ActionTypeCart {
     AdditionToCart,
     RemoveFromCart,
     ChangeQuantity,
+    ClearCart,
+    ChangeDiscountCode,
+    ChangeProductValue,
+    ChangeCartValue,
 }
 export interface AdditionToCart {
     type: ActionTypeCart.AdditionToCart;
@@ -90,5 +81,25 @@ export interface ChangeQuantity {
     id: string;
     mode: string;
 }
+export interface ClearCart {
+    type: ActionTypeCart.ClearCart;
+}
+export interface ChangeDiscountCode {
+    type: ActionTypeCart.ChangeDiscountCode;
+}
+export interface ChangeProductValue {
+    type: ActionTypeCart.ChangeProductValue;
+    id: string;
+}
+export interface ChangeCartValue {
+    type: ActionTypeCart.ChangeCartValue;
+}
 
-export type ActionsCart = AdditionToCart | RemoveFromCart | ChangeQuantity;
+export type ActionsCart =
+    | AdditionToCart
+    | RemoveFromCart
+    | ChangeQuantity
+    | ClearCart
+    | ChangeDiscountCode
+    | ChangeProductValue
+    | ChangeCartValue;
