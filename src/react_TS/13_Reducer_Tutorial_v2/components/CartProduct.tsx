@@ -38,8 +38,8 @@ const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuan
                 </button>
             )}
             <p>Discount: {discount}%</p>
-            <p>totalValue: {totalValue ? totalValue.toFixed(2) : ""}</p>
-            <p>totalValueWithDiscount:{totalValueWithDiscount ? totalValueWithDiscount.toFixed(2) : ""} </p>
+            <p>totalValue: {totalValue >= 0 ? totalValue.toFixed(2) : ""}</p>
+            <p>totalValueWithDiscount:{totalValueWithDiscount >= 0 ? totalValueWithDiscount.toFixed(2) : ""} </p>
         </div>
     );
 };

@@ -17,13 +17,17 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
             };
         }
         case ActionTypeCart.ChangeQuantity: {
-            const index = showIndex(action.id);
+            const { mode, id } = action;
+            const index = showIndex(id);
+            const quantityToChange = state.cartProductList[index].quantity;
+
             let quantity: number;
-            if (action.mode === "addition") {
-                quantity = state.cartProductList[index].quantity + 1;
-            } else if (action.mode === "subtraction") {
-                quantity = state.cartProductList[index].quantity - 1;
-            } else if (action.mode === "start") {
+            if (mode === "addition") {
+                //NOTE: validajca? przyciski do zmiany wyłączają się kiedy trzeba
+                quantity = quantityToChange + 1;
+            } else if (mode === "subtraction") {
+                quantity = quantityToChange - 1;
+            } else if (mode === "start") {
                 quantity = 1;
             }
             return {
@@ -45,11 +49,20 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
                 discountCode: !state.discountCode,
             };
         }
+        //TODO: powinno byc w reducer product
         case ActionTypeCart.ChangeProductValue: {
             const index = showIndex(action.id);
             const cartProduct = state.cartProductList[index];
-            const totalValue = cartProduct.quantity * cartProduct.product.price;
-            const discountPercent = (100 - cartProduct.discount) / 100;
+            const { product, quantity, discount } = cartProduct;
+            if (product.price < 0) {
+                throw new Error("The price value cannot be less than 0");
+            }
+            const totalValue = quantity * product.price;
+            if (cartProduct.discount > 100) {
+                throw new Error("The discount cannot be greater than 100 percent");
+            }
+
+            const discountPercent = (100 - discount) / 100;
             const totalValueWithDiscount = totalValue * discountPercent;
             return {
                 ...state,
@@ -60,6 +73,9 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
         }
         case ActionTypeCart.ChangeCartValue: {
             const { cartProductList, discountCode, discountCart } = state;
+            if (discountCart > 100) {
+                throw new Error("The discount cannot be greater than 100 percent");
+            }
             const discountPercent = (100 - discountCart) / 100;
 
             let totalCartPrice = cartProductList.reduce(

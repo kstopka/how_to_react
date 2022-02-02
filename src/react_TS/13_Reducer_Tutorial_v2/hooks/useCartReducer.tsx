@@ -33,5 +33,17 @@ export const useCartReducer = () => {
         dispatchCart({ type: ActionTypeCart.ChangeDiscountCode });
     };
 
-    return { stateCart, additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart };
+    const changeCartValue = () => {
+        dispatchCart({ type: ActionTypeCart.ChangeCartValue });
+    };
+
+    return {
+        stateCart,
+        additionProduct,
+        removeProduct,
+        subtractionAllProduct,
+        changeDiscountCode,
+        submittCart,
+        changeCartValue,
+    };
 };

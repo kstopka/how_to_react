@@ -8,7 +8,7 @@
                 "category": "category"
             },
             "quantity": 3,
-            "discount": 12,
+            "discount": 100,
             "totalValue": 0,
             "totalValueWithDiscount": 0
         },

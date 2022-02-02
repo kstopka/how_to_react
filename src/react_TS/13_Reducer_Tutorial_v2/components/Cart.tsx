@@ -13,7 +13,8 @@ const Cart: FunctionComponent<CartProps> = () => {
     const { stateProduct, dispatchProduct } = useContext(ContextProduct);
     const { stateCart, dispatchCart } = useContext(ContextCart);
     const { cartProductList } = stateProduct;
-    const { additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart } = useCartReducer();
+    const { additionProduct, removeProduct, subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } =
+        useCartReducer();
 
     useEffect(() => {
         const cartProductList: ICartProduct[] = dataCart.cartProductList;
@@ -21,8 +22,8 @@ const Cart: FunctionComponent<CartProps> = () => {
     }, [dispatchProduct]);
 
     useEffect(() => {
-        dispatchCart({ type: ActionTypeCart.ChangeCartValue });
-    }, [dispatchCart, stateCart.cartProductList, stateCart.discountCode]);
+        changeCartValue();
+    }, [changeCartValue, stateCart.cartProductList, stateCart.discountCode]);
 
     const cartProducts = cartProductList.map((cartProduct) => {
         const returnCartProduct = () => {

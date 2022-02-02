@@ -8,7 +8,12 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
         }
         case ActionTypeProduct.ChangeProductQuantity: {
             const index = showIndex(action.id);
-            const quantity = state.cartProductList[index].quantity - action.quantity;
+            const cartQuantity = action.quantity;
+            const dataQuantity = state.cartProductList[index].quantity;
+            if (cartQuantity > dataQuantity) {
+                throw new Error("The value is too high, you cant't buy that much");
+            }
+            const quantity = dataQuantity - cartQuantity;
 
             return {
                 ...state,
