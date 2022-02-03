@@ -1,25 +1,25 @@
 import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
 import dataCart from "../data/data.json";
-import { ContextProduct } from "../context/contextProduct";
-import { ActionTypeProduct, ICartProduct } from "../App.d";
+import { ContextProducts } from "../context/contextProducts";
+import { ActionTypeProducts, ICartProducts } from "../App.d";
 import { useCartReducer } from "../hooks/useCartReducer";
 import { ContextCart } from "../context/contextCart";
 import CartList from "./CartList";
 
 interface CartProps {}
 
-//prodacts data
+//products data
 
 const Cart: FunctionComponent<CartProps> = () => {
-    const { stateProduct, dispatchProduct } = useContext(ContextProduct);
+    const { state: stateProduct, dispatch: dispatchProduct } = useContext(ContextProducts);
     const { cart } = useContext(ContextCart);
     const { cartProductList } = stateProduct;
     const { subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } = useCartReducer();
 
     useEffect(() => {
-        const cartProductList: ICartProduct[] = dataCart.cartProductList;
-        dispatchProduct({ type: ActionTypeProduct.ProductFromAPI, cartProductList });
+        const cartProductList: ICartProducts[] = dataCart.cartProductList;
+        dispatchProduct({ type: ActionTypeProducts.ProductFromAPI, cartProductList });
     }, [dispatchProduct]);
 
     useEffect(() => {
@@ -40,6 +40,3 @@ const Cart: FunctionComponent<CartProps> = () => {
 };
 
 export default Cart;
-
-// discount od 0 do 100
-// quantity policzalne

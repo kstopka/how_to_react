@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
-import { ActionTypeCart, ActionTypeProduct, ICartProduct, IContextInitialCart } from "../App.d";
+import { ActionTypeCart, ActionTypeProducts, ICartProducts, IContextInitialCart } from "../App.d";
 import { initialStateCart, reducerCart } from "../reducer/reducerCart";
-import { ContextProduct } from "./contextProduct";
+import { ContextProducts } from "./contextProducts";
 
 const ContextInitialCart: IContextInitialCart = {
     cart: initialStateCart,
@@ -21,8 +21,8 @@ export const ContextCart = createContext(ContextInitialCart);
 
 const actions = {
     additionProduct:
-        (dispatch: (arg0: { type: ActionTypeCart; cartProduct?: ICartProduct; id?: string; mode?: string }) => void) =>
-        (cartProduct: ICartProduct) => {
+        (dispatch: (arg0: { type: ActionTypeCart; cartProduct?: ICartProducts; id?: string; mode?: string }) => void) =>
+        (cartProduct: ICartProducts) => {
             const { id } = cartProduct.product;
             dispatch({ type: ActionTypeCart.AdditionToCart, cartProduct });
             dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "start" });
@@ -35,7 +35,7 @@ const actions = {
         dispatch({ type: ActionTypeCart.ClearCart });
     },
     submittCart:
-        (dispatch: (arg0: { type: ActionTypeCart }) => void, cart: { cartProductList: ICartProduct[] }) => () => {
+        (dispatch: (arg0: { type: ActionTypeCart }) => void, cart: { cartProductList: ICartProducts[] }) => () => {
             // moze reduce ?
             cart.cartProductList.forEach((element) => {
                 const { quantity, product } = element;
@@ -59,7 +59,7 @@ const actions = {
 
 export const ProviderCart = ({ children }: { children: any }) => {
     const [cart, dispatch] = useReducer(reducerCart, initialStateCart);
-    const { dispatchProduct } = useContext(ContextProduct);
+    const { dispatch: dispatchProduct } = useContext(ContextProducts);
 
     // actions.changeCartValue(() => () => {});
     // actions.changeProductValue(dispatch({}))

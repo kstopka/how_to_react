@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import Cart from "./components/Cart";
-import { ProviderProduct } from "./context/contextProduct";
+import { ProviderProduct } from "./context/contextProducts";
 import { ProviderCart } from "./context/contextCart";
 
 interface AppProps {}

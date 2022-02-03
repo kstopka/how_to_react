@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import { ICartProduct } from "../App.d";
+import { ICartProducts } from "../App.d";
 import { useCartList } from "../hooks/useCartList";
 import { useCartReducer } from "../hooks/useCartReducer";
 import CartProduct from "./CartProduct";
 
 interface CartListProps {
-    cartProduct: ICartProduct;
+    cartProduct: ICartProducts;
 }
 
 const CartList: FunctionComponent<CartListProps> = ({ cartProduct }) => {

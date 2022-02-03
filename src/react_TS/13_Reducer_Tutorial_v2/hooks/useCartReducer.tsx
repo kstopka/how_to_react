@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { ActionTypeCart, ActionTypeProduct, ICartProduct } from "../App.d";
+import { ActionTypeCart, ActionTypeProducts, ICartProducts } from "../App.d";
 import { ContextCart } from "../context/contextCart";
-import { ContextProduct } from "../context/contextProduct";
+import { ContextProducts } from "../context/contextProducts";
 
 export const useCartReducer = () => {
     const { cart, dispatch } = useContext(ContextCart);
-    const { dispatchProduct } = useContext(ContextProduct);
+    const { dispatch: dispatchProduct } = useContext(ContextProducts);
 
-    const additionProduct = (cartProduct: ICartProduct) => {
+    const additionProduct = (cartProduct: ICartProducts) => {
         const { id } = cartProduct.product;
         dispatch({ type: ActionTypeCart.AdditionToCart, cartProduct });
         dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "start" });
@@ -24,7 +24,7 @@ export const useCartReducer = () => {
         cart.cartProductList.forEach((element) => {
             const { quantity, product } = element;
             const { id } = product;
-            dispatchProduct({ type: ActionTypeProduct.ChangeProductQuantity, quantity, id });
+            dispatchProduct({ type: ActionTypeProducts.ChangeProductQuantity, quantity, id });
         });
         dispatch({ type: ActionTypeCart.ClearCart });
     };

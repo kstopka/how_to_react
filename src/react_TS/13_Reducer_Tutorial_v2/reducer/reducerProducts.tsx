@@ -1,13 +1,13 @@
-import { ActionsProduct, ActionTypeProduct, IInitialStateProduct } from "../App.d";
+import { ActionsProducts, ActionTypeProducts, IInitialStateProducts } from "../App.d";
 import { Validator } from "../Validator";
 
-export const reducerProduct = (state: IInitialStateProduct, action: ActionsProduct) => {
+export const reducerProducts = (state: IInitialStateProducts, action: ActionsProducts) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
     switch (action.type) {
-        case ActionTypeProduct.ProductFromAPI: {
+        case ActionTypeProducts.ProductFromAPI: {
             return { ...state, cartProductList: action.cartProductList };
         }
-        case ActionTypeProduct.ChangeProductQuantity: {
+        case ActionTypeProducts.ChangeProductQuantity: {
             const index = showIndex(action.id);
             const cartQuantity = action.quantity;
             const dataQuantity = state.cartProductList[index].quantity;
@@ -27,6 +27,6 @@ export const reducerProduct = (state: IInitialStateProduct, action: ActionsProdu
     }
 };
 
-export const initialStateProduct: IInitialStateProduct = {
+export const initialStateProducts: IInitialStateProducts = {
     cartProductList: [],
 };

@@ -5,7 +5,7 @@ export interface IProduct {
     category: string;
 }
 
-export interface ICartProduct {
+export interface ICartProducts {
     product: IProduct;
     quantity: number;
     discount: number;
@@ -15,27 +15,27 @@ export interface ICartProduct {
 
 export interface ICart {
     id: string;
-    cartProductList: ICartProduct[];
+    cartProductList: ICartProducts[];
     discountCart: number;
     discountCode: boolean;
     totalCartPrice: number;
 }
 
-export interface IInitialStateProduct {
-    cartProductList: ICartProduct[];
+export interface IInitialStateProducts {
+    cartProductList: ICartProducts[];
 }
 
 export interface IInitialStateCart {
     id: string;
-    cartProductList: ICartProduct[];
+    cartProductList: ICartProducts[];
     discountCart: number;
     discountCode: boolean;
     totalCartPrice: number;
 }
 
 export interface IContextInitialProduct {
-    stateProduct: IInitialStateProduct;
-    dispatchProduct: React.Dispatch<ActionsProduct>;
+    state: IInitialStateProducts;
+    dispatch: React.Dispatch<ActionsProducts>;
 }
 export interface IContextInitialCart {
     cart: IInitialStateCart;
@@ -43,22 +43,22 @@ export interface IContextInitialCart {
     // actions: IActions;
 }
 
-export enum ActionTypeProduct {
+export enum ActionTypeProducts {
     ProductFromAPI,
     ChangeProductQuantity,
 }
 
 export interface ProductFromAPI {
-    type: ActionTypeProduct.ProductFromAPI;
-    cartProductList: ICartProduct[];
+    type: ActionTypeProducts.ProductFromAPI;
+    cartProductList: ICartProducts[];
 }
 export interface ChangeProductQuantity {
-    type: ActionTypeProduct.ChangeProductQuantity;
+    type: ActionTypeProducts.ChangeProductQuantity;
     id: string;
     quantity: number;
 }
 
-export type ActionsProduct = ProductFromAPI | ChangeProductQuantity;
+export type ActionsProducts = ProductFromAPI | ChangeProductQuantity;
 
 export enum ActionTypeCart {
     AdditionToCart,
@@ -71,7 +71,7 @@ export enum ActionTypeCart {
 }
 export interface AdditionToCart {
     type: ActionTypeCart.AdditionToCart;
-    cartProduct: ICartProduct;
+    cartProduct: ICartProducts;
 }
 export interface RemoveFromCart {
     type: ActionTypeCart.RemoveFromCart;

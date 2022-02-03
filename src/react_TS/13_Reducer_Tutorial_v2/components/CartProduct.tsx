@@ -1,10 +1,10 @@
 import { FunctionComponent, useContext, useEffect } from "react";
 import { ContextCart } from "../context/contextCart";
 import Product from "./Product";
-import { ICartProduct, ActionTypeCart } from "../App.d";
+import { ICartProducts, ActionTypeCart } from "../App.d";
 
 interface CartProductProps {
-    cartProduct: ICartProduct;
+    cartProduct: ICartProducts;
     maxQuantity: number;
 }
 
