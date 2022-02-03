@@ -38,8 +38,8 @@ export interface IContextInitialProduct {
     dispatchProduct: React.Dispatch<ActionsProduct>;
 }
 export interface IContextInitialCart {
-    stateCart: IInitialStateCart;
-    dispatchCart: React.Dispatch<ActionsCart>;
+    cart: IInitialStateCart;
+    dispatch: React.Dispatch<ActionsCart>;
 }
 
 export enum ActionTypeProduct {
