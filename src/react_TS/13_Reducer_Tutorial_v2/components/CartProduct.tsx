@@ -9,15 +9,15 @@ interface CartProductProps {
 }
 
 const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuantity }) => {
-    const { stateCart, dispatchCart } = useContext(ContextCart);
+    const { cart, dispatch } = useContext(ContextCart);
 
     const { product, quantity, discount } = cartProduct;
     const { id, price } = product;
-    const { totalValue, totalValueWithDiscount } = stateCart.cartProductList[0];
+    const { totalValue, totalValueWithDiscount } = cart.cartProductList[0];
 
     useEffect(() => {
-        dispatchCart({ type: ActionTypeCart.ChangeProductValue, id });
-    }, [price, quantity, discount, dispatchCart, id]);
+        dispatch({ type: ActionTypeCart.ChangeProductValue, id });
+    }, [price, quantity, discount, dispatch, id]);
 
     return (
         <div className="cart-product">
@@ -26,14 +26,14 @@ const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuan
             {quantity === maxQuantity ? (
                 ""
             ) : (
-                <button onClick={() => dispatchCart({ type: ActionTypeCart.ChangeQuantity, id, mode: "addition" })}>
+                <button onClick={() => dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "addition" })}>
                     Addition Quantity
                 </button>
             )}
             {quantity <= 1 ? (
                 ""
             ) : (
-                <button onClick={() => dispatchCart({ type: ActionTypeCart.ChangeQuantity, id, mode: "subtraction" })}>
+                <button onClick={() => dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "subtraction" })}>
                     Subtraction Quantity
                 </button>
             )}

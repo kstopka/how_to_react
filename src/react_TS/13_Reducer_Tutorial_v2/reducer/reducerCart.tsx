@@ -32,11 +32,11 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
             let quantity: number;
             // mode jako
 
-            if (actionOnQty[mode] == 0) {
-                quantity = 1;
-            } else {
-                quantity = quantityToChange + actionOnQty[mode];
-            }
+            // if (actionOnQty[mode] == 0) {
+            //     quantity = 1;
+            // } else {
+            //     quantity = quantityToChange + actionOnQty[mode];
+            // }
 
             if (mode === "addition") {
                 //NOTE: validajca? przyciski do zmiany wyłączają się kiedy trzeba
