@@ -30,21 +30,10 @@ export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
             const quantityToChange = state.cartProductList[index].quantity;
 
             let quantity: number;
-            // mode jako
-
-            // if (actionOnQty[mode] == 0) {
-            //     quantity = 1;
-            // } else {
-            //     quantity = quantityToChange + actionOnQty[mode];
-            // }
-
-            if (mode === "addition") {
-                //NOTE: validajca? przyciski do zmiany wyłączają się kiedy trzeba
-                quantity = quantityToChange + 1;
-            } else if (mode === "subtraction") {
-                quantity = quantityToChange - 1;
-            } else if (mode === "start") {
+            if (actionOnQty[mode] === 0) {
                 quantity = 1;
+            } else {
+                quantity = quantityToChange + actionOnQty[mode];
             }
             return {
                 ...state,

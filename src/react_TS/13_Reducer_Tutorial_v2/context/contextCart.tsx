@@ -5,7 +5,16 @@ import { ContextProduct } from "./contextProduct";
 
 const ContextInitialCart: IContextInitialCart = {
     cart: initialStateCart,
-    dispatch: () => null,
+    dispatch: () => {},
+    // actions: {
+    // additionProduct: (dispatch) => () => {},
+    // removeProduct: (dispatch) => () => {},
+    // subtractionAllProduct: (dispatch) => () => {},
+    // submittCart: (dispatch) => () => {},
+    // changeDiscountCode: (dispatch) => () => {},
+    // changeCartValue: (dispatch) => () => {},
+    // changeProductValue: (dispatch) => () => {},
+    // },
 };
 
 export const ContextCart = createContext(ContextInitialCart);
@@ -43,14 +52,17 @@ const actions = {
     changeCartValue: (dispatch: (arg0: { type: ActionTypeCart }) => void) => () => {
         dispatch({ type: ActionTypeCart.ChangeCartValue });
     },
+    changeProductValue: (dispatch: (arg0: { type: ActionTypeCart; id: string }) => void) => (id: string) => {
+        dispatch({ type: ActionTypeCart.ChangeProductValue, id });
+    },
 };
 
 export const ProviderCart = ({ children }: { children: any }) => {
     const [cart, dispatch] = useReducer(reducerCart, initialStateCart);
     const { dispatchProduct } = useContext(ContextProduct);
 
-    // actions.changeCartValue(() => {});
-
+    // actions.changeCartValue(() => () => {});
+    // actions.changeProductValue(dispatch({}))
     // const cleanCart = ()=> {
     //     dispatch({...})
     // }
