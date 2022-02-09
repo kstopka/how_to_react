@@ -1,50 +1,103 @@
-import { ActionsCart, ActionType, IInitialStateCart } from "../App.d";
+import { IInitialStateCart, ActionTypeCart, ActionsCart } from "../App.d";
+import { Validator } from "../Validator";
+
+const actionOnQty = {
+    addition: 1,
+    subtraction: -1,
+    start: 0,
+};
 
 export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
+    const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
     switch (action.type) {
-        case ActionType.ProductFromAPI: {
-            return { ...state, cartProductList: action.cartProductList };
-        }
-        case ActionType.AdditionProduct: {
-            const { cartProductList } = state;
-            const { index } = action;
-            cartProductList[index].quantity = cartProductList[index].quantity + 0.5;
-
+        case ActionTypeCart.AdditionToCart: {
             return {
                 ...state,
-                // cartProductList: [...cartProductList],
+                cartProductList: [...state.cartProductList, action.cartProduct],
             };
         }
-        case ActionType.SubtractionProduct: {
-            const { cartProductList } = state;
-            const { index } = action;
-            const quantityToChange = cartProductList[index].quantity;
-            if (quantityToChange === 0) return state;
+        case ActionTypeCart.RemoveFromCart: {
+            return {
+                ...state,
+                //NOTE sprawdzić slice
+                //filter robi kopie
+                cartProductList: [...state.cartProductList.filter((item) => item.product.id !== action.id)],
+            };
+        }
+        case ActionTypeCart.ChangeQuantity: {
+            const { mode, id } = action;
+            const index = showIndex(id);
+            const quantityToChange = state.cartProductList[index].quantity;
 
-            cartProductList[index].quantity = quantityToChange - 0.5;
-
-            if (quantityToChange < 0) {
-                cartProductList[index].quantity = 0;
-                return state;
+            let quantity: number;
+            if (actionOnQty[mode] === 0) {
+                quantity = 1;
+            } else {
+                quantity = quantityToChange + actionOnQty[mode];
             }
-            return { ...state };
+            return {
+                ...state,
+                cartProductList: state.cartProductList.map((cartProduct, i) =>
+                    i === index ? { ...cartProduct, quantity } : cartProduct
+                ),
+            };
         }
-        case ActionType.SubtractionAllProduct: {
-            const { cartProductList } = state;
-            const { index } = action;
-            if (cartProductList[index].quantity <= 0) return state;
-            cartProductList[index].quantity = 0;
+        case ActionTypeCart.ClearCart: {
+            return {
+                ...state,
+                cartProductList: [],
+            };
+        }
+        case ActionTypeCart.ChangeDiscountCode: {
+            return {
+                ...state,
+                discountCode: !state.discountCode,
+            };
+        }
+        case ActionTypeCart.ChangeProductValue: {
+            const index = showIndex(action.id);
+            const cartProduct = state.cartProductList[index];
+            const { product, quantity, discount } = cartProduct;
+            Validator.throwErrorIfLessThanZero(product.price, "price");
+            const totalValue = quantity * product.price;
+            Validator.throwErrorIfGreaterThanOneHundred(discount, "discount");
 
-            return { ...state };
+            const discountPercent = (100 - discount) / 100;
+            const totalValueWithDiscount = totalValue * discountPercent;
+            return {
+                ...state,
+                cartProductList: state.cartProductList.map((cartProduct, i) =>
+                    i === index ? { ...cartProduct, totalValue, totalValueWithDiscount } : cartProduct
+                ),
+            };
         }
-        case ActionType.SubmitCart: {
-            return { ...state };
+        case ActionTypeCart.ChangeCartValue: {
+            const { cartProductList, discountCode, discountCart } = state;
+
+            Validator.throwErrorIfGreaterThanOneHundred(discountCart, "discount of cart");
+            const discountPercent = (100 - discountCart) / 100;
+
+            let totalCartPrice = cartProductList.reduce(
+                (previousValue, currentValue) => previousValue + currentValue.totalValueWithDiscount,
+                0
+            );
+
+            if (discountCode) {
+                totalCartPrice *= discountPercent;
+            }
+
+            return { ...state, totalCartPrice };
         }
+
         default:
             return state;
     }
 };
 
 export const initialStateCart: IInitialStateCart = {
+    id: "",
     cartProductList: [],
+    discountCart: 25,
+    discountCode: false,
+    totalCartPrice: 0,
 };

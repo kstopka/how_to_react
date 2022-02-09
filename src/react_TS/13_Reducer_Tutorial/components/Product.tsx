@@ -7,10 +7,9 @@ interface ProductProps {
 }
 
 const Product: FunctionComponent<ProductProps> = ({ product }) => {
-    const { name, price, category } = product;
+    const { price, category } = product;
     return (
         <div className="product">
-            <p style={{ color: "red" }}>name: {name}</p>
             <p>price: {price}</p>
             <p>category: {category}</p>
         </div>

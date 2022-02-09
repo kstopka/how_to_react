@@ -1,27 +1,42 @@
 import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
-import CartProduct from "./CartProduct";
+import dataCart from "../data/data.json";
+import { ContextProducts } from "../context/contextProducts";
+import { ActionTypeProducts, ICartProducts } from "../App.d";
 import { useCartReducer } from "../hooks/useCartReducer";
 import { ContextCart } from "../context/contextCart";
-import dataCart from "../data/data.json";
-import { ActionType, ICartProduct } from "../App.d";
+import CartList from "./CartList";
 
 interface CartProps {}
 
+//products data
+
 const Cart: FunctionComponent<CartProps> = () => {
-    const { stateCart, dispatchCart } = useContext(ContextCart);
-    // const { stateCart, additionProduct } = useCartReducer(dataCart.cart.cartProductList);
+    const { state: stateProduct, dispatch: dispatchProduct } = useContext(ContextProducts);
+    const { cart } = useContext(ContextCart);
+    const { cartProductList } = stateProduct;
+    const { subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } = useCartReducer();
+
     useEffect(() => {
-        const data: ICartProduct[] = dataCart.cart.cartProductList;
-        dispatchCart({ type: ActionType.ProductFromAPI, cartProductList: data });
-    }, [dispatchCart]);
-    const { cartProductList } = stateCart;
+        const cartProductList: ICartProducts[] = dataCart.cartProductList;
+        dispatchProduct({ type: ActionTypeProducts.ProductFromAPI, cartProductList });
+    }, [dispatchProduct]);
 
-    const cartProducts = cartProductList.map((cartProduct, index) => (
-        <CartProduct key={index} cartProduct={cartProduct} index={index} />
-    ));
+    useEffect(() => {
+        changeCartValue();
+    }, [cart.cartProductList, cart.discountCode]);
 
-    return <ul className="cart">{cartProducts}</ul>;
+    return (
+        <ul className="cart">
+            {cartProductList.map((item, index) => (
+                <CartList key={index} cartProduct={item} />
+            ))}
+            <button onClick={subtractionAllProduct}>ClearCart</button>
+            <button onClick={changeDiscountCode}>Get Discount Code</button>
+            <p>totalCartPrice {cart.totalCartPrice.toFixed(2)}</p>
+            <button onClick={submittCart}>Submit</button>
+        </ul>
+    );
 };
 
 export default Cart;

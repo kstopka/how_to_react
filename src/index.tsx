@@ -35,7 +35,7 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/11_useIntersectionObserver/App";
 // import App from "./react_TS/12_useGeo/App";
 // import App from "./react_TS/13_Reducer_Tutorial/App";
-import App from "./react_TS/13_Reducer_Tutorial_v2/App";
+import App from "./react_TS/13_Reducer_Tutorial/App";
 
 ReactDOM.render(
     <React.StrictMode>

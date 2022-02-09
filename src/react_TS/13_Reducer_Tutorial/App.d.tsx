@@ -5,57 +5,112 @@ export interface IProduct {
     category: string;
 }
 
-export interface ICartProduct {
+export interface ICartProducts {
     product: IProduct;
     quantity: number;
     discount: number;
-    // totalValue: number | null;
-    // totalValueWithDiscount: number | null;
+    totalValue: number;
+    totalValueWithDiscount: number;
 }
 
 export interface ICart {
     id: string;
-    cartProductList: ICartProduct[];
+    cartProductList: ICartProducts[];
     discountCart: number;
     discountCode: boolean;
-    // totalCartPrice: number;
+    totalCartPrice: number;
+}
+
+export interface IInitialStateProducts {
+    cartProductList: ICartProducts[];
 }
 
 export interface IInitialStateCart {
-    cartProductList: ICartProduct[];
+    id: string;
+    cartProductList: ICartProducts[];
+    discountCart: number;
+    discountCode: boolean;
+    totalCartPrice: number;
 }
 
+export interface IContextInitialProduct {
+    state: IInitialStateProducts;
+    dispatch: React.Dispatch<ActionsProducts>;
+}
 export interface IContextInitialCart {
-    stateCart: IInitialStateCart;
-    dispatchCart: React.Dispatch<ActionsCart>;
+    cart: IInitialStateCart;
+    dispatch: React.Dispatch<ActionsCart>;
+    // actions: IActions;
 }
 
-export enum ActionType {
+export enum ActionTypeProducts {
     ProductFromAPI,
-    AdditionProduct,
-    SubtractionProduct,
-    SubtractionAllProduct,
-    SubmitCart,
+    ChangeProductQuantity,
 }
 
 export interface ProductFromAPI {
-    type: ActionType.ProductFromAPI;
-    cartProductList: ICartProduct[];
+    type: ActionTypeProducts.ProductFromAPI;
+    cartProductList: ICartProducts[];
 }
-export interface AdditionProduct {
-    type: ActionType.AdditionProduct;
-    index: number;
-}
-export interface SubtractionProduct {
-    type: ActionType.SubtractionProduct;
-    index: number;
-}
-export interface SubtractionAllProduct {
-    type: ActionType.SubtractionAllProduct;
-    index: number;
-}
-export interface SubmitCart {
-    type: ActionType.SubmitCart;
+export interface ChangeProductQuantity {
+    type: ActionTypeProducts.ChangeProductQuantity;
+    id: string;
+    quantity: number;
 }
 
-export type ActionsCart = ProductFromAPI | AdditionProduct | SubtractionProduct | SubtractionAllProduct | SubmitCart;
+export type ActionsProducts = ProductFromAPI | ChangeProductQuantity;
+
+export enum ActionTypeCart {
+    AdditionToCart,
+    RemoveFromCart,
+    ChangeQuantity,
+    ClearCart,
+    ChangeDiscountCode,
+    ChangeProductValue,
+    ChangeCartValue,
+}
+export interface AdditionToCart {
+    type: ActionTypeCart.AdditionToCart;
+    cartProduct: ICartProducts;
+}
+export interface RemoveFromCart {
+    type: ActionTypeCart.RemoveFromCart;
+    id: string;
+}
+export interface ChangeQuantity {
+    type: ActionTypeCart.ChangeQuantity;
+    id: string;
+    mode: "start" | "addition" | "subtraction";
+}
+export interface ClearCart {
+    type: ActionTypeCart.ClearCart;
+}
+export interface ChangeDiscountCode {
+    type: ActionTypeCart.ChangeDiscountCode;
+}
+export interface ChangeProductValue {
+    type: ActionTypeCart.ChangeProductValue;
+    id: string;
+}
+export interface ChangeCartValue {
+    type: ActionTypeCart.ChangeCartValue;
+}
+
+export type ActionsCart =
+    | AdditionToCart
+    | RemoveFromCart
+    | ChangeQuantity
+    | ClearCart
+    | ChangeDiscountCode
+    | ChangeProductValue
+    | ChangeCartValue;
+
+export interface IActions {
+    // additionProduct: (dispatch: React.Dispatch<ActionsProduct>) => (cartProduct: ICartProduct) => void;
+    // removeProduct: (dispatch: React.Dispatch<ActionsProduct>) => (id: string) => void;
+    // subtractionAllProduct: (dispatch: React.Dispatch<ActionsProduct>) => () => void;
+    // submittCart: (dispatch: React.Dispatch<ActionsProduct>) => (cartProductList: ICartProduct[]) => void;
+    // changeDiscountCode: (dispatch: React.Dispatch<ActionsProduct>) => () => void;
+    // changeCartValue: (dispatch: React.Dispatch<ActionsProduct>) => () => void;
+    // changeProductValue: (dispatch: React.Dispatch<ActionsProduct>) => (id: string) => void;
+}

@@ -1,15 +1,81 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { ActionTypeCart, ActionTypeProducts, ICartProducts, IContextInitialCart } from "../App.d";
 import { initialStateCart, reducerCart } from "../reducer/reducerCart";
-import { IContextInitialCart } from "../App.d";
+import { ContextProducts } from "./contextProducts";
 
 const ContextInitialCart: IContextInitialCart = {
-    stateCart: initialStateCart,
-    dispatchCart: () => null,
+    cart: initialStateCart,
+    dispatch: () => {},
+    // actions: {
+    // additionProduct: (dispatch) => () => {},
+    // removeProduct: (dispatch) => () => {},
+    // subtractionAllProduct: (dispatch) => () => {},
+    // submittCart: (dispatch) => () => {},
+    // changeDiscountCode: (dispatch) => () => {},
+    // changeCartValue: (dispatch) => () => {},
+    // changeProductValue: (dispatch) => () => {},
+    // },
 };
 
 export const ContextCart = createContext(ContextInitialCart);
 
+const actions = {
+    additionProduct:
+        (dispatch: (arg0: { type: ActionTypeCart; cartProduct?: ICartProducts; id?: string; mode?: string }) => void) =>
+        (cartProduct: ICartProducts) => {
+            const { id } = cartProduct.product;
+            dispatch({ type: ActionTypeCart.AdditionToCart, cartProduct });
+            dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "start" });
+        },
+
+    removeProduct: (dispatch: (arg0: { type: ActionTypeCart; id: string }) => void) => (id: string) => {
+        dispatch({ type: ActionTypeCart.RemoveFromCart, id });
+    },
+    subtractionAllProduct: (dispatch: (arg0: { type: ActionTypeCart }) => void) => () => {
+        dispatch({ type: ActionTypeCart.ClearCart });
+    },
+    submittCart:
+        (dispatch: (arg0: { type: ActionTypeCart }) => void, cart: { cartProductList: ICartProducts[] }) => () => {
+            // moze reduce ?
+            cart.cartProductList.forEach((element) => {
+                const { quantity, product } = element;
+                const { id } = product;
+                // dispatchProduct({ type: ActionTypeProduct.ChangeProductQuantity, quantity, id });
+            });
+            dispatch({ type: ActionTypeCart.ClearCart });
+        },
+
+    changeDiscountCode: (dispatch: (arg0: { type: ActionTypeCart }) => void) => () => {
+        dispatch({ type: ActionTypeCart.ChangeDiscountCode });
+    },
+
+    changeCartValue: (dispatch: (arg0: { type: ActionTypeCart }) => void) => () => {
+        dispatch({ type: ActionTypeCart.ChangeCartValue });
+    },
+    changeProductValue: (dispatch: (arg0: { type: ActionTypeCart; id: string }) => void) => (id: string) => {
+        dispatch({ type: ActionTypeCart.ChangeProductValue, id });
+    },
+};
+
 export const ProviderCart = ({ children }: { children: any }) => {
-    const [stateCart, dispatchCart] = useReducer(reducerCart, initialStateCart);
-    return <ContextCart.Provider value={{ stateCart, dispatchCart }}>{children}</ContextCart.Provider>;
+    const [cart, dispatch] = useReducer(reducerCart, initialStateCart);
+    const { dispatch: dispatchProduct } = useContext(ContextProducts);
+
+    // actions.changeCartValue(() => () => {});
+    // actions.changeProductValue(dispatch({}))
+    // const cleanCart = ()=> {
+    //     dispatch({...})
+    // }
+
+    // useEffect(()=>{
+    //     // ...
+    // },[])
+
+    // wyczyscic koszyk
+    // dodac do koszyka
+    // zmienic ilosc pozycji
+    // usunac z koszyka
+    // dodac rabat
+
+    return <ContextCart.Provider value={{ cart, dispatch }}>{children}</ContextCart.Provider>;
 };
