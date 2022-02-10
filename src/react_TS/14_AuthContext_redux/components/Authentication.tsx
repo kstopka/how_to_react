@@ -5,10 +5,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import Login from "./Login";
 
+import { RootState } from "../store";
+import { useSelector } from "react-redux";
+
 interface AuthenticationProps {}
 
 const Authentication: FunctionComponent<AuthenticationProps> = () => {
-    const isLogged = false;
+    const isLogged = useSelector((state: RootState) => state.status.isLogged);
+
     if (!isLogged) {
         return <Login />;
     }

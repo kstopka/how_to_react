@@ -1,27 +1,11 @@
 import * as React from "react";
-import { FunctionComponent, useState } from "react";
-import Cookies from "js-cookie";
+import { FunctionComponent } from "react";
+import { useCredentials } from "../hooks/useCredentials";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
-    const [login, setLogin] = useState("");
-    const [password, setPassword] = useState("");
-
-    const changeState = (e: { target: { name: any; value: any } }) => {
-        const { name, value } = e.target;
-
-        if (name === "login") {
-            setLogin(value);
-        }
-        if (name === "password") {
-            setPassword(value);
-        }
-    };
-    const onSubmit = () => {
-        // Cookies.set(login, password);
-        Cookies.set("jankowalski@gmail.com", "admin12345@");
-    };
+    const { changeState, onSubmit } = useCredentials();
     return (
         <div className="login">
             <h1>Login Page</h1>

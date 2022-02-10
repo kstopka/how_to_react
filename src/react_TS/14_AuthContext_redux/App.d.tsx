@@ -1,4 +1,10 @@
-export type AuthContextType = {
+import { PayloadAction } from "@reduxjs/toolkit";
+
+export interface Status {
     isLogged: boolean;
-    setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
-};
+    login: string;
+    password: string;
+}
+export type Credentials = "login" | "password";
+
+export type CredentialsAction = PayloadAction<{ name: Credentials; value: string }>;

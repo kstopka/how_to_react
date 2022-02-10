@@ -1,18 +1,11 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import Cookies from "js-cookie";
+import { useCredentials } from "../hooks/useCredentials";
 
 interface HomePageProps {}
 
 const HomePage: FunctionComponent<HomePageProps> = () => {
-    // const { setIsLogged } = useContext(AuthContext);
-
-    const logout = () => {
-        const cookiesNames = Cookies.get();
-        const arrayCookiesNames = Object.keys(cookiesNames);
-        arrayCookiesNames.forEach((item) => Cookies.remove(item));
-        // setIsLogged(false);
-    };
+    const { logout } = useCredentials();
     return (
         <div className="home-page">
             <h1>Home Page</h1>

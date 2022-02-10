@@ -1,11 +1,9 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./reducers";
+import { store } from "./store";
 import Authentication from "./components/Authentication";
 
-const store = createStore(rootReducer);
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
