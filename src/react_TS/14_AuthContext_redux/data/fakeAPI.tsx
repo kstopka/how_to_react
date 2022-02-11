@@ -1,7 +1,7 @@
 import data from "./dataCredentials.json";
-import { CredentialsType } from "../App.d";
+import { UserCredentials } from "../App.d";
 
-const mockedData = (success: boolean, timeout?: number): Promise<any[]> =>
+const mockedData = (success: boolean, timeout?: number): Promise<UserCredentials[]> =>
     new Promise((resolve, reject) => {
         setTimeout(() => {
             if (success) {

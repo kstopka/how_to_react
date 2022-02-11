@@ -21,6 +21,7 @@ const Login: FunctionComponent<LoginProps> = () => {
                 <label htmlFor="">
                     <p>User Password:</p>
                     <input type="password" name="password" onBlur={changeState} />
+                    <small style={{ color: "red" }}>{password.errorMessage}</small>
                 </label>
                 <div>
                     <button type="submit">Submit</button>

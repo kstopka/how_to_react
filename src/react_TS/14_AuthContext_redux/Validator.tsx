@@ -14,7 +14,6 @@ const whetherTheNamePropertyIsCorrect = (value: string, errorMsg: string) => {
     }
     if (!value.match(/^[A-Z\d]/)) {
         // throw new Error(`${errorMsg} must start at capital letter`);
-        console.log(errorMsg);
         return (information = {
             isError: true,
             errorMessage: errorMsg,
@@ -29,7 +28,6 @@ const whetherThePasswordPropertyIsCorrect = (value: string, errorMsg: string) =>
         errorMessage: "",
     };
     if (value.length < 8) {
-        console.log(errorMsg);
         // throw new Error(`${errorMsg} is to short`);
         return (information = {
             isError: true,
