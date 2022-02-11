@@ -7,12 +7,17 @@ import Login from "./Login";
 
 import { RootState } from "../store";
 import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 interface AuthenticationProps {}
 
 const Authentication: FunctionComponent<AuthenticationProps> = () => {
     const isLogged = useSelector((state: RootState) => state.status.isLogged);
+    const { imBusy } = useSelector((state: RootState) => state.data);
 
+    // if (!imBusy) {
+    //     return <Loading />;
+    // }
     if (!isLogged) {
         return <Login />;
     }

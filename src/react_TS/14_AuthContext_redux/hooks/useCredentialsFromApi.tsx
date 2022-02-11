@@ -4,7 +4,7 @@ import { UserCredentials } from "../App.d";
 import mockedData from "../data/fakeAPI";
 import { RootState } from "../store";
 import { setError, setUsersCredentials } from "../reducer/reducerData";
-
+//TODO to do poprawy
 const asyncWrapperForPromiseWithConnectedState = async (
     promiseWrapper: { (): Promise<UserCredentials[]>; (): any },
     {
@@ -25,7 +25,7 @@ const asyncWrapperForPromiseWithConnectedState = async (
 };
 
 export const useCredentialsFromApi = () => {
-    const { imBusy, usersCredentials, errorMessage, error } = useSelector((state: RootState) => state.data);
+    const { imBusy } = useSelector((state: RootState) => state.data);
     const dispatch = useDispatch();
     useEffect(() => {
         if (!imBusy) {
@@ -35,5 +35,4 @@ export const useCredentialsFromApi = () => {
             });
         }
     });
-    return { imBusy, usersCredentials, errorMessage, error };
 };

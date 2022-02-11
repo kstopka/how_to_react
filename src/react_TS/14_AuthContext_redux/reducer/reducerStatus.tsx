@@ -1,31 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 import { CredentialsAction, Status } from "../App.d";
+import { checkCredentials } from "../hooks/useCredentials";
+import { RootState } from "../store";
 
 const checkCookiesToLogin = () => {
-    let isLogged = false;
-    //TODO: pobrac users z api
-
-    const users = [
-        {
-            login: "Admin",
-            password: "123qwe!@#QWE",
-        },
-        {
-            login: "jankowalski@gmail.com",
-            password: "admin12345@",
-        },
-    ];
-    // Cookies.set("jankowalski@gmail.com", "admin12345@");
+    //NOTE: jak to ominąć?
+    // const { usersCredentials } = useSelector((state: RootState) => state.data);
 
     const cookie = Cookies.get();
     const arrayOfLogins = Object.keys(cookie);
     const login = arrayOfLogins[0];
+    //NOTE: password może być string | undefinded => musi być string
     const password = Cookies.get(login);
-
-    isLogged = users.some((element) => element.login === login && element.password === password);
-
-    return isLogged;
+    if (password === undefined) {
+        return false;
+    }
+    // const isLogged = checkCredentials(login, password, usersCredentials);
+    // return isLogged;
+    return false;
 };
 
 const initialState: Status = {

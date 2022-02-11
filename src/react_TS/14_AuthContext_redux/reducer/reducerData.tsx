@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DataUsersCredentials, UserCredentials } from "../App.d";
-// import {  } from "../App.d";
 
 const initialState: DataUsersCredentials = {
     imBusy: false,
