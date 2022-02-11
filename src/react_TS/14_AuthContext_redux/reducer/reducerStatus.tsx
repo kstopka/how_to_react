@@ -1,23 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CredentialsAction, Status } from "./App.d";
+import { CredentialsAction, Status } from "../App.d";
 
 const initialState: Status = {
     isLogged: false,
-    login: "",
-    password: "",
+    login: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    password: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
 };
 
-export const statusSlice = createSlice({
+const statusSlice = createSlice({
     name: "status",
     initialState,
     reducers: {
         changeIsLogged: (state) => {
             state.isLogged = !state.isLogged;
-            state.login = "";
-            state.password = "";
+            state.login = initialState.login;
+            state.password = initialState.password;
         },
         setCredentials: (state, action: CredentialsAction) => {
-            state[action.payload.name] = action.payload.value;
+            state[action.payload.name].value = action.payload.value;
         },
     },
 });

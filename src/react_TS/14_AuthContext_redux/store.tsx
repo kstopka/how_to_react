@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import status from "./reducer";
+import status from "./reducer/reducerStatus";
+import data from "./reducer/reducerData";
 
 export const store = configureStore({
     reducer: {
         status,
+        data,
     },
 });
 

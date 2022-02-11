@@ -1,0 +1,14 @@
+import data from "./dataCredentials.json";
+import { CredentialsType } from "../App.d";
+
+const mockedData = (success: boolean, timeout?: number): Promise<any[]> =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (success) {
+                resolve(data.users);
+            }
+            reject({ error: true, message: "failed fetch" });
+        }, timeout);
+    });
+
+export default mockedData;
