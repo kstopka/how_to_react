@@ -1,20 +1,18 @@
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { UserCredentials } from "../App.d";
 import { changeIsLogged, setCredentials, setErrorMessage } from "../reducer/reducerStatus";
 import { RootState } from "../store";
 import validation from "../Validator";
-import { useCredentialsFromApi } from "./useCredentialsFromApi";
-
-export const checkCredentials = (login: string, password: string, usersCredentials: UserCredentials[]) => {
-    const isLogged = usersCredentials.some((element) => element.login === login && element.password === password);
-    return isLogged;
-};
 
 export const useCredentials = () => {
     const dispatch = useDispatch();
     const { login, password } = useSelector((state: RootState) => state.status);
     const { usersCredentials } = useSelector((state: RootState) => state.data);
+
+    const checkCredentials = (login: string, password: string) => {
+        const isLogged = usersCredentials.some((element) => element.login === login && element.password === password);
+        return isLogged;
+    };
 
     const changeState = (e: { target: { name: any; value: any } }) => {
         const { name, value } = e.target;
@@ -30,7 +28,7 @@ export const useCredentials = () => {
         if (login.error || password.error) {
             return alert("wrong permisions");
         }
-        const checkedCredentials = checkCredentials(login.value, password.value, usersCredentials);
+        const checkedCredentials = checkCredentials(login.value, password.value);
         if (!checkedCredentials) {
             alert("wrong permission");
             return;
@@ -46,5 +44,5 @@ export const useCredentials = () => {
         dispatch(changeIsLogged());
     };
 
-    return { changeState, onSubmit, logout };
+    return { changeState, onSubmit, logout, checkCredentials };
 };

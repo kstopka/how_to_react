@@ -1,7 +1,6 @@
-import * as React from "react";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { useCredentials } from "../hooks/useCredentials";
+import { useCredentials } from "../App.hooks";
 import { RootState } from "../store";
 
 interface LoginProps {}

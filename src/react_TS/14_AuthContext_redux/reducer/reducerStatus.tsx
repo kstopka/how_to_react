@@ -1,13 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { useSelector } from "react-redux";
+import { createSlice } from "@reduxjs/toolkit";
+import { useCredentials } from "../App.hooks";
 import { CredentialsAction, Status } from "../App.d";
-import { checkCredentials } from "../hooks/useCredentials";
-import { RootState } from "../store";
 
 const checkCookiesToLogin = () => {
     //NOTE: jak to ominąć?
-    // const { usersCredentials } = useSelector((state: RootState) => state.data);
+    // const { checkCredentials } = useCredentials();
 
     const cookie = Cookies.get();
     const arrayOfLogins = Object.keys(cookie);
@@ -17,7 +15,7 @@ const checkCookiesToLogin = () => {
     if (password === undefined) {
         return false;
     }
-    // const isLogged = checkCredentials(login, password, usersCredentials);
+    // const isLogged = checkCredentials(login, password);
     // return isLogged;
     return false;
 };

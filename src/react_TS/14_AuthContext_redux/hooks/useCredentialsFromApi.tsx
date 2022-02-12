@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UserCredentials } from "../App.d";
+import { Dispatch } from "@reduxjs/toolkit";
+
 import mockedData from "../data/fakeAPI";
 import { RootState } from "../store";
 import { setError, setUsersCredentials } from "../reducer/reducerData";
-//TODO to do poprawy
+import { UserCredentials } from "../App.d";
+
 const asyncWrapperForPromiseWithConnectedState = async (
     promiseWrapper: { (): Promise<UserCredentials[]>; (): any },
     {
@@ -20,8 +22,15 @@ const asyncWrapperForPromiseWithConnectedState = async (
         console.log(placeholderData);
         setForResponse(placeholderData);
     } catch ({ message, duringError }) {
-        setForError();
+        setForError(message);
     }
+};
+
+const setForError = (dispatch: Dispatch<any>) => (payload: string) => {
+    dispatch(setError(payload));
+};
+const setForResponse = (dispatch: Dispatch<any>) => (payload: UserCredentials[]) => {
+    dispatch(setUsersCredentials(payload));
 };
 
 export const useCredentialsFromApi = () => {
@@ -29,9 +38,9 @@ export const useCredentialsFromApi = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (!imBusy) {
-            asyncWrapperForPromiseWithConnectedState(() => mockedData(false), {
-                setForResponse: dispatch(setUsersCredentials),
-                setForError: dispatch(setError("tekst")),
+            asyncWrapperForPromiseWithConnectedState(() => mockedData(true, 500), {
+                setForError: setForError(dispatch),
+                setForResponse: setForResponse(dispatch),
             });
         }
     });

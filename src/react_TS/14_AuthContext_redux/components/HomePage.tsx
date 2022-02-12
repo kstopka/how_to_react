@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { useCredentials } from "../hooks/useCredentials";
+import { useCredentials } from "../App.hooks";
 
 interface HomePageProps {}
 
