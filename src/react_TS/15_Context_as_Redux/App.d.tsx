@@ -1,5 +1,6 @@
 export interface State {
     text: string;
+    number: number;
 }
 
 export enum ActionType {

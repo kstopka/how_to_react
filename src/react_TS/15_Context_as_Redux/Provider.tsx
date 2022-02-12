@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useEffect, FunctionComponent, useReducer, createContext } from "react";
+import { useEffect, FunctionComponent, useReducer, createContext } from "react";
 import { initialState, reducer } from "./reducer/reducer";
 import { changeText, State } from "./App.d";
 
