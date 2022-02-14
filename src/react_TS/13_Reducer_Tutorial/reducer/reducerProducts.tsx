@@ -1,5 +1,5 @@
-import { ActionsProducts, ActionTypeProducts, IInitialStateProducts } from "../App.d";
 import { Validator } from "../Validator";
+import { ActionsProducts, ActionTypeProducts, IInitialStateProducts } from "../App.d";
 
 export const reducerProducts = (state: IInitialStateProducts, action: ActionsProducts) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);

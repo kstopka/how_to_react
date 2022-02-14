@@ -9,15 +9,15 @@ interface CartProductProps {
 }
 
 const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuantity }) => {
-    const { cart, dispatch } = useContext(ContextCart);
+    const { cart, actions } = useContext(ContextCart);
 
     const { product, quantity, discount } = cartProduct;
     const { id, price } = product;
     const { totalValue, totalValueWithDiscount } = cart.cartProductList[0];
 
     useEffect(() => {
-        dispatch({ type: ActionTypeCart.ChangeProductValue, id });
-    }, [price, quantity, discount, dispatch, id]);
+        actions.changeProductValue(id);
+    }, [price, quantity, discount, id, actions]);
 
     return (
         <div className="cart-product">
@@ -26,17 +26,9 @@ const CartProduct: FunctionComponent<CartProductProps> = ({ cartProduct, maxQuan
             {quantity === maxQuantity ? (
                 ""
             ) : (
-                <button onClick={() => dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "addition" })}>
-                    Addition Quantity
-                </button>
+                <button onClick={() => actions.additionProduct(id)}>Addition Quantity</button>
             )}
-            {quantity <= 1 ? (
-                ""
-            ) : (
-                <button onClick={() => dispatch({ type: ActionTypeCart.ChangeQuantity, id, mode: "subtraction" })}>
-                    Subtraction Quantity
-                </button>
-            )}
+            {quantity <= 1 ? "" : <button onClick={() => actions.subtractionProduct(id)}>Subtraction Quantity</button>}
             <p>Discount: {discount}%</p>
             <p>totalValue: {totalValue >= 0 ? totalValue.toFixed(2) : ""}</p>
             <p>totalValueWithDiscount:{totalValueWithDiscount >= 0 ? totalValueWithDiscount.toFixed(2) : ""} </p>

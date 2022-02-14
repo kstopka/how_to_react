@@ -2,19 +2,21 @@ import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
 import dataCart from "../data/data.json";
 import { ContextProducts } from "../context/contextProducts";
-import { ActionTypeProducts, ICartProducts } from "../App.d";
-import { useCartReducer } from "../hooks/useCartReducer";
 import { ContextCart } from "../context/contextCart";
+import { useCartReducer } from "../App.hooks";
 import CartList from "./CartList";
+import { ActionTypeProducts, ICartProducts } from "../App.d";
 
 interface CartProps {}
 
 //products data
 
 const Cart: FunctionComponent<CartProps> = () => {
-    const { state, dispatch } = useContext(ContextProducts);
+    const {
+        state: { cartProductList },
+        dispatch,
+    } = useContext(ContextProducts);
     const { cart } = useContext(ContextCart);
-    const { cartProductList } = state;
     const { subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } = useCartReducer();
 
     useEffect(() => {

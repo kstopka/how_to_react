@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
-import { ICartProducts } from "../App.d";
-import { useCartList } from "../hooks/useCartList";
-import { useCartReducer } from "../hooks/useCartReducer";
+import { useCartList, useCartReducer } from "../App.hooks";
 import CartProduct from "./CartProduct";
+import { ICartProducts } from "../App.d";
 
 interface CartListProps {
     cartProduct: ICartProducts;

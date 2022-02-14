@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ICartProducts } from "../App.d";
 import { ContextCart } from "../context/contextCart";
+import { ICartProducts } from "../App.d";
 
 export const useCartList = (cartProduct: ICartProducts) => {
     const { cart } = useContext(ContextCart);

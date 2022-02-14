@@ -39,7 +39,7 @@ export interface IContextInitialProduct {
 }
 export interface IContextInitialCart {
     cart: IInitialStateCart;
-    dispatch: React.Dispatch<ActionsCart>;
+    // dispatch: React.Dispatch<ActionsCart>;
     actions: IActions;
 }
 
@@ -106,12 +106,12 @@ export type ActionsCart =
     | ChangeCartValue;
 
 export interface IActions {
-    additionProduct: (
-        dispatch: React.Dispatch<ChangeQuantity | AdditionToCart>
-    ) => (cartProduct: ICartProducts) => void;
-    removeProduct: (dispatch: React.Dispatch<RemoveFromCart>) => (id: string) => void;
-    subtractionAllProduct: (dispatch: React.Dispatch<ClearCart>) => () => void;
-    changeDiscountCode: (dispatch: React.Dispatch<ChangeDiscountCode>) => () => void;
-    changeCartValue: (dispatch: React.Dispatch<ChangeCartValue>) => () => void;
-    changeProductValue: (dispatch: React.Dispatch<ChangeProductValue>) => (id: string) => void;
+    additionToCart: (cartProduct: ICartProducts) => void;
+    removeProduct: (id: string) => void;
+    subtractionAllProduct: () => void;
+    changeDiscountCode: () => void;
+    changeCartValue: () => void;
+    changeProductValue: (id: string) => void;
+    additionProduct: (id: string) => void;
+    subtractionProduct: (id: string) => void;
 }

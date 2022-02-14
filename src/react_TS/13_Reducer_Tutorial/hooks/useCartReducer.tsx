@@ -1,36 +1,30 @@
 import { useContext } from "react";
-import { ActionTypeCart, ActionTypeProducts, ICartProducts } from "../App.d";
+import { ActionTypeProducts, ICartProducts } from "../App.d";
 import { ContextCart } from "../context/contextCart";
 import { ContextProducts } from "../context/contextProducts";
 
 export const useCartReducer = () => {
-    const { cart, dispatch, actions } = useContext(ContextCart);
-    const { dispatch: dispatchProduct } = useContext(ContextProducts);
+    const { cart, actions } = useContext(ContextCart);
+    const { dispatch } = useContext(ContextProducts);
 
-    const additionProduct = (cartProduct: ICartProducts) => actions.additionProduct(dispatch)(cartProduct);
+    const additionProduct = (cartProduct: ICartProducts) => actions.additionToCart(cartProduct);
 
-    const removeProduct = (id: string) => actions.removeProduct(dispatch)(id);
+    const removeProduct = (id: string) => actions.removeProduct(id);
 
-    const subtractionAllProduct = () => {
-        dispatch({ type: ActionTypeCart.ClearCart });
-    };
+    const subtractionAllProduct = () => actions.subtractionAllProduct();
+
     const submittCart = () => {
         cart.cartProductList.forEach((element) => {
             const { quantity, product } = element;
             const { id } = product;
-            dispatchProduct({ type: ActionTypeProducts.ChangeProductQuantity, quantity, id });
+            dispatch({ type: ActionTypeProducts.ChangeProductQuantity, quantity, id });
         });
-        actions.subtractionAllProduct(dispatch);
-        // dispatch({ type: ActionTypeCart.ClearCart });
+        actions.subtractionAllProduct();
     };
 
-    const changeDiscountCode = () => {
-        dispatch({ type: ActionTypeCart.ChangeDiscountCode });
-    };
+    const changeDiscountCode = () => actions.changeDiscountCode();
 
-    const changeCartValue = () => {
-        dispatch({ type: ActionTypeCart.ChangeCartValue });
-    };
+    const changeCartValue = () => actions.changeCartValue();
 
     return {
         additionProduct,

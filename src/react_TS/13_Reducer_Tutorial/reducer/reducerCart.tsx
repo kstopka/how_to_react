@@ -1,5 +1,5 @@
-import { IInitialStateCart, ActionTypeCart, ActionsCart } from "../App.d";
 import { Validator } from "../Validator";
+import { IInitialStateCart, ActionTypeCart, ActionsCart } from "../App.d";
 
 const actionOnQty = {
     addition: 1,
