@@ -12,15 +12,15 @@ interface CartProps {}
 //products data
 
 const Cart: FunctionComponent<CartProps> = () => {
-    const { state: stateProduct, dispatch: dispatchProduct } = useContext(ContextProducts);
+    const { state, dispatch } = useContext(ContextProducts);
     const { cart } = useContext(ContextCart);
-    const { cartProductList } = stateProduct;
+    const { cartProductList } = state;
     const { subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } = useCartReducer();
 
     useEffect(() => {
         const cartProductList: ICartProducts[] = dataCart.cartProductList;
-        dispatchProduct({ type: ActionTypeProducts.ProductFromAPI, cartProductList });
-    }, [dispatchProduct]);
+        dispatch({ type: ActionTypeProducts.ProductFromAPI, cartProductList });
+    }, [dispatch]);
 
     useEffect(() => {
         changeCartValue();
