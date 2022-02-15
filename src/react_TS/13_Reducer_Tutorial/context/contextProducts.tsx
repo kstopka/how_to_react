@@ -1,8 +1,8 @@
 import { createContext, useReducer } from "react";
 import { initialStateProducts, reducerProducts } from "../reducer/reducerProducts";
-import { IContextInitialProduct } from "../App.d";
+import { IContextInitialProducts } from "../App.d";
 
-const ContextInitialProducts: IContextInitialProduct = {
+const ContextInitialProducts: IContextInitialProducts = {
     state: initialStateProducts,
     dispatch: () => null,
 };

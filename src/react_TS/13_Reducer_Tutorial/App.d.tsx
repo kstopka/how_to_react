@@ -33,7 +33,7 @@ export interface IInitialStateCart {
     totalCartPrice: number;
 }
 
-export interface IContextInitialProduct {
+export interface IContextInitialProducts {
     state: IInitialStateProducts;
     dispatch: React.Dispatch<ActionsProducts>;
 }
