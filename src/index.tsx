@@ -34,10 +34,10 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/10_MultistepForm_v2/App";
 // import App from "./react_TS/11_useIntersectionObserver/App";
 // import App from "./react_TS/12_useGeo/App";
-import App from "./react_TS/13_Reducer_Tutorial/App";
+// import App from "./react_TS/13_Reducer_Tutorial/App";
 // import App from "./react_TS/14_AuthContext/App";
 // import App from "./react_TS/14_AuthContext_redux/App";
-// import App from "./react_TS/15_Context_as_Redux/App";
+import App from "./react_TS/15_Context_as_Redux/App";
 
 ReactDOM.render(
     <React.StrictMode>

@@ -1,7 +1,7 @@
 import { Actions, ActionType, State } from "../App.d";
 
 export const initialState: State = {
-    text: "treść",
+    text: "text",
     number: 0,
 };
 
@@ -11,6 +11,12 @@ export const reducer = (state = initialState, action: Actions) => {
             return {
                 ...state,
                 text: action.payload,
+            };
+        }
+        case ActionType.resetText: {
+            return {
+                ...state,
+                text: "",
             };
         }
 
