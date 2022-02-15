@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Ctx } from "../Provider";
-
+//otypowac state
 export const useContextState = (stateNames?: Array<string>) => {
     // stateNames = ["text", "number"]
     const { state } = useContext(Ctx);

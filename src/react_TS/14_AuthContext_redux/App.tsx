@@ -7,6 +7,7 @@ import Authentication from "./components/Authentication";
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
+    //sprawdzenie coockies
     return (
         <div className="wrapper">
             <Provider store={store}>

@@ -14,7 +14,7 @@ const Login: FunctionComponent<LoginProps> = () => {
             <form onSubmit={onSubmit}>
                 <label htmlFor="">
                     <p>User Login:</p>
-                    <input type="text" name="login" onBlur={changeState} />
+                    <input type="text" name="login" onBlur={changeState} onChange={} value={...}/>
                     <small style={{ color: "red" }}>{login.errorMessage}</small>
                 </label>
                 <label htmlFor="">

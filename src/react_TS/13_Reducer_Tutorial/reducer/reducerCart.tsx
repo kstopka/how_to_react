@@ -7,14 +7,20 @@ const actionOnQty = {
     start: 0,
 };
 
+class ReducerActions {
+    static addToCart = (state, action) => {
+        return {
+            ...state,
+            cartProductList: [...state.cartProductList, action.cartProduct],
+        };
+    };
+}
+
 export const reducerCart = (state: IInitialStateCart, action: ActionsCart) => {
     const showIndex = (id: string) => state.cartProductList.findIndex((item) => item.product.id === id);
     switch (action.type) {
         case ActionTypeCart.AdditionToCart: {
-            return {
-                ...state,
-                cartProductList: [...state.cartProductList, action.cartProduct],
-            };
+            return ReducerActions.addToCart(state, action);
         }
         case ActionTypeCart.RemoveFromCart: {
             return {

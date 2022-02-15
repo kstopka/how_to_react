@@ -8,6 +8,7 @@ interface ParallaxProps {
 }
 
 const Parallax: FunctionComponent<ParallaxProps> = ({ children, bgImage }) => {
+    // position
     const backgroundImgae = { backgroundImage: `url(${bgImage})` };
     const handleScroll = useCallback(() => {
         console.log("scrolling");
