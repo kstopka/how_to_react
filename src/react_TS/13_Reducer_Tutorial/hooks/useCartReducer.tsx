@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { ActionTypeProducts, ICartProducts } from "../App.d";
 import { ContextCart } from "../context/contextCart";
 import { ContextProducts } from "../context/contextProducts";
@@ -6,7 +6,7 @@ import { ContextProducts } from "../context/contextProducts";
 export const useCartReducer = () => {
     const { cart, actions } = useContext(ContextCart);
     const { dispatch } = useContext(ContextProducts);
-    //usecallbac
+
     const additionProduct = useCallback((cartProduct: ICartProducts) => actions.additionToCart(cartProduct), []);
 
     const removeProduct = (id: string) => actions.removeProduct(id);
@@ -31,7 +31,7 @@ export const useCartReducer = () => {
         removeProduct,
         subtractionAllProduct,
         changeDiscountCode,
-        submittCart,
+        submitCart,
         changeCartValue,
     };
 };

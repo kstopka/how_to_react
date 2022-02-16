@@ -1,4 +1,3 @@
-import { Validator } from "../Validator";
 import { ActionsProducts, ActionTypeProducts, IInitialStateProducts } from "../App.d";
 
 export const reducerProducts = (state: IInitialStateProducts, action: ActionsProducts) => {
@@ -11,7 +10,6 @@ export const reducerProducts = (state: IInitialStateProducts, action: ActionsPro
             const index = showIndex(action.id);
             const cartQuantity = action.quantity;
             const dataQuantity = state.cartProductList[index].quantity;
-            Validator.throwErrorIfTheseNumbersCannotBeSubtracted(cartQuantity, dataQuantity, "quantity");
             const quantity = dataQuantity - cartQuantity;
 
             return {

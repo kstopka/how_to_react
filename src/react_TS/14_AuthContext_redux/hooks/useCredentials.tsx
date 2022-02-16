@@ -2,25 +2,21 @@ import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsLogged, setCredentials, setErrorMessage } from "../reducer/reducerStatus";
 import { RootState } from "../store";
-import validation from "../Validator";
+import validation, { checkCredentials } from "../Validator";
 
 export const useCredentials = () => {
     const dispatch = useDispatch();
     const { login, password } = useSelector((state: RootState) => state.status);
     const { usersCredentials } = useSelector((state: RootState) => state.data);
 
-    const checkCredentials = (login: string, password: string) => {
-        const isLogged = usersCredentials.some((element) => element.login === login && element.password === password);
-        return isLogged;
-    };
-
     const changeState = (e: { target: { name: any; value: any } }) => {
         const { name, value } = e.target;
+        dispatch(setCredentials({ name, value }));
         const { isError, errorMessage } = validation[name](name, value);
         if (isError) {
+            console.log(`error`);
             dispatch(setErrorMessage({ name, value: errorMessage }));
         }
-        dispatch(setCredentials({ name, value }));
     };
 
     const onSubmit = (e: { preventDefault: () => void }) => {
@@ -28,7 +24,7 @@ export const useCredentials = () => {
         if (login.error || password.error) {
             return alert("wrong permisions");
         }
-        const checkedCredentials = checkCredentials(login.value, password.value);
+        const checkedCredentials = checkCredentials(usersCredentials, login.value, password.value);
         if (!checkedCredentials) {
             alert("wrong permission");
             return;
@@ -44,5 +40,5 @@ export const useCredentials = () => {
         dispatch(changeIsLogged());
     };
 
-    return { changeState, onSubmit, logout, checkCredentials };
+    return { changeState, onSubmit, logout };
 };

@@ -7,7 +7,12 @@ import Authentication from "./components/Authentication";
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
+    const checkCredentials = (login: string, password: string) => {
+        // const isLogged = usersCredentials.some((element) => element.login === login && element.password === password);
+        // return isLogged;
+    };
     //sprawdzenie coockies
+
     return (
         <div className="wrapper">
             <Provider store={store}>

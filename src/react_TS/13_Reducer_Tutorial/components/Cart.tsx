@@ -9,15 +9,14 @@ import { ActionTypeProducts, ICartProducts } from "../App.d";
 
 interface CartProps {}
 
-//products data
-
 const Cart: FunctionComponent<CartProps> = () => {
     const {
         state: { cartProductList },
         dispatch,
     } = useContext(ContextProducts);
+
     const { cart } = useContext(ContextCart);
-    const { subtractionAllProduct, changeDiscountCode, submittCart, changeCartValue } = useCartReducer();
+    const { subtractionAllProduct, changeDiscountCode, submitCart, changeCartValue } = useCartReducer();
 
     useEffect(() => {
         const cartProductList: ICartProducts[] = dataCart.cartProductList;
@@ -36,7 +35,7 @@ const Cart: FunctionComponent<CartProps> = () => {
             <button onClick={subtractionAllProduct}>ClearCart</button>
             <button onClick={changeDiscountCode}>Get Discount Code</button>
             <p>totalCartPrice {cart.totalCartPrice.toFixed(2)}</p>
-            <button onClick={submittCart}>Submit</button>
+            <button onClick={submitCart}>Submit</button>
         </ul>
     );
 };

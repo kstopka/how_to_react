@@ -5,7 +5,6 @@ const mockedData = (success: boolean, timeout?: number): Promise<UserCredentials
     new Promise((resolve, reject) => {
         setTimeout(() => {
             if (success) {
-                console.log(`success`);
                 resolve(data.users);
             }
 
