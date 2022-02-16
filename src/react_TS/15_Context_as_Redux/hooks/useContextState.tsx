@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import { StateType } from "../App.d";
 import { Ctx } from "../Provider";
-//otypowac state
-export const useContextState = (stateNames?: Array<string>) => {
+
+export const useContextState = (stateNames?: Array<StateType>) => {
     // stateNames = ["text", "number"]
     const { state } = useContext(Ctx);
 
@@ -11,6 +12,5 @@ export const useContextState = (stateNames?: Array<string>) => {
     }
     // jeśli stateNames nie jest pusty to zwraca podane w arrayu klucze i wartości w formie nowego obiektu
     const newState = stateNames.reduce((prev, curr) => (prev = { ...prev, [curr]: "" }), {});
-    // return ...
     return newState;
 };

@@ -1,6 +1,6 @@
-import { Actions, ActionType, State } from "../App.d";
+import { Actions, ActionType, InitialState } from "../App.d";
 
-export const initialState: State = {
+export const initialState: InitialState = {
     text: "text",
     number: 0,
 };

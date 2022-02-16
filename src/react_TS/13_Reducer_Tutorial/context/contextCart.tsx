@@ -4,7 +4,6 @@ import { ActionTypeCart, IActions, IContextInitialCart } from "../App.d";
 
 const ContextInitialCart: IContextInitialCart = {
     cart: initialStateCart,
-
     actions: {
         additionToCart: (cartProduct) => {},
         removeProduct: () => {},

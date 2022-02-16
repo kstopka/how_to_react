@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, FunctionComponent, useReducer, createContext } from "react";
 import { initialState, reducer } from "./reducer/reducer";
-import { changeText, IActions, resetText, State } from "./App.d";
+import { ActionType, changeText, IActions, resetText, InitialState, IContextInitialCtx } from "./App.d";
 
 interface ProviderProps {
     children: any;
@@ -9,28 +9,27 @@ interface ProviderProps {
     onChange: any;
 }
 
-export const Ctx = createContext({
+const ContextInitialCtx: IContextInitialCtx = {
     state: initialState,
     actions: {
-        changeText: (state: State, action: changeText) => {},
-        resetText: (state: State, action: resetText) => {},
-    },
-});
-
-export const actions: IActions = {
-    changeText: (state: State, action: changeText) => {
-        return (state.text = action.payload);
-    },
-    resetText: (state: State) => {
-        return (state.text = "");
+        changeText: (payload) => {},
+        resetText: () => {},
     },
 };
 
-const Provider: FunctionComponent<ProviderProps> = ({ children, onLoad, onChange }) => {
-    // const { state } = useContext(ctx);
+export const Ctx = createContext(ContextInitialCtx);
+
+export const Provider: FunctionComponent<ProviderProps> = ({ children, onLoad, onChange }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     // tutaj łączymy context i actions i wrzucamy je do providera
-
+    const actions: IActions = {
+        changeText: (payload) => {
+            dispatch({ type: ActionType.changeText, payload });
+        },
+        resetText: () => {
+            dispatch({ type: ActionType.resetText });
+        },
+    };
     // prop onLoad powinien wywołać się na wczytaniu komponentu
     useEffect(() => {
         onLoad();

@@ -1,4 +1,4 @@
-export interface State {
+export interface InitialState {
     text: string;
     number: number;
 }
@@ -18,8 +18,19 @@ export interface resetText {
 
 export type Actions = changeText | resetText;
 
-export interface IActions {
-    changeText: (state: State, action: changeText) => void;
-    resetText: (state: State) => void;
+export interface IContextInitialCtx {
+    state: InitialState;
+    actions: IActions;
 }
-export type currOfActions = "changeText" | "resetText";
+
+export interface IActions {
+    changeText: (payload: string) => void;
+    resetText: () => void;
+}
+export type ActionsType = "changeText" | "resetText";
+export type StateType = "text" | "number";
+
+export interface IContextInitialCart {
+    state: InitialState;
+    actions: IActions;
+}

@@ -39,7 +39,6 @@ export interface IContextInitialProducts {
 }
 export interface IContextInitialCart {
     cart: IInitialStateCart;
-    // dispatch: React.Dispatch<ActionsCart>;
     actions: IActions;
 }
 
