@@ -3,5 +3,7 @@
   position: absolute;
   width: 100%;
   min-height: 200vh;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 /*# sourceMappingURL=style.css.map */

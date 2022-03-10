@@ -1,11 +1,11 @@
 import * as React from "react";
-import { FunctionComponent, useCallback, useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 import "../css/style.css";
 
 //https://speckyboy.com/css-javascript-parallax-scrolling/
 interface ParallaxProps {
     children: any;
-    bgImage: any;
+    bgImage: string;
 }
 
 const Parallax: FunctionComponent<ParallaxProps> = ({ children, bgImage }) => {
@@ -18,8 +18,8 @@ const Parallax: FunctionComponent<ParallaxProps> = ({ children, bgImage }) => {
             // const value = window.scrollY;
             const scrollPosition = window.pageYOffset;
             const bgParallax: any = document.getElementsByClassName("parallax")[0];
-
-            bgParallax.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+            // console.log(bgParallax);
+            bgParallax.style.backgroundPositionY = `${scrollPosition * -0.5}px`;
         });
     }, []);
 
