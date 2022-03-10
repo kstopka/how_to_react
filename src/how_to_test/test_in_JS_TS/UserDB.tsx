@@ -1,7 +1,7 @@
 import axios from "axios";
 import { reportError } from "./reportError";
 
-interface IUser {
+export interface IUser {
     email: string;
     name: string;
     id?: number;
