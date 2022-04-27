@@ -29,7 +29,7 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/7_TableWithPagination/App";
 // import App from "./react_TS/8_InfiniteHumanList/App";
 // import App from "./react_TS/8_InfiniteHumanList_v2/App";
-// import App from "./react_TS/9_PasswordInput/App";
+import App from "./react_TS/9_PasswordInput/App";
 // import App from "./react_TS/10_MultistepForm_v1/App";
 // import App from "./react_TS/10_MultistepForm_v2/App";
 // import App from "./react_TS/11_useIntersectionObserver/App";
@@ -38,8 +38,8 @@ import reportWebVitals from "./reportWebVitals";
 // import App from "./react_TS/14_AuthContext/App";
 // import App from "./react_TS/14_AuthContext_redux/App";
 // import App from "./react_TS/15_Context_as_Redux/App";
-import App from "./react_TS/16_ParallaxBgImg/App";
-// import App from "./react_TS/17_MultilangComponents/App"
+// import App from "./react_TS/16_ParallaxBgImg/App";
+// import App from "./react_TS/17_MultilangComponents/App";
 
 ReactDOM.render(
     <React.StrictMode>

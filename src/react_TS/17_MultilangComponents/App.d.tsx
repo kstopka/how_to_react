@@ -5,3 +5,5 @@ export interface LangInitialState {
         ctaButton: string;
     };
 }
+
+export type LangChangerType = (langs: string) => void;

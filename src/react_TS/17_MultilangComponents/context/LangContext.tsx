@@ -1,7 +1,7 @@
-// to są dostępne języki
-
 import { createContext } from "react";
 import { initialState } from "../reducer/LangReducer";
+import { pl, en } from "../data/data";
+import { LangChangerType } from "../App.d";
 
 const langs = {
     // pl,
@@ -11,9 +11,10 @@ const langs = {
 // dane językowe oraz metody do zmiany muszą zostać załadowane do kontekstu
 
 // to jest LangChanger
-// const LangChanger = ({ langs = langs }) => {
-// return ...
-// };
+const LangChanger: LangChangerType = (langs) => {
+    // const LangChanger = () => {
+    // return ...
+};
 
 const ContextInitialLang = {
     texts: initialState,
