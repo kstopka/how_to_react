@@ -1,28 +1,29 @@
-import { createContext } from "react";
-import { initialState } from "../reducer/LangReducer";
+import { createContext, useReducer } from "react";
+import { initialState, reducer } from "../reducer/LangReducer";
 import { pl, en } from "../data/data";
-import { LangChangerType } from "../App.d";
+import { LangChangerType, ContextType } from "../App.d";
 
 const langs = {
-    // pl,
-    // en,
+    pl,
+    en,
 };
 // to jest kontekst do wielojęzyczności aplikacji
 // dane językowe oraz metody do zmiany muszą zostać załadowane do kontekstu
 
 // to jest LangChanger
-const LangChanger: LangChangerType = (langs) => {
-    // const LangChanger = () => {
-    // return ...
-};
+// const LangChanger: LangChangerType = (langs) => {
+// const LangChanger = () => {
+// return ...
+// };
 
-const ContextInitialLang = {
-    texts: initialState,
+const ContextInitialLang: ContextType = {
+    state: initialState,
+    dispatch: () => null,
 };
 
 export const LangContext = createContext(ContextInitialLang);
 
 export const ProviderLang = ({ children }: { children: any }) => {
-    // const [state,dispatch]
-    // return <LangContext.Provider
+    const [state, dispatch] = useReducer(reducer, initialState);
+    return <LangContext.Provider value={{ state, dispatch }}>{children}</LangContext.Provider>;
 };
