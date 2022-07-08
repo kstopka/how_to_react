@@ -1,18 +1,18 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import AttentionSection from "./components/AttentionSection";
-import { ProviderLang } from "./context/LangContext";
+import { Provider } from "./LangContext";
 
 interface AppProps {}
 
 const App: FunctionComponent<AppProps> = () => {
-    return (
-        <div className="wrapper">
-            <ProviderLang>
-                <AttentionSection />
-            </ProviderLang>
-        </div>
-    );
+  return (
+    <div className="wrapper">
+      <Provider>
+        <AttentionSection />
+      </Provider>
+    </div>
+  );
 };
 
 export default App;
