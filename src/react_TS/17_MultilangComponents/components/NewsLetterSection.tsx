@@ -3,15 +3,15 @@ import { useContext, FunctionComponent } from "react";
 import { InitialStateContent } from "../App.d";
 import { Context } from "../LangContext";
 
-interface AttentionSectionProps {
+interface NewsLetterSectionProps {
   sectionName?: InitialStateContent;
 }
 
-const AttentionSection: FunctionComponent<AttentionSectionProps> = ({
-  sectionName = "attention",
+const NewsLetterSection: FunctionComponent<NewsLetterSectionProps> = ({
+  sectionName = "newsletter",
 }) => {
   const { state, actions } = useContext(Context);
-  const { title, subtitle, ctaButton } = state[sectionName];
+  const { title, action, ctaButton } = state[sectionName];
 
   return (
     <div>
@@ -19,10 +19,11 @@ const AttentionSection: FunctionComponent<AttentionSectionProps> = ({
       <button onClick={() => actions.setLang("pl", sectionName)}>PL</button>
       <button onClick={() => actions.setLang("en", sectionName)}>EN</button>
       <h3>{title}</h3>
-      <h4>{subtitle}</h4>
-      <button>{ctaButton}</button>
+      <a href={action}>
+        <button>{ctaButton}</button>
+      </a>
     </div>
   );
 };
 
-export default AttentionSection;
+export default NewsLetterSection;

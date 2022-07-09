@@ -13,8 +13,6 @@ export type InitialState = {
   newsletter: JSONlike;
 };
 
-// export type LangChangerType = (langs: string) => void;
-
 export enum Action {
   setLang,
 }
@@ -31,7 +29,6 @@ export type Actions = SetLang;
 
 export interface ContextType {
   state: InitialState;
-  // dispatch: React.Dispatch<Actions>;
   actions: IActions;
 }
 

@@ -7,14 +7,6 @@ const languages = {
   pl,
   en,
 };
-// // to jest kontekst do wielojęzyczności aplikacji
-// // dane językowe oraz metody do zmiany muszą zostać załadowane do kontekstu
-
-// // to jest LangChanger
-// // const LangChanger: LangChangerType = (langs) => {
-// // const LangChanger = () => {
-// // return ...
-// // };
 
 const ContextInitial: ContextType = {
   state: initialState,
@@ -42,6 +34,7 @@ export const Provider = ({ children }: { children: any }) => {
 
   useEffect(() => {
     actions.setLang("pl", "attention");
+    actions.setLang("pl", "newsletter");
   }, []);
 
   return (
