@@ -1,16 +1,17 @@
 type CodeLang = "pl" | "en";
-type InitialStateContent = "attention" | "newsletter";
+export type InitialStateContent = "attention" | "newsletter";
 
 interface JSONlike {
   [key: string]: string;
 }
 
-export interface InitialState {
-  // [key:string]: JSONlike;
-  // [key:InitialStateContent]: JSONlike;
+//NOTE: jak to usprawnić?
+export type InitialState = {
+  [key in InitialStateContent]: JSONlike;
+} & {
   attention: JSONlike;
   newsletter: JSONlike;
-}
+};
 
 // export type LangChangerType = (langs: string) => void;
 
@@ -30,7 +31,8 @@ export type Actions = SetLang;
 
 export interface ContextType {
   state: InitialState;
-  dispatch: React.Dispatch<Actions>;
+  // dispatch: React.Dispatch<Actions>;
+  actions: IActions;
 }
 
 export interface IActions {

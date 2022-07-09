@@ -18,7 +18,9 @@ const languages = {
 
 const ContextInitial: ContextType = {
   state: initialState,
-  dispatch: () => null,
+  actions: {
+    setLang: (codeLang, name) => {},
+  },
 };
 
 export const Context = createContext(ContextInitial);
@@ -26,7 +28,7 @@ export const Context = createContext(ContextInitial);
 export const Provider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const action: IActions = {
+  const actions: IActions = {
     setLang: (codeLang, name) => {
       dispatch({
         type: Action.setLang,
@@ -39,10 +41,10 @@ export const Provider = ({ children }: { children: any }) => {
   };
 
   useEffect(() => {
-    action.setLang("pl", "attention");
+    actions.setLang("pl", "attention");
   }, []);
 
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, actions }}>{children}</Context.Provider>
   );
 };
