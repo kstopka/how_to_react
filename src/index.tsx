@@ -2,53 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-// import App from './App';
-// import App from "./Nauka_react/1_chceckbox";
-// import App from "./Nauka_react/1_chceckbox_hooks";
-// import App from "./Nauka_react/2_shoping_cart";
-// import App from "./Nauka_react/2_shoping_cart_hooks";
-// import App from "./Nauka_react/3_list_item";
-// import App from "./Nauka_react/3_list_item_hooks";
-// import App from "./Nauka_react/4_order_restaurant";
-// import App from "./Nauka_react/4_order_restaurant_hooks";
-// import App from "./Nauka_react/5_form";
-// import App from "./Nauka_react/5_form_hooks";
-// import App from "./Nauka_react/6_exchange_counter";
 
-// import App from "./ReactHooksNauka/1_useState";
-// import App from "./ReactHooksNauka/2_useEffect";
-// import App from "./ReactHooksNauka/3_useReducer";
-// import App from "./ReactHooksNauka/4_useCallback";
-
-// import App from "./react_TS/1_rating_stars/App";
-// import App from "./react_TS/2_useMemoStateHook/useMemoStateHook";
-// import App from "./react_TS/3_authTokenReactRouter/Authentication";
-// import App from "./react_TS/4_MasonryGrid/App";
-// import App from "./react_TS/5_Modal/App";
-// import App from "./react_TS/6_SearchWithDropdown/App";
-// import App from "./react_TS/7_TableWithPagination/App";
-// import App from "./react_TS/8_InfiniteHumanList/App";
-// import App from "./react_TS/8_InfiniteHumanList_v2/App";
-// import App from "./react_TS/9_PasswordInput/App";
-// import App from "./react_TS/10_MultistepForm_v1/App";
-// import App from "./react_TS/10_MultistepForm_v2/App";
-// import App from "./react_TS/11_useIntersectionObserver/App";
-// import App from "./react_TS/12_useGeo/App";
-// import App from "./react_TS/13_Reducer_Tutorial/App";
-// import App from "./react_TS/14_AuthContext/App";
-// import App from "./react_TS/14_AuthContext_redux/App";
-// import App from "./react_TS/15_Context_as_Redux/App";
-// import App from "./react_TS/16_ParallaxBgImg/App";
-import App from "./react_TS/17_MultilangComponents/App";
+import App from "./react_TS/2_AppStatesHandling/5_MultilangComponents/App";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root")
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
