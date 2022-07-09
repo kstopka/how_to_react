@@ -3,7 +3,7 @@ import { initialState, reducer } from "./LangReducer";
 import { pl, en } from "./LangData";
 import { Action, ContextType, IActions } from "./App.d";
 
-const langs = {
+const languages = {
   pl,
   en,
 };
@@ -27,19 +27,19 @@ export const Provider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const action: IActions = {
-    setPolish: (payload) => {
+    setLang: (codeLang, name) => {
       dispatch({
-        type: Action.setPolish,
+        type: Action.setLang,
         payload: {
-          name: payload,
-          value: pl[payload],
+          name,
+          value: languages[codeLang][name],
         },
       });
     },
   };
 
   useEffect(() => {
-    action.setPolish("attention");
+    action.setLang("pl", "attention");
   }, []);
 
   return (

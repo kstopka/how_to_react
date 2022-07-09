@@ -2,7 +2,7 @@ import { Actions, Action, InitialState } from "./App.d";
 
 export const reducer = (state: InitialState, action: Actions) => {
   switch (action.type) {
-    case Action.setPolish:
+    case Action.setLang:
       const { name, value } = action.payload;
       return {
         ...state,
