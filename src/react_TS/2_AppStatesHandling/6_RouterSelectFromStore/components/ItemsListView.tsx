@@ -1,0 +1,3 @@
+const useArrow = (number) => {
+  number++;
+};
