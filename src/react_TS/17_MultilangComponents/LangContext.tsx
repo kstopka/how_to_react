@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import { initialState, reducer } from "./LangReducer";
 import { pl, en } from "./LangData";
-import { Action, ContextType } from "./App.d";
+import { Action, ContextType, IActions } from "./App.d";
 
 const langs = {
   pl,
@@ -26,20 +26,20 @@ export const Context = createContext(ContextInitial);
 export const Provider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const action = {
-  //   attention: (payload) => {
-  //     dispatch({
-  //       type: Action.setPolish,
-  //       payload,
-  //     });
-  //   },
-  // };
+  const action: IActions = {
+    setPolish: (payload) => {
+      dispatch({
+        type: Action.setPolish,
+        payload: {
+          name: payload,
+          value: pl[payload],
+        },
+      });
+    },
+  };
 
   useEffect(() => {
-    dispatch({
-      type: Action.setPolish,
-      payload: { attention: pl.attention, newsletter: pl.newsletter },
-    });
+    action.setPolish("attention");
   }, []);
 
   return (

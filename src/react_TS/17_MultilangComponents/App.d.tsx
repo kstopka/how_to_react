@@ -11,21 +11,25 @@ export interface InitialState {
 
 export enum Action {
   setPolish,
-  setEngilsh,
 }
 
 interface SetPolish {
   type: Action.setPolish;
-  payload: { attention: JSONlike; newsletter: JSONlike };
-}
-interface SetEnglish {
-  type: Action.setEngilsh;
-  payload: { attention: JSONlike; newsletter: JSONlike };
+  payload: {
+    name: string;
+    value: JSONlike;
+  };
 }
 
-export type Actions = SetPolish | SetEnglish;
+export type Actions = SetPolish;
 
 export interface ContextType {
   state: InitialState;
   dispatch: React.Dispatch<Actions>;
+}
+
+type PropetiesDataType = "attention" | "newsletter";
+
+export interface IActions {
+  setPolish: (payload: PropetiesDataType) => void;
 }
