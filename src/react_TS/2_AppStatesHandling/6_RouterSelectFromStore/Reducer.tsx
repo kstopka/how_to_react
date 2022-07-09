@@ -1,6 +1,6 @@
 import { Actions, Action, InitialState } from "./App.d";
 
-export const reducer = (state: InitialState, action: Actions) => {
+export const reducer = (state: InitialState, action: any) => {
   switch (action.type) {
     case Action.setLang:
       const { name, value } = action.payload;
@@ -14,7 +14,7 @@ export const reducer = (state: InitialState, action: Actions) => {
   }
 };
 
-export const initialState: InitialState = {
-  attention: {},
-  newsletter: {},
-};
+// export const initialState: InitialState = {
+//   attention: {},
+//   newsletter: {},
+// };
