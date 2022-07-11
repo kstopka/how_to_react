@@ -1,36 +1,28 @@
-// type CodeLang = "pl" | "en";
-export type InitialStateContent = "attention" | "newsletter";
-
-interface Fruit {
+export interface Fruit {
   name: string;
   id: string;
   price: number;
 }
 
-//NOTE: jak to usprawnić?
 export type InitialState = {
   items: Fruit[];
 };
 
-// export enum Action {
-//   setLang,
-// }
+export enum Action {
+  setData,
+}
 
-// interface SetLang {
-//   type: Action.setLang;
-//   payload: {
-//     name: string;
-//     value: JSONlike;
-//   };
-// }
+interface SetData {
+  type: Action.setData;
+  payload: InitialState;
+}
 
-// export type Actions = SetLang;
+export type Actions = SetData;
 
-// export interface ContextType {
-//   state: InitialState;
-//   actions: IActions;
-// }
-
-// export interface IActions {
-//   setLang: (codeLang: CodeLang, name: InitialStateContent) => void;
-// }
+export interface IActions {
+  setData: (values: InitialState) => void;
+}
+export interface ContextType {
+  state: InitialState;
+  actions: IActions;
+}

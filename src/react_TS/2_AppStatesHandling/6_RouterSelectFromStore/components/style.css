@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.list {
+  width: 25%;
+  background-color: royalblue;
+}
+.item {
+  background-color: rosybrown;
+  width: 75%;
+}
