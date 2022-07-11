@@ -10,14 +10,14 @@ interface NewsLetterSectionProps {
 const NewsLetterSection: FunctionComponent<NewsLetterSectionProps> = ({
   sectionName = "newsletter",
 }) => {
-  const { state, actions } = useContext(Context);
-  const { title, action, ctaButton } = state[sectionName];
+  const {
+    state: { texts },
+  } = useContext(Context);
+  const { title, action, ctaButton } = texts[sectionName];
 
   return (
     <div>
       <h1>{sectionName}</h1>
-      <button onClick={() => actions.setLang("pl", sectionName)}>PL</button>
-      <button onClick={() => actions.setLang("en", sectionName)}>EN</button>
       <h3>{title}</h3>
       <a href={action}>
         <button>{ctaButton}</button>

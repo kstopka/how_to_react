@@ -6,11 +6,12 @@ interface JSONlike {
 }
 
 //NOTE: jak to usprawnić?
-export type InitialState = {
+export type LangTexts = {
   [key in InitialStateContent]: JSONlike;
-} & {
-  attention: JSONlike;
-  newsletter: JSONlike;
+};
+
+export type InitialState = {
+  texts: LangTexts;
 };
 
 export enum Action {
@@ -19,10 +20,7 @@ export enum Action {
 
 interface SetLang {
   type: Action.setLang;
-  payload: {
-    name: string;
-    value: JSONlike;
-  };
+  payload: LangTexts;
 }
 
 export type Actions = SetLang;
@@ -33,5 +31,5 @@ export interface ContextType {
 }
 
 export interface IActions {
-  setLang: (codeLang: CodeLang, name: InitialStateContent) => void;
+  setLang: (codeLang: CodeLang) => void;
 }

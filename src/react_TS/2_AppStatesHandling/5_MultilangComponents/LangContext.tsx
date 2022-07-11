@@ -21,20 +21,16 @@ export const Provider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const actions: IActions = {
-    setLang: (codeLang, name) => {
+    setLang: (codeLang) => {
       dispatch({
         type: Action.setLang,
-        payload: {
-          name,
-          value: languages[codeLang][name],
-        },
+        payload: languages[codeLang],
       });
     },
   };
 
   useEffect(() => {
-    actions.setLang("pl", "attention");
-    actions.setLang("pl", "newsletter");
+    actions.setLang("pl");
   }, []);
 
   return (

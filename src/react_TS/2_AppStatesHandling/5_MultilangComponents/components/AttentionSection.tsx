@@ -10,14 +10,14 @@ interface AttentionSectionProps {
 const AttentionSection: FunctionComponent<AttentionSectionProps> = ({
   sectionName = "attention",
 }) => {
-  const { state, actions } = useContext(Context);
-  const { title, subtitle, ctaButton } = state[sectionName];
+  const {
+    state: { texts },
+  } = useContext(Context);
+  const { title, subtitle, ctaButton } = texts[sectionName];
 
   return (
     <div>
       <h1>{sectionName}</h1>
-      <button onClick={() => actions.setLang("pl", sectionName)}>PL</button>
-      <button onClick={() => actions.setLang("en", sectionName)}>EN</button>
       <h3>{title}</h3>
       <h4>{subtitle}</h4>
       <button>{ctaButton}</button>

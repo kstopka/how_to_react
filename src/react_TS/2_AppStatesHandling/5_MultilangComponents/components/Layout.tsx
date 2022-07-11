@@ -1,20 +1,26 @@
 import * as React from "react";
 import { useContext, FunctionComponent } from "react";
-import { InitialStateContent } from "../App.d";
 import { Context } from "../LangContext";
+import AttentionSection from "./AttentionSection";
+import NewsLetterSection from "./NewsLetterSection";
 
-interface AttentionSectionProps {}
+interface LayoutProps {}
 
-const AttentionSection: FunctionComponent<AttentionSectionProps> = ({}) => {
-  const { state, actions } = useContext(Context);
+const Layout: FunctionComponent<LayoutProps> = ({}) => {
+  const {
+    actions: { setLang },
+  } = useContext(Context);
 
   return (
     <div>
       <h1>Layout</h1>
-      {/* <button onClick={() => actions.setLang("pl", sectionName)}>PL</button> */}
-      {/* <button onClick={() => actions.setLang("en", sectionName)}>EN</button> */}
+      <button onClick={() => setLang("pl")}>PL</button>
+      <button onClick={() => setLang("en")}>EN</button>
+
+      <AttentionSection />
+      <NewsLetterSection />
     </div>
   );
 };
 
-export default AttentionSection;
+export default Layout;
