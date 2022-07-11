@@ -1,43 +1,39 @@
-import { createContext, useEffect, useReducer } from "react";
-import { initialState, reducer } from "./Reducer";
-import { pl, en } from "./Data";
-import { Action, ContextType, IActions } from "./App.d";
+// import { createContext, useEffect, useReducer } from "react";
+// import { initialState, reducer } from "./Reducer";
+// import { Action, ContextType, IActions } from "./App.d";
 
-const languages = {
-  pl,
-  en,
-};
+export const languages = {};
 
-const ContextInitial: ContextType = {
-  state: initialState,
-  actions: {
-    setLang: (codeLang, name) => {},
-  },
-};
+// const ContextInitial: ContextType = {
+//   state: initialState,
+//   actions: {
+//     setLang: (codeLang, name) => {},
+//   },
+// };
 
-export const Context = createContext(ContextInitial);
+// export const Context = createContext(ContextInitial);
 
-export const Provider = ({ children }: { children: any }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+// export const Provider = ({ children }: { children: any }) => {
+//   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const actions: IActions = {
-    setLang: (codeLang, name) => {
-      dispatch({
-        type: Action.setLang,
-        payload: {
-          name,
-          value: languages[codeLang][name],
-        },
-      });
-    },
-  };
+//   const actions: IActions = {
+//     setLang: (codeLang, name) => {
+//       dispatch({
+//         type: Action.setLang,
+//         payload: {
+//           name,
+//           value: languages[codeLang][name],
+//         },
+//       });
+//     },
+//   };
 
-  useEffect(() => {
-    actions.setLang("pl", "attention");
-    actions.setLang("pl", "newsletter");
-  }, []);
+//   useEffect(() => {
+//     actions.setLang("pl", "attention");
+//     actions.setLang("pl", "newsletter");
+//   }, []);
 
-  return (
-    <Context.Provider value={{ state, actions }}>{children}</Context.Provider>
-  );
-};
+//   return (
+//     <Context.Provider value={{ state, actions }}>{children}</Context.Provider>
+//   );
+// };

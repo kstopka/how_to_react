@@ -11,7 +11,7 @@ const languages = {
 const ContextInitial: ContextType = {
   state: initialState,
   actions: {
-    setLang: (codeLang, name) => {},
+    setLang: () => {},
   },
 };
 

@@ -1,18 +1,19 @@
-import { Actions, Action, InitialState } from "./App.d";
+// import { Actions, Action, InitialState } from "./App.d";
 
-export const reducer = (state: InitialState, action: any) => {
-  switch (action.type) {
-    case Action.setLang:
-      const { name, value } = action.payload;
-      return {
-        ...state,
-        [name]: value,
-      };
+export const reducer = (state: any, action: any) => {};
+// export const reducer = (state: InitialState, action: Actions) => {
+//   switch (action.type) {
+//     case Action.setLang:
+//       const { name, value } = action.payload;
+//       return {
+//         ...state,
+//         [name]: value,
+//       };
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
 // export const initialState: InitialState = {
 //   attention: {},

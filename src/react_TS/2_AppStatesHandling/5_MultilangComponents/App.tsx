@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import AttentionSection from "./components/AttentionSection";
+import Layout from "./components/Layout";
 import NewsLetterSection from "./components/NewsLetterSection";
 import { Provider } from "./LangContext";
 
@@ -10,8 +11,9 @@ const App: FunctionComponent<AppProps> = () => {
   return (
     <div className="wrapper">
       <Provider>
-        <AttentionSection />
-        <NewsLetterSection />
+        <Layout />
+        {/* <AttentionSection /> */}
+        {/* <NewsLetterSection /> */}
       </Provider>
     </div>
   );
