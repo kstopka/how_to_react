@@ -1,0 +1,22 @@
+.wrapperSidebar {
+  width: 50%;
+  height: 100vh;
+  background-color: brown;
+  -webkit-transform: translateX(-80%);
+          transform: translateX(-80%);
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
+}
+
+.wrapperSidebarOpen {
+  width: 50%;
+  height: 100vh;
+  background-color: brown;
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
+}
+
+body {
+  margin: 0;
+}
+/*# sourceMappingURL=sidebar.css.map */

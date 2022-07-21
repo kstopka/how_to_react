@@ -1,0 +1,19 @@
+.wrapperSidebar {
+  width: 50%;
+  height: 100vh;
+  background-color: brown;
+
+  transform: translateX(-80%);
+  transition: ease 1s;
+  &Open {
+    width: 50%;
+    height: 100vh;
+    background-color: brown;
+    transition: ease 1s;
+    // transform: translateX(0%);
+  }
+}
+
+body {
+  margin: 0;
+}
