@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { useToggler } from "../useToggler";
+import { useToggler } from "../hooks/useToggler";
 import Sidebar from "./Sidebar";
 import Toggler from "./Toggler";
 
@@ -11,7 +11,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   return (
     <div className="wrapper">
       <Toggler isOpen={toggler} handleToggle={handleToggle} />
-      <Sidebar isOpen={toggler} />
+      <Sidebar isOpen={toggler} handleToggle={handleToggle} />
     </div>
   );
 };

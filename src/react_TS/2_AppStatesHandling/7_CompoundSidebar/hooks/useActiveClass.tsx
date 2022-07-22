@@ -6,7 +6,7 @@ export const useActiveClass = (
   normal: string
 ) => {
   const activeClass = useMemo(() => {
-    if (isActive) return `${normal} ${active}`;
+    if (!isActive) return `${normal} ${active}`;
     return normal;
   }, [normal, isActive, active]);
 

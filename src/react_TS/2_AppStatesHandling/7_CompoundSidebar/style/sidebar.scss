@@ -3,14 +3,29 @@
   height: 100vh;
   background-color: brown;
 
-  transform: translateX(-80%);
+  transform: translateX(-100%);
   transition: ease 1s;
   &Open {
     width: 50%;
     height: 100vh;
     background-color: brown;
     transition: ease 1s;
-    // transform: translateX(0%);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      z-index: 5;
+      li {
+        cursor: pointer;
+        background-color: royalblue;
+        width: 160px;
+        text-align: center;
+        padding: 20px;
+        margin: 10px;
+      }
+    }
   }
 }
 
