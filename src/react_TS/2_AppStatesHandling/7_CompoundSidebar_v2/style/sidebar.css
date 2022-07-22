@@ -1,0 +1,44 @@
+.wrapperSidebar {
+  width: 50%;
+  height: 100vh;
+  background-color: brown;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
+}
+
+.wrapperSidebarOpen {
+  width: 50%;
+  height: 100vh;
+  background-color: brown;
+  -webkit-transition: ease 0.3s;
+  transition: ease 0.3s;
+}
+
+.wrapperSidebarOpen ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style: none;
+  margin: 0;
+  z-index: 5;
+}
+
+.wrapperSidebarOpen ul li {
+  cursor: pointer;
+  background-color: royalblue;
+  width: 160px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+}
+
+body {
+  margin: 0;
+}
+/*# sourceMappingURL=sidebar.css.map */
