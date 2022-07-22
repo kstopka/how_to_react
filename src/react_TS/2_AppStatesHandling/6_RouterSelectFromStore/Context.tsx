@@ -8,6 +8,7 @@ const ContextInitial: ContextType = {
   state: initialState,
   actions: {
     setData: () => {},
+    setChosenItem: () => {},
   },
 };
 
@@ -20,6 +21,12 @@ export const Provider = ({ children }: { children: any }) => {
     setData: (values) => {
       dispatch({
         type: Action.setData,
+        payload: values,
+      });
+    },
+    setChosenItem: (values) => {
+      dispatch({
+        type: Action.setChosenItem,
         payload: values,
       });
     },

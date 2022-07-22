@@ -1,23 +1,17 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { FunctionComponent, useContext, useState } from "react";
+import { FunctionComponent, useContext } from "react";
 import "./style.css";
 import ItemDetailView from "./ItemDetailView";
 import { Context } from "../Context";
-import { Fruit } from "../App.d";
 
 interface ItemsListViewProps {}
 
 const ItemsListView: FunctionComponent<ItemsListViewProps> = ({}) => {
   const {
-    state: { items },
+    state: { items, chosenItem },
+    actions: { setChosenItem },
   } = useContext(Context);
-
-  const [chosenItem, setChosenItem] = useState<Fruit>({
-    name: "",
-    id: "",
-    price: 0,
-  });
 
   return (
     <BrowserRouter>

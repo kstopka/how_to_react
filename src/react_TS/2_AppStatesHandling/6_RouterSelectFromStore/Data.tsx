@@ -1,6 +1,6 @@
-import { InitialState } from "./App.d";
+import { TStore } from "./App.d";
 
-export const store: InitialState = {
+export const store: TStore = {
   items: [
     {
       name: "apple",

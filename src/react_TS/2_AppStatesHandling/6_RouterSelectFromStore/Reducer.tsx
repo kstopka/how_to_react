@@ -1,12 +1,17 @@
-import { Action, Actions, InitialState } from "./App.d";
+import { Action, Actions, Fruit, InitialState } from "./App.d";
 
 export const reducer = (state: InitialState, action: Actions) => {
-  const { type, payload } = action;
-  switch (type) {
+  switch (action.type) {
     case Action.setData:
       return {
         ...state,
-        items: payload.items,
+        items: action.payload.items,
+      };
+
+    case Action.setChosenItem:
+      return {
+        ...state,
+        chosenItem: action.payload,
       };
 
     default:
@@ -16,4 +21,9 @@ export const reducer = (state: InitialState, action: Actions) => {
 
 export const initialState: InitialState = {
   items: [],
+  chosenItem: {
+    id: "",
+    name: "",
+    price: 0,
+  },
 };
